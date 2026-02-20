@@ -42,5 +42,9 @@ export const prisma = {
     }),
     deleteMany: vi.fn(async () => ({ count: 0 }))
   },
+  photo: {
+    create: vi.fn(),
+    findMany: vi.fn()
+  },
   $disconnect: vi.fn(async () => {})
 }
