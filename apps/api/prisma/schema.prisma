@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  image     String?
+  provider  String
+  createdAt DateTime @default(now())
+  projects  Project[]
+  orders    Order[]
+}
+
+model Project {
+  id           String        @id @default(uuid())
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  status       ProjectStatus @default(DRAFT)
+  coupleInfo   Json
+  styleOptions Json
+  createdAt    DateTime      @default(now())
+  completedAt  DateTime?
+  photos       Photo[]
+  scenes       Scene[]
+  videos       Video[]
+  orders       Order[]
+}
+
+enum ProjectStatus {
+  DRAFT
+  GENERATING
+  EDITING
+  PAID
+  COMPLETED
+}
+
+model Photo {
+  id            String  @id @default(uuid())
+  projectId     String
+  project       Project @relation(fields: [projectId], references: [id])
+  s3Key         String
+  isFacePrimary Boolean @default(false)
+  order         Int
+}
+
+model Scene {
+  id             String  @id @default(uuid())
+  projectId      String
+  project        Project @relation(fields: [projectId], references: [id])
+  act            Int
+  order          Int
+  imageS3Key     String?
+  imagePrompt    String?
+  narrationText  String?
+  narrationS3Key String?
+  durationSec    Float?
+}
+
+model Video {
+  id         String     @id @default(uuid())
+  projectId  String
+  project    Project    @relation(fields: [projectId], references: [id])
+  resolution Resolution
+  s3Key      String
+  shareToken String     @unique @default(uuid())
+  expiresAt  DateTime?
+  createdAt  DateTime   @default(now())
+}
+
+enum Resolution {
+  HD
+  FHD
+  FOURK
+}
+
+model Order {
+  id             String      @id @default(uuid())
+  projectId      String
+  project        Project     @relation(fields: [projectId], references: [id])
+  userId         String
+  user           User        @relation(fields: [userId], references: [id])
+  plan           Plan
+  amount         Int
+  status         OrderStatus @default(PENDING)
+  tossPaymentKey String?
+  paidAt         DateTime?
+  createdAt      DateTime    @default(now())
+}
+
+enum Plan {
+  BASIC
+  STANDARD
+  PREMIUM
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  REFUNDED
+}
