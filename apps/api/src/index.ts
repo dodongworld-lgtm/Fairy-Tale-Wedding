@@ -35,6 +35,12 @@ app.get('/health', (_req, res) => res.json({ ok: true }))
 // Export app for testing (without listen)
 export default app
 
+// Global error handler
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  console.error(err.stack)
+  res.status(500).json({ error: 'Internal server error' })
+})
+
 if (require.main === module) {
   const PORT = process.env.API_PORT || 4000
   httpServer.listen(PORT, () => console.log(`API running on :${PORT}`))
