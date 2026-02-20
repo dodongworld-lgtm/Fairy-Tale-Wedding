@@ -1,0 +1,12 @@
+{
+  "name": "once-upon-us",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w apps/web\" \"npm run dev -w apps/api\"",
+    "test": "npm run test --workspaces"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
