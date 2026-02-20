@@ -32,6 +32,17 @@ export const prisma = {
       }
       return project
     }),
+    findUniqueOrThrow: vi.fn(async ({ where }: { where: any }) => {
+      const project = store[where.id]
+      if (!project) throw new Error(`Project not found: ${where.id}`)
+      return project
+    }),
+    update: vi.fn(async ({ where, data }: { where: any; data: any }) => {
+      const project = store[where.id]
+      if (!project) throw new Error(`Project not found: ${where.id}`)
+      Object.assign(store[where.id], data)
+      return store[where.id]
+    }),
     updateMany: vi.fn(async ({ where, data }: { where: any; data: any }) => {
       const project = Object.values(store).find(
         (p: any) => p.id === where.id && p.userId === where.userId
@@ -44,6 +55,11 @@ export const prisma = {
   },
   photo: {
     create: vi.fn(),
+    findMany: vi.fn()
+  },
+  scene: {
+    create: vi.fn(),
+    update: vi.fn(),
     findMany: vi.fn()
   },
   $disconnect: vi.fn(async () => {})
