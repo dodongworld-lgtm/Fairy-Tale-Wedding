@@ -62,5 +62,10 @@ export const prisma = {
     update: vi.fn(),
     findMany: vi.fn()
   },
+  order: {
+    create: vi.fn(),
+    findUnique: vi.fn(),
+    update: vi.fn()
+  },
   $disconnect: vi.fn(async () => {})
 }

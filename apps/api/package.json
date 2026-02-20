@@ -17,6 +17,8 @@
     "@types/express": "^5.0.6",
     "@types/morgan": "^1.9.10",
     "@types/node": "^20.19.33",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "@types/supertest": "^6.0.3",
     "@types/uuid": "^10.0.0",
     "supertest": "^7.2.2",
@@ -30,6 +32,8 @@
     "@aws-sdk/s3-request-presigner": "^3.994.0",
     "@fal-ai/client": "^1.9.2",
     "@prisma/client": "^7.4.1",
+    "@remotion/bundler": "^4.0.425",
+    "@remotion/renderer": "^4.0.425",
     "bullmq": "^5.69.3",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
@@ -39,6 +43,7 @@
     "ioredis": "^5.9.3",
     "morgan": "^1.10.1",
     "prisma": "^7.4.1",
+    "remotion": "^4.0.425",
     "socket.io": "^4.8.3",
     "uuid": "^11.1.0"
   }
