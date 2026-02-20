@@ -7,7 +7,9 @@ const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => P
   (req: Request, res: Response, next: NextFunction) => fn(req, res, next).catch(next)
 
 projectsRouter.post('/', asyncHandler(async (req, res) => {
-  const userId = req.headers['x-user-id'] as string
+  const userId = Array.isArray(req.headers['x-user-id'])
+    ? req.headers['x-user-id'][0]
+    : req.headers['x-user-id']
   if (!userId) {
     res.status(401).json({ error: 'Unauthorized' })
     return
@@ -22,9 +24,12 @@ projectsRouter.post('/', asyncHandler(async (req, res) => {
 }))
 
 projectsRouter.get('/:id', asyncHandler(async (req, res) => {
-  const userId = req.headers['x-user-id'] as string
+  const userId = Array.isArray(req.headers['x-user-id'])
+    ? req.headers['x-user-id'][0]
+    : req.headers['x-user-id']
+  const id = req.params.id as string
   const project = await prisma.project.findFirst({
-    where: { id: req.params.id, userId },
+    where: { id, userId },
     include: { photos: true, scenes: true, videos: true }
   })
 
@@ -36,11 +41,14 @@ projectsRouter.get('/:id', asyncHandler(async (req, res) => {
 }))
 
 projectsRouter.patch('/:id', asyncHandler(async (req, res) => {
-  const userId = req.headers['x-user-id'] as string
+  const userId = Array.isArray(req.headers['x-user-id'])
+    ? req.headers['x-user-id'][0]
+    : req.headers['x-user-id']
+  const id = req.params.id as string
   const { coupleInfo, styleOptions } = req.body
 
   const result = await prisma.project.updateMany({
-    where: { id: req.params.id, userId },
+    where: { id, userId },
     data: { coupleInfo, styleOptions }
   })
 
