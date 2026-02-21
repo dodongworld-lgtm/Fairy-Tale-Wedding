@@ -4,9 +4,12 @@ import { prisma } from '../lib/prisma'
 import { generateStory } from '../services/storyGenerator'
 import { generateSceneImage } from '../services/imageGenerator'
 import { generateNarration } from '../services/narrationGenerator'
+import { renderProposalVideo } from '../services/videoRenderer'
 import type { VideoJobData } from '../queues/videoQueue'
 
-// Lazy import io to avoid circular dependency
+// CC0 무료 BGM (Pixabay royalty-free)
+const FREE_BGM_URL = 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d1718ab41b.mp3'
+
 function getIo() {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require('../index').io
@@ -44,6 +47,9 @@ export const videoWorker = new Worker<VideoJobData>(
       const styleOptions = project.styleOptions as Record<string, string>
       let completedScenes = 0
       const totalScenes = story.acts.reduce((acc: number, act: any) => acc + act.scenes.length, 0)
+      const rendererScenes: Array<{
+        imageUrl: string; narrationUrl: string; narrationText: string; durationSec: number
+      }> = []
 
       for (const act of story.acts) {
         for (const sceneData of act.scenes) {
@@ -74,22 +80,44 @@ export const videoWorker = new Worker<VideoJobData>(
             data: { imageS3Key: imageResult.s3Key, narrationS3Key: narrationResult.s3Key }
           })
 
+          rendererScenes.push({
+            imageUrl: imageResult.imageUrl,
+            narrationUrl: narrationResult.audioUrl,
+            narrationText: sceneData.narration,
+            durationSec: sceneData.durationSec
+          })
+
           completedScenes++
           emit(projectId, 'progress', {
             step: 'images',
-            percent: 20 + Math.floor((completedScenes / totalScenes) * 60),
+            percent: 20 + Math.floor((completedScenes / totalScenes) * 50),
             message: `장면 생성 중... (${completedScenes}/${totalScenes})`
           })
         }
       }
 
-      await prisma.project.update({
-        where: { id: projectId },
-        data: { status: 'EDITING' }
+      // Remotion으로 영상 자동 합성
+      emit(projectId, 'progress', { step: 'render', percent: 75, message: '영상 합성 중... ✨' })
+
+      const { s3Key, videoUrl } = await renderProposalVideo({
+        projectId,
+        scenes: rendererScenes,
+        bgmUrl: FREE_BGM_URL,
+        title: story.title,
+        resolution: 'HD'
       })
 
-      emit(projectId, 'progress', { step: 'done', percent: 100, message: '생성 완료!' })
-      emit(projectId, 'completed', { projectId })
+      await prisma.video.create({
+        data: { projectId, resolution: 'HD', s3Key }
+      })
+
+      await prisma.project.update({
+        where: { id: projectId },
+        data: { status: 'EDITING', completedAt: new Date() }
+      })
+
+      emit(projectId, 'progress', { step: 'done', percent: 100, message: '영상 완성! 🎉' })
+      emit(projectId, 'completed', { projectId, videoUrl })
 
     } catch (error) {
       await prisma.project.update({

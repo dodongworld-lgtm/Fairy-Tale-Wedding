@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import { createServer } from 'http'
 import { Server as SocketServer } from 'socket.io'
 import { router } from './routes'
+import { STORAGE_DIR } from './lib/localFiles'
 
 const app = express()
 const httpServer = createServer(app)
@@ -30,6 +31,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 app.use('/api', router)
+app.use('/files', express.static(STORAGE_DIR))
 app.get('/health', (_req, res) => res.json({ ok: true }))
 
 // Export app for testing (without listen)

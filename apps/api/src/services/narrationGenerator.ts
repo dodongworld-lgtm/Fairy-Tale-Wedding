@@ -1,6 +1,5 @@
 import { ElevenLabsClient } from 'elevenlabs'
-import { s3 } from '../lib/s3'
-import { PutObjectCommand } from '@aws-sdk/client-s3'
+import { saveFile } from '../lib/localFiles'
 import { v4 as uuid } from 'uuid'
 
 const elevenlabs = new ElevenLabsClient({ apiKey: process.env.ELEVENLABS_API_KEY || '' })
@@ -29,8 +28,8 @@ export async function generateNarration({
   emotion: string
   narratorGender: 'female' | 'male'
   language: 'ko' | 'en'
-}): Promise<{ s3Key: string }> {
-  const voiceKey = `${narratorGender}_${language === 'ko' ? 'ko' : 'ko'}`
+}): Promise<{ s3Key: string; audioUrl: string }> {
+  const voiceKey = `${narratorGender}_ko`
   const voiceId = VOICE_IDS[voiceKey] || VOICE_IDS.female_ko
 
   const audioStream = await elevenlabs.generate({
@@ -51,13 +50,8 @@ export async function generateNarration({
   }
   const audioBuffer = Buffer.concat(chunks)
 
-  const s3Key = `narrations/${projectId}/${uuid()}.mp3`
-  await s3.send(new PutObjectCommand({
-    Bucket: process.env.S3_BUCKET_NAME!,
-    Key: s3Key,
-    Body: audioBuffer,
-    ContentType: 'audio/mpeg'
-  }))
+  const subPath = `narrations/${projectId}/${uuid()}.mp3`
+  const audioUrl = saveFile(subPath, audioBuffer)
 
-  return { s3Key }
+  return { s3Key: subPath, audioUrl }
 }

@@ -1,8 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import { v4 as uuid } from 'uuid'
-import { s3, getDownloadUrl } from '../lib/s3'
-import { PutObjectCommand } from '@aws-sdk/client-s3'
+import { saveFile } from '../lib/localFiles'
 
 export async function renderProposalVideo({
   projectId,
@@ -17,7 +16,6 @@ export async function renderProposalVideo({
   title: string
   resolution: 'HD' | 'FHD' | 'FOURK'
 }): Promise<{ s3Key: string; videoUrl: string }> {
-  // Dynamic imports to avoid loading Remotion at startup
   const { bundle } = await import('@remotion/bundler')
   const { renderMedia, selectComposition } = await import('@remotion/renderer')
 
@@ -58,17 +56,11 @@ export async function renderProposalVideo({
     overwrite: true
   })
 
-  const s3Key = `videos/${projectId}/${resolution}-${uuid()}.mp4`
   const videoBuffer = fs.readFileSync(outputPath)
-
-  await s3.send(new PutObjectCommand({
-    Bucket: process.env.S3_BUCKET_NAME!,
-    Key: s3Key,
-    Body: videoBuffer,
-    ContentType: 'video/mp4'
-  }))
+  const subPath = `videos/${projectId}/${resolution}-${uuid()}.mp4`
+  const videoUrl = saveFile(subPath, videoBuffer)
 
   fs.unlinkSync(outputPath)
 
-  return { s3Key, videoUrl: await getDownloadUrl(s3Key) }
+  return { s3Key: subPath, videoUrl }
 }

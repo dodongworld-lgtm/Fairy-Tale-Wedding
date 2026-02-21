@@ -1,6 +1,7 @@
-import Anthropic from '@anthropic-ai/sdk'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '')
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
 
 const SYSTEM_PROMPT = `당신은 디즈니 예고편 스타일의 감성적인 사랑 이야기를 만드는 스토리작가입니다.
 커플 정보를 받아 4막 구조(만남-여정-시련-프로포즈)의 60~90초 분량 영상 스토리를 만들어주세요.
@@ -94,14 +95,10 @@ export async function generateStory(
 각 막마다 2~3개 장면을 만들어주세요. Act 4의 마지막 장면 객체에 "proposeMessage": "${coupleInfo.proposeMessage}" 필드를 추가하세요.
   `.trim()
 
-  const response = await client.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 2000,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content: userMessage }]
-  })
-
-  const text = response.content[0].type === 'text' ? response.content[0].text : ''
+  const result = await model.generateContent(
+    SYSTEM_PROMPT + '\n\n' + userMessage
+  )
+  const text = result.response.text()
   const jsonStr = text.replace(/```json\n?|\n?```/g, '').trim()
 
   return JSON.parse(jsonStr) as GeneratedStory
