@@ -17,8 +17,8 @@ const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
 const STEP_LABELS = ['이야기', '사진', '캐릭터', '스토리', '편집', '스타일']
 
-type UploadedPhoto = { photoId: string; fileName: string; isFacePrimary: boolean }
-type FormData = { person1?: string; person2?: string; firstMeetPlace?: string; memories?: string; proposeMessage?: string }
+type UploadedPhoto = { photoId: string; fileName: string; isFacePrimary: boolean; previewUrl?: string }
+type FormData = { person1?: string; person2?: string }
 
 export default function CreatePage() {
   const router = useRouter()

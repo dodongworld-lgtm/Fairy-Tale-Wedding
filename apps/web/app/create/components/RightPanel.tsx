@@ -2,7 +2,7 @@
 import { CharacterAssignment, StoryTemplate, Background } from '../data/storyData'
 
 type FormData = { person1?: string; person2?: string }
-type UploadedPhoto = { photoId: string; fileName: string; isFacePrimary: boolean }
+type UploadedPhoto = { photoId: string; fileName: string; isFacePrimary: boolean; previewUrl?: string }
 type Cut = { id: number; sceneTitle: string; background: Background; dialogue: string }
 
 type Props = {
@@ -97,12 +97,12 @@ function Step2Preview({ photos }: { photos: UploadedPhoto[] }) {
           >
             {/* Polaroid */}
             <div className={`bg-white shadow-lg shadow-gray-300/50 p-2 pb-6 ${photo ? 'border-2 border-rose-200' : ''}`}>
-              <div className={`aspect-square flex items-center justify-center ${
-                photo
-                  ? 'bg-gradient-to-br from-rose-100 to-pink-200'
-                  : 'bg-gray-100'
+              <div className={`aspect-square flex items-center justify-center overflow-hidden ${
+                photo ? 'bg-gradient-to-br from-rose-100 to-pink-200' : 'bg-gray-100'
               }`}>
-                {photo ? (
+                {photo?.previewUrl ? (
+                  <img src={photo.previewUrl} alt={photo.fileName} className="w-full h-full object-cover" />
+                ) : photo ? (
                   <svg className="w-6 h-6 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                   </svg>
