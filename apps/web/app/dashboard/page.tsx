@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import { LangSwitcher } from '../components/LangSwitcher'
-import { useLang } from '../../contexts/LangContext'
+import { useLang } from '../contexts/LangContext'
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
