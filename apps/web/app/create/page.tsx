@@ -6,20 +6,23 @@ import { LangSwitcher } from '../components/LangSwitcher'
 import { StepTemplate } from './components/StepTemplate'
 import { Step1CoupleInfo } from './components/Step1CoupleInfo'
 import { Step2PhotoUpload } from './components/Step2PhotoUpload'
-import { StepCharacterPreview } from './components/StepCharacterPreview'
+import { StepCharacterRec } from './components/StepCharacterRec'
+import { StepStorySelect } from './components/StepStorySelect'
+import { StepCutEditor } from './components/StepCutEditor'
 import { Step3StyleSelect } from './components/Step3StyleSelect'
 import { RightPanel } from './components/RightPanel'
+import type { CharacterAssignment, StoryTemplate, CutTemplate } from './data/storyData'
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
-const STEP_LABELS = ['이야기', '사진', '캐릭터', '스타일']
+const STEP_LABELS = ['이야기', '사진', '캐릭터', '스토리', '편집', '스타일']
 
 type UploadedPhoto = { photoId: string; fileName: string; isFacePrimary: boolean }
 type FormData = { person1?: string; person2?: string; firstMeetPlace?: string; memories?: string; proposeMessage?: string }
 
 export default function CreatePage() {
   const router = useRouter()
-  const [step, setStep] = useState(0)  // 0 = template selection, 1-4 = wizard
+  const [step, setStep] = useState(0)
   const [templateType, setTemplateType] = useState('')
   const [templateSubType, setTemplateSubType] = useState('')
   const [projectId, setProjectId] = useState<string | null>(null)
@@ -27,12 +30,26 @@ export default function CreatePage() {
   const [formPreview, setFormPreview] = useState<FormData>({})
   const [selectedStyle, setSelectedStyle] = useState('fantasy')
 
+  // New state
+  const [person1, setPerson1] = useState('')
+  const [person2, setPerson2] = useState('')
+  const [characters, setCharacters] = useState<CharacterAssignment[]>([])
+  const [selectedStory, setSelectedStory] = useState<StoryTemplate | null>(null)
+  const [cuts, setCuts] = useState<CutTemplate[]>([])
+  const [activeCutIndex, setActiveCutIndex] = useState(0)
+
   const TOTAL_STEPS = STEP_LABELS.length
 
   const handleTemplate = (type: string, subType: string) => {
     setTemplateType(type)
     setTemplateSubType(subType)
     setStep(1)
+  }
+
+  const handlePreviewChange = (data: Partial<FormData>) => {
+    setFormPreview(data)
+    if (data.person1 !== undefined) setPerson1(data.person1)
+    if (data.person2 !== undefined) setPerson2(data.person2)
   }
 
   const handleStep1 = async (coupleInfo: any) => {
@@ -51,9 +68,24 @@ export default function CreatePage() {
     setStep(3)
   }
 
-  const handleCharacterPreview = () => setStep(4)
+  const handleCharacterRec = (chars: CharacterAssignment[]) => {
+    setCharacters(chars)
+    setStep(4)
+  }
 
-  const handleStep4 = async (styleOptions: any) => {
+  const handleStorySelect = (story: StoryTemplate) => {
+    setSelectedStory(story)
+    setCuts(story.cuts.map(c => ({ ...c })))
+    setActiveCutIndex(0)
+    setStep(5)
+  }
+
+  const handleCutEditor = (editedCuts: CutTemplate[]) => {
+    setCuts(editedCuts)
+    setStep(6)
+  }
+
+  const handleStep6 = async (styleOptions: any) => {
     if (!projectId) return
     await axios.patch(`${API}/api/projects/${projectId}`, { styleOptions }, { headers: { 'x-user-id': 'temp-user' } })
     await axios.post(`${API}/api/projects/${projectId}/generate`, {}, { headers: { 'x-user-id': 'temp-user' } })
@@ -65,7 +97,7 @@ export default function CreatePage() {
     return <StepTemplate onNext={handleTemplate} />
   }
 
-  // Steps 1-4: Split layout wizard
+  // Steps 1-6: Split layout wizard
   return (
     <div className="h-screen bg-white flex flex-col overflow-hidden">
 
@@ -74,13 +106,13 @@ export default function CreatePage() {
         <a href="/" className="text-base font-semibold text-gray-900">Once Upon Us</a>
 
         {/* Step dots */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-1.5">
           {STEP_LABELS.map((label, i) => {
             const n = i + 1
             const isActive = step === n
             const isDone = step > n
             return (
-              <div key={n} className="flex items-center gap-1 sm:gap-1.5">
+              <div key={n} className="flex items-center gap-0.5 sm:gap-1">
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                   isDone ? 'bg-gray-900 text-white' : isActive ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-400'
                 }`}>
@@ -91,7 +123,7 @@ export default function CreatePage() {
                   ) : n}
                 </div>
                 <span className={`text-xs font-medium hidden sm:block ${isActive ? 'text-gray-900' : 'text-gray-400'}`}>{label}</span>
-                {n < TOTAL_STEPS && <div className={`w-4 sm:w-6 h-px ${step > n ? 'bg-gray-400' : 'bg-gray-200'}`}/>}
+                {n < TOTAL_STEPS && <div className={`w-3 sm:w-5 h-px ${step > n ? 'bg-gray-400' : 'bg-gray-200'}`}/>}
               </div>
             )
           })}
@@ -109,18 +141,36 @@ export default function CreatePage() {
             {step === 1 && (
               <Step1CoupleInfo
                 onNext={handleStep1}
-                onPreviewChange={setFormPreview}
+                onPreviewChange={handlePreviewChange}
               />
             )}
             {step === 2 && projectId && (
               <Step2PhotoUpload projectId={projectId} onNext={handleStep2} />
             )}
             {step === 3 && (
-              <StepCharacterPreview photos={uploadedPhotos} onNext={handleCharacterPreview} />
+              <StepCharacterRec
+                photos={uploadedPhotos}
+                person1={person1}
+                person2={person2}
+                onNext={handleCharacterRec}
+              />
             )}
             {step === 4 && (
+              <StepStorySelect
+                templateType={templateType}
+                templateSubType={templateSubType}
+                onNext={handleStorySelect}
+              />
+            )}
+            {step === 5 && (
+              <StepCutEditor
+                initialCuts={cuts}
+                onNext={handleCutEditor}
+              />
+            )}
+            {step === 6 && (
               <Step3StyleSelect
-                onNext={handleStep4}
+                onNext={handleStep6}
                 onStyleChange={setSelectedStyle}
               />
             )}
@@ -134,6 +184,10 @@ export default function CreatePage() {
             formData={formPreview}
             photos={uploadedPhotos}
             selectedStyle={selectedStyle}
+            characters={characters}
+            selectedStory={selectedStory}
+            activeCutIndex={activeCutIndex}
+            cuts={cuts}
           />
         </div>
 

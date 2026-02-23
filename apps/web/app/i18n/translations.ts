@@ -279,6 +279,27 @@ export const translations = {
       inProgress: '진행 중',
       initMessage: '마법이 시작됩니다...',
     },
+    characterRec: {
+      loading: '캐릭터를 분석하고 있어요...',
+      title: '당신의 동화 캐릭터',
+      retry: '다시 추천받기',
+      confirm: '이 캐릭터로 시작하기',
+    },
+    storySelect: {
+      title: '어떤 이야기로 만들까요?',
+      subtitle: '나중에 수정할 수 있어요',
+      select: '이 스토리로 시작하기',
+      preview: '장면 미리보기',
+    },
+    cutEditor: {
+      title: '각 장면을 편집해요',
+      subtitle: '대사와 배경을 자유롭게 바꿔보세요',
+      cut: '장면',
+      background: '배경',
+      dialogue: '대사',
+      dialoguePlaceholder: '이 장면의 대사를 입력하세요',
+      complete: '완성하기',
+    },
   },
   en: {
     common: {
@@ -557,6 +578,27 @@ export const translations = {
       timeEstimate: 'Average 3–5 minutes',
       inProgress: 'In progress',
       initMessage: 'The magic begins...',
+    },
+    characterRec: {
+      loading: 'Analyzing your characters...',
+      title: 'Your Fairy Tale Characters',
+      retry: 'Try Again',
+      confirm: 'Start with These Characters',
+    },
+    storySelect: {
+      title: 'Which story shall we tell?',
+      subtitle: 'You can edit it later',
+      select: 'Start with This Story',
+      preview: 'Preview Scenes',
+    },
+    cutEditor: {
+      title: 'Edit Each Scene',
+      subtitle: 'Change dialogue and backgrounds freely',
+      cut: 'Scene',
+      background: 'Background',
+      dialogue: 'Dialogue',
+      dialoguePlaceholder: 'Enter the dialogue for this scene',
+      complete: 'Finish',
     },
   },
 } as const
