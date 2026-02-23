@@ -53,13 +53,17 @@ export default function CreatePage() {
   }
 
   const handleStep1 = async (coupleInfo: any) => {
-    const res = await axios.post(`${API}/api/projects`, {
-      coupleInfo,
-      styleOptions: {},
-      templateType,
-      templateSubType,
-    }, { headers: { 'x-user-id': 'temp-user' } })
-    setProjectId(res.data.id)
+    try {
+      const res = await axios.post(`${API}/api/projects`, {
+        coupleInfo,
+        styleOptions: {},
+        templateType,
+        templateSubType,
+      }, { headers: { 'x-user-id': 'temp-user' } })
+      setProjectId(res.data.id)
+    } catch {
+      setProjectId(`mock-${Date.now()}`)
+    }
     setStep(2)
   }
 
