@@ -233,52 +233,66 @@ function Step4Preview({ selectedStory }: { selectedStory?: StoryTemplate | null 
   )
 }
 
-/* ── Step 5: 필름 스트립 ── */
+/* ── Step 5: 스토리보드 ── */
+const SCENE_GRADIENTS: Record<Background, string> = {
+  castle:  'from-slate-700 via-gray-800 to-slate-900',
+  forest:  'from-emerald-800 via-green-900 to-emerald-950',
+  sea:     'from-cyan-700 via-blue-800 to-indigo-900',
+  meadow:  'from-green-600 via-emerald-700 to-teal-800',
+  city:    'from-violet-800 via-purple-900 to-indigo-950',
+  palace:  'from-amber-700 via-orange-800 to-amber-900',
+}
+
 function Step5Preview({ cuts, activeCutIndex = 0 }: { cuts?: Cut[]; activeCutIndex?: number }) {
   if (!cuts || cuts.length === 0) return null
   const active = cuts[activeCutIndex]
   return (
-    <div className="w-full max-w-xs mx-auto px-4">
-      {/* Film strip */}
-      <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl shadow-gray-900/40 p-4">
-        {/* Top perforations */}
-        <div className="flex gap-2 mb-3 justify-between px-1">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="w-3 h-2 bg-gray-700 rounded-sm" />
-          ))}
+    <div className="w-full max-w-xs mx-auto px-4 space-y-3">
+      {/* Active scene - large storyboard panel */}
+      <div className={`w-full aspect-video rounded-2xl overflow-hidden bg-gradient-to-b ${SCENE_GRADIENTS[active.background]} relative shadow-xl`}>
+        {/* Scene number badge */}
+        <div className="absolute top-3 left-3 bg-black/40 backdrop-blur-sm rounded-lg px-2.5 py-1">
+          <span className="text-white text-xs font-black">CUT {activeCutIndex + 1}</span>
         </div>
-        {/* Frames */}
-        <div className="grid grid-cols-5 gap-1.5">
+        {/* Scene title */}
+        <div className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm rounded-lg px-2.5 py-1">
+          <span className="text-white/80 text-[10px]">{active.sceneTitle}</span>
+        </div>
+        {/* Simple scene visualization */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-4xl opacity-40">{BG_EMOJI[active.background]}</span>
+        </div>
+        {/* Dialogue overlay */}
+        {active.dialogue && (
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
+            <p className="text-white text-xs italic leading-relaxed line-clamp-2">"{active.dialogue}"</p>
+          </div>
+        )}
+      </div>
+
+      {/* Filmstrip thumbnail row */}
+      <div className="bg-gray-900 rounded-xl p-2.5">
+        <div className="flex gap-1.5">
           {cuts.map((cut, i) => (
             <div
               key={cut.id}
-              className={`aspect-square rounded-lg bg-gradient-to-br ${BG_COLOR[cut.background]} flex items-center justify-center transition-all duration-200 ${
+              className={`flex-1 aspect-square rounded-lg bg-gradient-to-br ${BG_COLOR[cut.background]} flex items-center justify-center transition-all duration-200 relative ${
                 i === activeCutIndex
-                  ? 'ring-2 ring-white ring-offset-1 ring-offset-gray-900 scale-110'
-                  : 'opacity-60'
+                  ? 'ring-2 ring-white ring-offset-1 ring-offset-gray-900'
+                  : 'opacity-50'
               }`}
             >
-              <span className="text-sm">{BG_EMOJI[cut.background]}</span>
+              <span className="text-xs">{BG_EMOJI[cut.background]}</span>
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[8px] text-gray-400 font-bold">{i+1}</div>
             </div>
           ))}
         </div>
-        {/* Bottom perforations */}
-        <div className="flex gap-2 mt-3 justify-between px-1">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="w-3 h-2 bg-gray-700 rounded-sm" />
-          ))}
-        </div>
       </div>
-      {/* Active cut detail */}
-      {active && (
-        <div className="mt-3 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-xs font-black text-gray-400">CUT {activeCutIndex + 1}</span>
-            <span className="text-xs text-gray-400">{BG_EMOJI[active.background]} {active.sceneTitle}</span>
-          </div>
-          <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed italic">"{active.dialogue}"</p>
-        </div>
-      )}
+
+      {/* Progress hint */}
+      <p className="text-center text-xs text-gray-500">
+        {activeCutIndex + 1} / {cuts.length} 장면 편집 중
+      </p>
     </div>
   )
 }

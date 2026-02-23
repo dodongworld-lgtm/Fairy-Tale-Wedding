@@ -107,7 +107,20 @@ export default function CreatePage() {
 
       {/* Thin top bar */}
       <header className="flex-shrink-0 h-14 border-b border-gray-100 flex items-center px-4 sm:px-6 justify-between bg-white z-10">
-        <a href="/" className="text-base font-semibold text-gray-900">Once Upon Us</a>
+        <div className="flex items-center gap-2">
+          {step > 1 && (
+            <button
+              onClick={() => setStep(s => s - 1)}
+              className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
+              </svg>
+              <span className="hidden sm:block">이전</span>
+            </button>
+          )}
+          <a href="/" className="text-base font-semibold text-gray-900">Once Upon Us</a>
+        </div>
 
         {/* Step dots */}
         <div className="flex items-center gap-1 sm:gap-1.5">
