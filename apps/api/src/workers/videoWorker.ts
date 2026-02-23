@@ -7,8 +7,8 @@ import { generateNarration } from '../services/narrationGenerator'
 import { renderProposalVideo } from '../services/videoRenderer'
 import type { VideoJobData } from '../queues/videoQueue'
 
-// CC0 무료 BGM (Pixabay royalty-free)
-const FREE_BGM_URL = 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d1718ab41b.mp3'
+// BGM: 데모 모드에서는 빈 문자열 (ProposalVideo.tsx에서 bgmUrl이 빈 경우 Audio 컴포넌트 생략)
+const FREE_BGM_URL = ''
 
 function getIo() {
   // eslint-disable-next-line @typescript-eslint/no-var-requires

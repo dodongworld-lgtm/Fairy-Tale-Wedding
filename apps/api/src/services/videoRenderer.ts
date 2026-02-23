@@ -33,7 +33,7 @@ export async function renderProposalVideo({
   }))
 
   const bundled = await bundle({
-    entryPoint: path.join(__dirname, '../../remotion/src/index.ts'),
+    entryPoint: path.join(__dirname, '../../remotion/src/index.tsx'),
     onProgress: () => {}
   })
 

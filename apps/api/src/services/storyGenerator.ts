@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '')
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' })
 
 const SYSTEM_PROMPT = `당신은 디즈니 예고편 스타일의 감성적인 사랑 이야기를 만드는 스토리작가입니다.
 커플 정보를 받아 4막 구조(만남-여정-시련-프로포즈)의 60~90초 분량 영상 스토리를 만들어주세요.
@@ -72,10 +72,48 @@ export interface GeneratedStory {
   acts: StoryAct[]
 }
 
+function getMockStory(coupleInfo: CoupleInfo): GeneratedStory {
+  return {
+    title: `${coupleInfo.person1}과 ${coupleInfo.person2}의 이야기`,
+    acts: [
+      {
+        act: 1,
+        title: '운명적인 만남',
+        scenes: [
+          {
+            imagePrompt: 'Disney Pixar animation style, cinematic, two people meeting for the first time in a magical forest with glowing fireflies, warm golden light, romantic atmosphere',
+            narration: `${coupleInfo.person1}과 ${coupleInfo.person2}의 이야기가 시작되었습니다.`,
+            emotion: 'wonder',
+            durationSec: 5
+          }
+        ]
+      },
+      {
+        act: 4,
+        title: '영원한 약속',
+        scenes: [
+          {
+            imagePrompt: 'Disney Pixar animation style, cinematic, enchanted castle with floating lanterns, magical proposal scene, fireworks, romantic golden hour light',
+            narration: coupleInfo.proposeMessage,
+            emotion: 'love',
+            durationSec: 6,
+            proposeMessage: coupleInfo.proposeMessage
+          }
+        ]
+      }
+    ]
+  }
+}
+
 export async function generateStory(
   coupleInfo: CoupleInfo,
   styleOptions: StyleOptions
 ): Promise<GeneratedStory> {
+  if (process.env.DEMO_MODE === 'true') {
+    console.log('[storyGenerator] DEMO_MODE: returning mock story')
+    return getMockStory(coupleInfo)
+  }
+
   const mood = MOOD_MAP[styleOptions.mood || 'fantasy'] || MOOD_MAP.fantasy
   const background = BACKGROUND_MAP[styleOptions.background || 'castle'] || BACKGROUND_MAP.castle
   const language = styleOptions.language === 'ko' ? '한국어' : 'English'

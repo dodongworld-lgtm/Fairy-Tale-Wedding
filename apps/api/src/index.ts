@@ -7,6 +7,7 @@ import { createServer } from 'http'
 import { Server as SocketServer } from 'socket.io'
 import { router } from './routes'
 import { STORAGE_DIR } from './lib/localFiles'
+import './workers/videoWorker' // BullMQ 워커 시작
 
 const app = express()
 const httpServer = createServer(app)

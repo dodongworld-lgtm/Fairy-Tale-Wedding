@@ -2,19 +2,22 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { io } from 'socket.io-client'
+import { useLang } from '../../../contexts/LangContext'
 
 type ProgressData = { step: string; percent: number; message: string }
 
-const STEPS = [
-  { key: 'story', label: '스토리 생성' },
-  { key: 'images', label: '이미지 생성' },
-  { key: 'audio', label: '나레이션 녹음' },
-  { key: 'render', label: '영상 편집' }
-]
-
 export default function GeneratingPage({ params }: { params: { id: string } }) {
   const router = useRouter()
-  const [progress, setProgress] = useState<ProgressData>({ step: 'story', percent: 0, message: '마법이 시작됩니다...' })
+  const { t } = useLang()
+
+  const STEPS = [
+    { key: 'story', label: t.generating.story },
+    { key: 'images', label: t.generating.images },
+    { key: 'audio', label: t.generating.audio },
+    { key: 'render', label: t.generating.render },
+  ]
+
+  const [progress, setProgress] = useState<ProgressData>({ step: 'story', percent: 0, message: t.generating.initMessage })
   const [error, setError] = useState(false)
 
   useEffect(() => {
@@ -29,32 +32,66 @@ export default function GeneratingPage({ params }: { params: { id: string } }) {
   const currentIdx = STEPS.findIndex(s => s.key === progress.step)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-950 to-indigo-900 flex items-center justify-center p-4">
-      <div className="text-center max-w-md w-full">
-        <div className="text-8xl mb-8 animate-pulse">✨</div>
-        <h2 className="text-3xl font-bold text-white mb-2">마법이 시작됩니다</h2>
-        {error ? (
-          <p className="text-red-400 mb-4">오류가 발생했습니다. 다시 시도해주세요.</p>
-        ) : (
-          <p className="text-purple-300 mb-8">{progress.message}</p>
-        )}
-        <div className="bg-purple-800 rounded-full h-3 mb-8">
-          <div className="bg-yellow-400 h-3 rounded-full transition-all duration-700" style={{ width: `${progress.percent}%` }} />
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <header className="bg-white border-b border-gray-100 h-14 flex items-center px-6 flex-shrink-0">
+        <a href="/" className="text-base font-semibold text-gray-900">Once Upon Us</a>
+      </header>
+      <div className="flex-1 flex flex-col items-center justify-center p-6">
+      <div className="w-full max-w-sm">
+        {/* Icon */}
+        <div className="flex justify-center mb-8">
+          <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center">
+            <svg className="w-8 h-8 text-indigo-600 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+          </div>
         </div>
-        <div className="space-y-3 text-left mb-8">
+
+        <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">{t.generating.title}</h2>
+
+        {error ? (
+          <p className="text-red-500 text-center text-sm mb-6">{t.generating.error}</p>
+        ) : (
+          <p className="text-gray-500 text-center text-sm mb-6">{progress.message}</p>
+        )}
+
+        {/* Progress bar */}
+        <div className="bg-gray-200 rounded-full h-2 mb-8 overflow-hidden">
+          <div
+            className="bg-indigo-600 h-2 rounded-full transition-all duration-700"
+            style={{ width: `${progress.percent}%` }}
+          />
+        </div>
+
+        {/* Steps */}
+        <div className="space-y-3">
           {STEPS.map((step, idx) => {
             const done = idx < currentIdx || progress.step === 'done'
             const active = step.key === progress.step
             return (
-              <div key={step.key} className={`flex items-center gap-3 ${done ? 'text-green-400' : active ? 'text-yellow-400' : 'text-purple-500'}`}>
-                <span className="w-5">{done ? '✓' : active ? '◐' : '○'}</span>
-                <span>{step.label}</span>
-                {active && <span className="text-xs animate-pulse">진행 중...</span>}
+              <div key={step.key} className="flex items-center gap-3">
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  done ? 'bg-indigo-600' : active ? 'border-2 border-indigo-600' : 'border-2 border-gray-300'
+                }`}>
+                  {done && (
+                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                  {active && <div className="w-2 h-2 bg-indigo-600 rounded-full" />}
+                </div>
+                <span className={`text-sm ${done ? 'text-gray-900 font-medium' : active ? 'text-indigo-600 font-medium' : 'text-gray-400'}`}>
+                  {step.label}
+                </span>
+                {active && <span className="text-xs text-indigo-400 ml-auto animate-pulse">{t.generating.inProgress}</span>}
               </div>
             )
           })}
         </div>
-        <p className="text-purple-400 text-sm">평균 3~5분 소요됩니다</p>
+
+        <p className="text-xs text-gray-400 text-center mt-8">{t.generating.timeEstimate}</p>
+      </div>
       </div>
     </div>
   )
