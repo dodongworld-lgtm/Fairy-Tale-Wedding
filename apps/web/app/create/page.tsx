@@ -149,7 +149,7 @@ export default function CreatePage() {
               />
             )}
             {step === 2 && projectId && (
-              <Step2PhotoUpload projectId={projectId} onNext={handleStep2} />
+              <Step2PhotoUpload projectId={projectId} person1={person1} person2={person2} onNext={handleStep2} />
             )}
             {step === 3 && (
               <StepCharacterRec

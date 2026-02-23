@@ -3,106 +3,152 @@ import { useState, useRef } from 'react'
 
 type UploadedPhoto = { photoId: string; fileName: string; isFacePrimary: boolean; previewUrl?: string }
 
-export function Step2PhotoUpload({ onNext }: { projectId: string; onNext: (photos: UploadedPhoto[]) => void }) {
-  const [photos, setPhotos] = useState<UploadedPhoto[]>([])
-  const fileRef = useRef<HTMLInputElement>(null)
+type Props = {
+  projectId: string
+  person1: string
+  person2: string
+  onNext: (photos: UploadedPhoto[]) => void
+}
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || [])
-    if (!files.length) return
+function PhotoSlot({
+  label,
+  name,
+  photo,
+  onSelect,
+}: {
+  label: string
+  name: string
+  photo: UploadedPhoto | null
+  onSelect: () => void
+}) {
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">{label}</p>
 
-    const newPhotos: UploadedPhoto[] = files.map((file, i) => ({
-      photoId: `local-${Date.now()}-${i}`,
+      {/* Upload area */}
+      <button
+        type="button"
+        onClick={onSelect}
+        className="w-full relative group cursor-pointer"
+      >
+        <div className={`w-full aspect-[3/4] rounded-2xl overflow-hidden border-2 border-dashed transition-all ${
+          photo
+            ? 'border-indigo-400 shadow-lg shadow-indigo-100'
+            : 'border-gray-300 hover:border-indigo-400 hover:bg-indigo-50/40'
+        }`}>
+          {photo?.previewUrl ? (
+            <>
+              <img src={photo.previewUrl} alt={name} className="w-full h-full object-cover" />
+              {/* Overlay on hover */}
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z"/>
+                </svg>
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-4">
+              {/* Silhouette */}
+              <svg viewBox="0 0 80 100" className="w-16 h-20 text-gray-200" fill="currentColor">
+                <ellipse cx="40" cy="28" rx="18" ry="20" />
+                <path d="M10 95 Q10 65 40 65 Q70 65 70 95Z" />
+              </svg>
+              <div className="flex flex-col items-center gap-1">
+                <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                </svg>
+                <span className="text-xs text-gray-400">사진 올리기</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Name tag */}
+        <div className={`absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-bold shadow-sm whitespace-nowrap ${
+          photo ? 'bg-indigo-600 text-white' : 'bg-white border border-gray-200 text-gray-500'
+        }`}>
+          {name || label}
+        </div>
+      </button>
+
+      {/* Transformation hint */}
+      <div className="mt-4 flex items-center gap-1.5 text-[10px] text-gray-400">
+        <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+        </svg>
+        <span>AI가 동화 캐릭터로 변환</span>
+      </div>
+    </div>
+  )
+}
+
+export function Step2PhotoUpload({ person1, person2, onNext }: Props) {
+  const [photo1, setPhoto1] = useState<UploadedPhoto | null>(null)
+  const [photo2, setPhoto2] = useState<UploadedPhoto | null>(null)
+  const ref1 = useRef<HTMLInputElement>(null)
+  const ref2 = useRef<HTMLInputElement>(null)
+
+  const handleFile = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setter: (p: UploadedPhoto) => void,
+    isPrimary: boolean
+  ) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setter({
+      photoId: `local-${Date.now()}`,
       fileName: file.name,
-      isFacePrimary: photos.length === 0 && i === 0,
+      isFacePrimary: isPrimary,
       previewUrl: URL.createObjectURL(file),
-    }))
-    setPhotos(prev => [...prev, ...newPhotos].slice(0, 10))
-    // reset input so same file can be re-selected
+    })
     e.target.value = ''
   }
 
-  const setPrimary = (photoId: string) => {
-    setPhotos(prev => prev.map(p => ({ ...p, isFacePrimary: p.photoId === photoId })))
-  }
-
-  const removePhoto = (photoId: string, e: React.MouseEvent) => {
-    e.stopPropagation()
-    setPhotos(prev => {
-      const next = prev.filter(p => p.photoId !== photoId)
-      if (next.length > 0 && !next.some(p => p.isFacePrimary)) {
-        next[0].isFacePrimary = true
-      }
-      return next
-    })
-  }
+  const canAdvance = photo1 && photo2
 
   return (
     <div className="w-full space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">함께한 사진을 올려주세요</h2>
-        <p className="text-sm text-gray-400">얼굴이 잘 보이는 사진 1장은 필수예요 · 최대 10장</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">두 사람의 사진을 올려주세요</h2>
+        <p className="text-sm text-gray-400">각각 얼굴이 잘 보이는 사진 1장씩 필요해요</p>
       </div>
 
-      <div className="grid grid-cols-4 gap-3">
-        {photos.map(p => (
-          <div
-            key={p.photoId}
-            onClick={() => setPrimary(p.photoId)}
-            className={`relative aspect-square rounded-xl overflow-hidden cursor-pointer border-2 transition-all ${
-              p.isFacePrimary ? 'border-indigo-500 ring-2 ring-indigo-200' : 'border-gray-200 hover:border-gray-300'
-            }`}
-          >
-            {p.previewUrl ? (
-              <img src={p.previewUrl} alt={p.fileName} className="w-full h-full object-cover" />
-            ) : (
-              <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                <span className="text-gray-400 text-xs text-center px-2 leading-tight">{p.fileName}</span>
-              </div>
-            )}
-            {/* Primary badge */}
-            {p.isFacePrimary && (
-              <div className="absolute top-1.5 right-1.5 bg-indigo-600 rounded-full w-5 h-5 flex items-center justify-center">
-                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-              </div>
-            )}
-            {/* Remove button */}
-            <button
-              onClick={(e) => removePhoto(p.photoId, e)}
-              className="absolute top-1.5 left-1.5 bg-black/50 hover:bg-black/70 rounded-full w-5 h-5 flex items-center justify-center transition-colors"
-            >
-              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-        ))}
-
-        {photos.length < 10 && (
-          <div
-            onClick={() => fileRef.current?.click()}
-            className="aspect-square rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-indigo-400 hover:bg-indigo-50 transition-colors gap-1"
-          >
-            <svg className="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/>
-            </svg>
-            <span className="text-xs text-gray-400">추가</span>
-          </div>
-        )}
+      <div className="grid grid-cols-2 gap-6 mt-2">
+        <PhotoSlot
+          label="나"
+          name={person1}
+          photo={photo1}
+          onSelect={() => ref1.current?.click()}
+        />
+        <PhotoSlot
+          label="상대방"
+          name={person2}
+          photo={photo2}
+          onSelect={() => ref2.current?.click()}
+        />
       </div>
 
-      {photos.length > 0 && (
-        <p className="text-xs text-gray-400">별 표시된 사진이 기준 사진이에요. 클릭해서 변경하세요.</p>
-      )}
-
-      <input ref={fileRef} type="file" accept="image/*" multiple className="hidden" onChange={handleFileChange} />
+      <input
+        ref={ref1}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={e => handleFile(e, setPhoto1, true)}
+      />
+      <input
+        ref={ref2}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={e => handleFile(e, setPhoto2, false)}
+      />
 
       <button
-        onClick={() => onNext(photos)}
-        disabled={photos.length === 0}
-        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+        onClick={() => {
+          if (canAdvance) onNext([photo1!, photo2!])
+        }}
+        disabled={!canAdvance}
+        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer mt-4"
       >
         다음
       </button>
