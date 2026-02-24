@@ -4,7 +4,7 @@ import type { ProjectData, SectionKey } from '../../data/projectData'
 
 type Props = {
   project: ProjectData
-  onFinish: () => void
+  onFinish: () => Promise<void>
 }
 
 const SECTION_LABELS: { key: SectionKey; label: string; required: boolean }[] = [
@@ -29,7 +29,10 @@ export function Step9Review({ project, onFinish }: Props) {
 
   const handleRender = async () => {
     setRendering(true)
-    await new Promise(r => setTimeout(r, 2000))
+    await Promise.all([
+      onFinish(),
+      new Promise(r => setTimeout(r, 2000)),
+    ])
     setRendering(false)
     setDone(true)
   }

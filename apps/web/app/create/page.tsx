@@ -24,6 +24,8 @@ import {
 
 const TOTAL_STEPS = STEP_META.length  // 10 (0~9)
 
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+
 export default function CreatePage() {
   const [step, setStep] = useState(0)
   const [project, setProject] = useState<ProjectData>(createDefaultProject)
@@ -58,6 +60,39 @@ export default function CreatePage() {
 
   const toggleTrailer = (v: boolean) => {
     setProject(p => ({ ...p, trailerEnabled: v }))
+  }
+
+  const handleFinish = async () => {
+    // Build serializable metadata (objectURLs cannot be sent to API)
+    const coupleInfo = {
+      groomName: project.groomName,
+      brideName: project.brideName,
+      groomCharacter: project.groom.variants[project.groom.selectedIdx]?.id ?? null,
+      brideCharacter: project.bride.variants[project.bride.selectedIdx]?.id ?? null,
+      sections: Object.fromEntries(
+        (Object.keys(project.sections) as (keyof typeof project.sections)[]).map(key => [
+          key,
+          {
+            narration: project.sections[key].narration,
+            date: project.sections[key].date,
+            place: project.sections[key].place,
+            customText: project.sections[key].customText,
+            photoCount: project.sections[key].photos.length,
+          },
+        ])
+      ),
+    }
+    const styleOptions = { trailerEnabled: project.trailerEnabled }
+
+    try {
+      await fetch(`${API}/api/projects`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ coupleInfo, styleOptions }),
+      })
+    } catch {
+      // Best-effort: proceed even if API is unreachable
+    }
   }
 
   return (
@@ -192,7 +227,7 @@ export default function CreatePage() {
             )}
 
             {step === 9 && (
-              <Step9Review project={project} onFinish={() => {}} />
+              <Step9Review project={project} onFinish={handleFinish} />
             )}
 
           </div>
