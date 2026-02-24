@@ -49,8 +49,8 @@ export function Step9Review({ project, onFinish }: Props) {
             <span className="text-indigo-500 font-medium">곧 제공 예정입니다.</span>
           </p>
         </div>
-        <a href="/" className="text-sm text-gray-500 hover:text-gray-700 underline transition-colors">
-          홈으로 돌아가기
+        <a href="/dashboard" className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors">
+          대시보드로 가기
         </a>
       </div>
     )
