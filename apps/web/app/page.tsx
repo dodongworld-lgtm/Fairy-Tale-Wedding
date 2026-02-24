@@ -7,12 +7,12 @@ export default function LandingPage() {
   const { t } = useLang()
 
   const SAMPLE_VIDEOS = [
-    { id: 1, title: '지훈 & 수연', desc: '홍대 카페에서 시작된 운명적인 만남', mood: t.landing.propose, bg: 'from-violet-600 to-indigo-700', duration: '1:02', moodColor: 'bg-violet-500' },
-    { id: 2, title: '민준 & 서연', desc: '친구로 시작한 7년, 북한산 정상에서의 프로포즈', mood: t.landing.propose, bg: 'from-indigo-500 to-blue-700', duration: '0:58', moodColor: 'bg-indigo-500' },
-    { id: 3, title: '준혁 & 지은', desc: '파리 에펠탑 아래의 프로포즈', mood: t.landing.wedding, bg: 'from-slate-600 to-gray-800', duration: '1:05', moodColor: 'bg-slate-500' },
-    { id: 4, title: '태양 & 하나', desc: '한강 퇴근길의 깜짝 이벤트', mood: t.landing.propose, bg: 'from-indigo-600 to-violet-800', duration: '1:00', moodColor: 'bg-violet-500' },
-    { id: 5, title: '성현 & 유진', desc: '온라인에서 만나 3년, 첫 만남 장소에서 프로포즈', mood: t.landing.wedding, bg: 'from-gray-700 to-gray-900', duration: '1:03', moodColor: 'bg-gray-500' },
-    { id: 6, title: '현우 & 다은', desc: '20년 만에 다시 만나 사랑이 된 이야기', mood: t.landing.wedding, bg: 'from-indigo-700 to-slate-800', duration: '1:07', moodColor: 'bg-indigo-500' },
+    { id: 1, title: '지훈 & 수연', desc: '홍대 카페에서 시작된 운명적인 만남', mood: t.landing.propose, bg: 'bg-gray-800', duration: '1:02', moodColor: 'bg-indigo-500' },
+    { id: 2, title: '민준 & 서연', desc: '친구로 시작한 7년, 북한산 정상에서의 프로포즈', mood: t.landing.propose, bg: 'bg-slate-700', duration: '0:58', moodColor: 'bg-indigo-500' },
+    { id: 3, title: '준혁 & 지은', desc: '파리 에펠탑 아래의 프로포즈', mood: t.landing.wedding, bg: 'bg-gray-700', duration: '1:05', moodColor: 'bg-gray-500' },
+    { id: 4, title: '태양 & 하나', desc: '한강 퇴근길의 깜짝 이벤트', mood: t.landing.propose, bg: 'bg-slate-800', duration: '1:00', moodColor: 'bg-indigo-500' },
+    { id: 5, title: '성현 & 유진', desc: '온라인에서 만나 3년, 첫 만남 장소에서 프로포즈', mood: t.landing.wedding, bg: 'bg-gray-600', duration: '1:03', moodColor: 'bg-gray-500' },
+    { id: 6, title: '현우 & 다은', desc: '20년 만에 다시 만나 사랑이 된 이야기', mood: t.landing.wedding, bg: 'bg-stone-700', duration: '1:07', moodColor: 'bg-gray-500' },
   ]
 
   const PROCESS_STEPS = [
@@ -87,7 +87,7 @@ export default function LandingPage() {
 
         <h1 className="text-5xl sm:text-7xl md:text-8xl font-black leading-none tracking-tight text-gray-900 mb-5 md:mb-6">
           {t.landing.heroTitle1}<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500">
+          <span className="text-indigo-600">
             {t.landing.heroTitle2}
           </span>
         </h1>
@@ -259,7 +259,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
             {SAMPLE_VIDEOS.map(v => (
               <div key={v.id} className="group cursor-pointer">
-                <div className={`w-full aspect-video rounded-xl sm:rounded-2xl bg-gradient-to-br ${v.bg} flex items-center justify-center mb-2 sm:mb-3 relative overflow-hidden`}>
+                <div className={`w-full aspect-video rounded-xl sm:rounded-2xl ${v.bg} flex items-center justify-center mb-2 sm:mb-3 relative overflow-hidden`}>
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-200 group-hover:bg-white/30 relative z-10">
