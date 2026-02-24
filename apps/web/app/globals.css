@@ -18,6 +18,11 @@ body {
   overflow-wrap: break-word;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
 /* Korean text gets Noto Sans KR, Latin gets Inter */
 :lang(ko) {
   font-family: var(--font-noto-sans-kr), var(--font-inter), sans-serif;
