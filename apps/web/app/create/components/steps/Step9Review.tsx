@@ -8,8 +8,7 @@ type Props = {
 }
 
 const SECTION_LABELS: { key: SectionKey; label: string; required: boolean }[] = [
-  { key: 'opening',      label: '오프닝 인사',   required: false },
-  { key: 'trailer',      label: '예고편',         required: false },
+  { key: 'opening',      label: '오프닝 인사',    required: false },
   { key: 'whoWeAre',     label: '우리는 누구인지', required: false },
   { key: 'howWeMet',     label: '어떻게 만났나',  required: true  },
   { key: 'becameLovers', label: '연인이 되다',     required: true  },

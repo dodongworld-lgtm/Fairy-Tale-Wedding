@@ -1,47 +1,31 @@
 'use client'
 import { useState } from 'react'
 import type { ProjectData } from '../data/projectData'
-import { DISNEY_CHARACTERS } from '../data/storyData'
 
 type Props = {
   step: number
   project: ProjectData
 }
 
-// Section gradient configs per step
+// Steps: 0=checklist, 1=photos, 2=opening, 3=whoWeAre,
+//        4=howWeMet, 5=becameLovers, 6=decision, 7=thanks, 8=review
 const STEP_SCENES = [
-  { bg: 'from-slate-800 via-gray-900 to-slate-900', label: '준비' },         // 0
-  { bg: 'from-violet-800 via-purple-900 to-indigo-900', label: '캐릭터' },    // 1
-  { bg: 'from-indigo-700 via-blue-800 to-indigo-900', label: '오프닝' },      // 2
-  { bg: 'from-gray-800 via-gray-900 to-black', label: '예고편' },             // 3
-  { bg: 'from-rose-700 via-pink-800 to-rose-900', label: '우리는' },          // 4
-  { bg: 'from-emerald-700 via-teal-800 to-emerald-900', label: '만남' },      // 5
-  { bg: 'from-amber-600 via-orange-700 to-red-800', label: '연인' },          // 6
-  { bg: 'from-blue-700 via-indigo-800 to-violet-900', label: '결심' },        // 7
-  { bg: 'from-slate-700 via-gray-800 to-slate-900', label: '감사' },          // 8
-  { bg: 'from-indigo-600 via-violet-700 to-purple-800', label: '완성' },      // 9
+  { bg: 'from-slate-800 via-gray-900 to-slate-900',      label: '준비'   },  // 0
+  { bg: 'from-violet-800 via-purple-900 to-indigo-900',  label: '사진'   },  // 1
+  { bg: 'from-indigo-700 via-blue-800 to-indigo-900',    label: '오프닝' },  // 2
+  { bg: 'from-rose-700 via-pink-800 to-rose-900',        label: '우리는' },  // 3
+  { bg: 'from-emerald-700 via-teal-800 to-emerald-900',  label: '만남'   },  // 4
+  { bg: 'from-amber-600 via-orange-700 to-red-800',      label: '연인'   },  // 5
+  { bg: 'from-blue-700 via-indigo-800 to-violet-900',    label: '결심'   },  // 6
+  { bg: 'from-slate-700 via-gray-800 to-slate-900',      label: '감사'   },  // 7
+  { bg: 'from-indigo-600 via-violet-700 to-purple-800',  label: '완성'   },  // 8
 ]
 
-function FloatingCharacter({ color, delay = '0s' }: { color: string; delay?: string }) {
-  return (
-    <div
-      className="absolute bottom-12 w-16 h-24 rounded-2xl flex items-end justify-center overflow-hidden"
-      style={{ animation: `float 3s ease-in-out ${delay} infinite`, background: `linear-gradient(135deg, ${color})` }}
-    >
-      <svg viewBox="0 0 60 80" className="w-12 h-16 opacity-60" fill="white">
-        <ellipse cx="30" cy="22" rx="14" ry="16" />
-        <path d="M6 75 Q6 52 30 52 Q54 52 54 75Z" />
-      </svg>
-    </div>
-  )
-}
-
 function SceneContent({ step, project, exMode }: { step: number; project: ProjectData; exMode: boolean }) {
-  const groom = project.groom.variants[project.groom.selectedIdx]
-  const bride = project.bride.variants[project.bride.selectedIdx]
   const groomName = project.groomName || '신랑'
   const brideName = project.brideName || '신부'
 
+  // Step 0 — checklist
   if (step === 0) {
     return (
       <div className="flex flex-col items-center gap-4 text-center px-6">
@@ -65,79 +49,89 @@ function SceneContent({ step, project, exMode }: { step: number; project: Projec
     )
   }
 
+  // Step 1 — photo upload preview (side by side)
   if (step === 1) {
-    const groomColor = exMode ? '#8B5CF6, #4F46E5' : groom?.color.replace('from-', '').replace(' to-', ', ').replace(/-\d+/g, (m) => m) || '#8B5CF6, #4F46E5'
-    const brideColor = exMode ? '#EC4899, #BE185D' : bride?.color.replace('from-', '').replace(' to-', ', ').replace(/-\d+/g, (m) => m) || '#EC4899, #BE185D'
+    const hasGroomPhoto = !exMode && project.groomPhoto
+    const hasBridePhoto = !exMode && project.bridePhoto
     return (
-      <div className="flex gap-8 items-end justify-center w-full px-6">
+      <div className="flex gap-5 items-end justify-center px-6 w-full">
+        {/* Groom */}
         <div className="flex flex-col items-center gap-2">
-          <div
-            className="w-16 h-24 rounded-2xl flex items-end justify-center overflow-hidden opacity-90"
-            style={{ background: `linear-gradient(135deg, var(--tw-gradient-from, #8B5CF6), var(--tw-gradient-to, #4F46E5))` }}
-          >
-            <svg viewBox="0 0 60 80" className="w-12 h-16 opacity-60" fill="white">
-              <ellipse cx="30" cy="22" rx="14" ry="16" />
-              <path d="M6 75 Q6 52 30 52 Q54 52 54 75Z" />
-            </svg>
+          <div className="w-20 h-24 rounded-2xl overflow-hidden bg-white/10 border-2 border-white/20 flex items-end justify-center">
+            {hasGroomPhoto ? (
+              <img src={project.groomPhoto} className="w-full h-full object-cover" alt="신랑" />
+            ) : (
+              <svg viewBox="0 0 60 80" className="w-14 h-18 opacity-50" fill="white">
+                <ellipse cx="30" cy="20" rx="14" ry="16"/>
+                <path d="M5 78 Q5 52 30 52 Q55 52 55 78Z"/>
+              </svg>
+            )}
           </div>
-          <span className="text-white/70 text-xs font-medium">{exMode ? '신랑' : groomName}</span>
-          <span className="text-white/50 text-[10px]">{exMode ? '캐릭터 A' : (groom?.name || '캐릭터')}</span>
+          <span className="text-white/80 text-xs font-semibold">{exMode ? '신랑' : groomName}</span>
         </div>
+        {/* Bride */}
         <div className="flex flex-col items-center gap-2">
-          <div
-            className="w-16 h-24 rounded-2xl flex items-end justify-center overflow-hidden opacity-90"
-            style={{ background: 'linear-gradient(135deg, #EC4899, #BE185D)' }}
-          >
-            <svg viewBox="0 0 60 80" className="w-12 h-16 opacity-60" fill="white">
-              <ellipse cx="30" cy="20" rx="12" ry="14" />
-              <path d="M8 75 Q8 54 30 54 Q52 54 52 75Z" />
-            </svg>
+          <div className="w-20 h-24 rounded-2xl overflow-hidden bg-white/10 border-2 border-white/20 flex items-end justify-center">
+            {hasBridePhoto ? (
+              <img src={project.bridePhoto} className="w-full h-full object-cover" alt="신부" />
+            ) : (
+              <svg viewBox="0 0 60 80" className="w-14 h-18 opacity-50" fill="white">
+                <ellipse cx="30" cy="18" rx="12" ry="14"/>
+                <path d="M8 78 Q8 54 30 54 Q52 54 52 78Z"/>
+              </svg>
+            )}
           </div>
-          <span className="text-white/70 text-xs font-medium">{exMode ? '신부' : brideName}</span>
-          <span className="text-white/50 text-[10px]">{exMode ? '캐릭터 B' : (bride?.name || '캐릭터')}</span>
+          <span className="text-white/80 text-xs font-semibold">{exMode ? '신부' : brideName}</span>
         </div>
       </div>
     )
   }
 
+  // Step 2 — opening: two characters side by side + subtitle at very bottom
   if (step === 2) {
     const line = exMode
       ? '안녕하세요, 저희 결혼식에 와주셔서 감사합니다!'
       : (project.sections.opening.narration || `안녕하세요, ${groomName}과 ${brideName}입니다.`)
     return (
-      <div className="flex flex-col items-center gap-6 px-6 w-full">
-        <div className="flex gap-6 items-end justify-center">
-          <FloatingCharacter color="#8B5CF6, #4F46E5" delay="0s" />
-          <FloatingCharacter color="#EC4899, #BE185D" delay="0.4s" />
+      // absolute inset-0 fills the entire preview frame
+      <div className="absolute inset-0">
+        {/* Characters: centered, bottom-anchored, side by side */}
+        <div className="absolute inset-x-0 top-4 bottom-14 flex items-end justify-center gap-10">
+          {/* Groom */}
+          <div className="flex flex-col items-center gap-2" style={{ animation: 'float 3s ease-in-out 0s infinite' }}>
+            <div className="w-20 h-28 rounded-2xl overflow-hidden flex items-end justify-center"
+              style={{ background: 'linear-gradient(135deg, #8B5CF6, #4F46E5)' }}>
+              <svg viewBox="0 0 60 80" className="w-16 h-20 opacity-70" fill="white">
+                <ellipse cx="30" cy="20" rx="14" ry="16"/>
+                <path d="M5 78 Q5 52 30 52 Q55 52 55 78Z"/>
+              </svg>
+            </div>
+            <span className="text-white/80 text-xs font-semibold drop-shadow">{groomName}</span>
+          </div>
+          {/* Bride */}
+          <div className="flex flex-col items-center gap-2" style={{ animation: 'float 3s ease-in-out 0.5s infinite' }}>
+            <div className="w-20 h-28 rounded-2xl overflow-hidden flex items-end justify-center"
+              style={{ background: 'linear-gradient(135deg, #EC4899, #BE185D)' }}>
+              <svg viewBox="0 0 60 80" className="w-16 h-20 opacity-70" fill="white">
+                <ellipse cx="30" cy="18" rx="12" ry="14"/>
+                <path d="M8 78 Q8 54 30 54 Q52 54 52 78Z"/>
+              </svg>
+            </div>
+            <span className="text-white/80 text-xs font-semibold drop-shadow">{brideName}</span>
+          </div>
         </div>
-        <div className="bg-white/10 rounded-xl px-4 py-3 w-full max-w-[220px]">
-          <p className="text-white/90 text-xs text-center leading-relaxed">&ldquo;{line}&rdquo;</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (step === 3) {
-    return (
-      <div className="flex flex-col items-center gap-3 px-4 w-full">
-        <div className="grid grid-cols-3 gap-1.5 w-full max-w-[220px]">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i}
-              className="aspect-video rounded-lg overflow-hidden"
-              style={{ background: `hsl(${i * 60}, 40%, 30%)`, opacity: 0.7 + i * 0.05 }}
-            />
-          ))}
-        </div>
-        <div className="bg-white/20 rounded-lg px-4 py-1.5">
-          <p className="text-white/90 text-xs font-bold tracking-wider">
-            {exMode ? '우리의 이야기' : (project.sections.trailer.customText || `${groomName} & ${brideName}`)}
+        {/* Subtitle — pinned to bottom of frame */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-8 pb-3 px-5">
+          <p className="text-white text-[11px] sm:text-xs text-center leading-relaxed font-medium">
+            &ldquo;{line}&rdquo;
           </p>
         </div>
       </div>
     )
   }
 
-  if (step === 4) {
+  // Step 3 — whoWeAre
+  if (step === 3) {
     const gIntro = exMode ? '따뜻하고 유머 넘치는 사람이에요' : (project.sections.whoWeAre.customText || '소개를 입력해주세요')
     const bIntro = exMode ? '밝고 사랑스러운 사람이에요' : project.sections.whoWeAre.place || '소개를 입력해주세요'
     return (
@@ -145,8 +139,8 @@ function SceneContent({ step, project, exMode }: { step: number; project: Projec
         <div className="flex-1 bg-white/10 rounded-xl p-3 flex flex-col items-center gap-2">
           <div className="w-10 h-10 rounded-full bg-violet-500/40 flex items-center justify-center">
             <svg viewBox="0 0 40 50" className="w-6 h-7 opacity-70" fill="white">
-              <ellipse cx="20" cy="14" rx="9" ry="10" />
-              <path d="M4 48 Q4 32 20 32 Q36 32 36 48Z" />
+              <ellipse cx="20" cy="14" rx="9" ry="10"/>
+              <path d="M4 48 Q4 32 20 32 Q36 32 36 48Z"/>
             </svg>
           </div>
           <p className="text-white/80 text-[10px] font-semibold">{exMode ? '신랑' : groomName}</p>
@@ -155,8 +149,8 @@ function SceneContent({ step, project, exMode }: { step: number; project: Projec
         <div className="flex-1 bg-white/10 rounded-xl p-3 flex flex-col items-center gap-2">
           <div className="w-10 h-10 rounded-full bg-pink-500/40 flex items-center justify-center">
             <svg viewBox="0 0 40 50" className="w-6 h-7 opacity-70" fill="white">
-              <ellipse cx="20" cy="13" rx="8" ry="9" />
-              <path d="M5 48 Q5 33 20 33 Q35 33 35 48Z" />
+              <ellipse cx="20" cy="13" rx="8" ry="9"/>
+              <path d="M5 48 Q5 33 20 33 Q35 33 35 48Z"/>
             </svg>
           </div>
           <p className="text-white/80 text-[10px] font-semibold">{exMode ? '신부' : brideName}</p>
@@ -166,12 +160,12 @@ function SceneContent({ step, project, exMode }: { step: number; project: Projec
     )
   }
 
-  // Steps 5-8: narration card + photo placeholder
-  const sectionMap: Record<number, { key: keyof typeof project.sections; exDate: string; exPlace: string; exNarr: string }> = {
-    5: { key: 'howWeMet',      exDate: '2019년 봄',    exPlace: '대학교 도서관', exNarr: '2019년 봄, 우리는 대학교 도서관에서 처음 만났습니다.' },
-    6: { key: 'becameLovers',  exDate: '그 해 여름',   exPlace: '',             exNarr: '함께한 시간 속에서 서로의 소중함을 느꼈고, 우리는 연인이 되었습니다.' },
-    7: { key: 'decision',      exDate: '2022년 12월',  exPlace: '',             exNarr: '2022년 12월, 평생 함께하고 싶다는 확신이 들어 우리는 부부가 되기로 했습니다.' },
-    8: { key: 'thanks',        exDate: '',             exPlace: '',             exNarr: '와주셔서 감사합니다.' },
+  // Steps 4-7: narration card + photo placeholder
+  const sectionMap: Record<number, { key: keyof typeof project.sections; exNarr: string }> = {
+    4: { key: 'howWeMet',      exNarr: '2019년 봄, 우리는 대학교 도서관에서 처음 만났습니다.' },
+    5: { key: 'becameLovers',  exNarr: '함께한 시간 속에서 서로의 소중함을 느꼈고, 우리는 연인이 되었습니다.' },
+    6: { key: 'decision',      exNarr: '2022년 12월, 우리는 부부가 되기로 했습니다.' },
+    7: { key: 'thanks',        exNarr: '와주셔서 감사합니다.' },
   }
   const meta = sectionMap[step]
   if (meta) {
@@ -196,8 +190,9 @@ function SceneContent({ step, project, exMode }: { step: number; project: Projec
     )
   }
 
-  if (step === 9) {
-    const sections = ['오프닝', '예고편', '우리는', '만남', '연인', '결심', '감사']
+  // Step 8 — review
+  if (step === 8) {
+    const sections = ['오프닝', '우리는', '만남', '연인', '결심', '감사']
     return (
       <div className="flex flex-col items-center gap-3 px-4 w-full">
         <p className="text-white/70 text-xs font-semibold mb-1">섹션 체크리스트</p>

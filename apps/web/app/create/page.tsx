@@ -6,7 +6,6 @@ import { LiveMockPlayer } from './components/LiveMockPlayer'
 import { Step0Checklist } from './components/steps/Step0Checklist'
 import { Step1Character } from './components/steps/Step1Character'
 import { Step2Opening } from './components/steps/Step2Opening'
-import { Step3Trailer } from './components/steps/Step3Trailer'
 import { Step4WhoWeAre } from './components/steps/Step4WhoWeAre'
 import { Step5HowWeMet } from './components/steps/Step5HowWeMet'
 import { Step6BecameLovers } from './components/steps/Step6BecameLovers'
@@ -18,11 +17,12 @@ import {
   type ProjectData,
   type SectionKey,
   type SectionData,
-  type CharacterVariants,
   STEP_META,
 } from './data/projectData'
 
-const TOTAL_STEPS = STEP_META.length  // 10 (0~9)
+// Steps: 0=checklist, 1=photos, 2=opening, 3=whoWeAre, 4=howWeMet,
+//        5=becameLovers, 6=decision, 7=thanks, 8=review
+const TOTAL_STEPS = STEP_META.length  // 9
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
 
@@ -54,21 +54,16 @@ export default function CreatePage() {
     }))
   }
 
-  const updateProject = (field: 'groomName' | 'brideName' | 'groom' | 'bride', value: string | CharacterVariants) => {
+  const updateProject = (field: 'groomName' | 'brideName' | 'groomPhoto' | 'bridePhoto', value: string) => {
     setProject(p => ({ ...p, [field]: value }))
   }
 
-  const toggleTrailer = (v: boolean) => {
-    setProject(p => ({ ...p, trailerEnabled: v }))
-  }
-
   const handleFinish = async () => {
-    // Build serializable metadata (objectURLs cannot be sent to API)
     const coupleInfo = {
       groomName: project.groomName,
       brideName: project.brideName,
-      groomCharacter: project.groom.variants[project.groom.selectedIdx]?.id ?? null,
-      brideCharacter: project.bride.variants[project.bride.selectedIdx]?.id ?? null,
+      groomPhotoUploaded: project.groomPhoto !== '',
+      bridePhotoUploaded: project.bridePhoto !== '',
       sections: Object.fromEntries(
         (Object.keys(project.sections) as (keyof typeof project.sections)[]).map(key => [
           key,
@@ -82,7 +77,7 @@ export default function CreatePage() {
         ])
       ),
     }
-    const styleOptions = { trailerEnabled: project.trailerEnabled }
+    const styleOptions = {}
 
     try {
       await fetch(`${API}/api/projects`, {
@@ -116,10 +111,10 @@ export default function CreatePage() {
           <a href="/" className="text-base font-semibold text-gray-900">Once Upon Us</a>
         </div>
 
-        {/* Center: progress bar (steps 1-8 only) */}
-        {step >= 1 && step <= 8 && (
+        {/* Center: progress bar (steps 1-7 only) */}
+        {step >= 1 && step <= 7 && (
           <div className="hidden sm:flex items-center gap-1">
-            {STEP_META.slice(1, 9).map((_, i) => {
+            {STEP_META.slice(1, 8).map((_, i) => {
               const n = i + 1
               const isActive = step === n
               const isDone = step > n
@@ -134,7 +129,7 @@ export default function CreatePage() {
                       </svg>
                     ) : n}
                   </div>
-                  {n < 8 && (
+                  {n < 7 && (
                     <div className={`w-4 h-px ${step > n ? 'bg-gray-400' : 'bg-gray-200'}`} />
                   )}
                 </div>
@@ -178,15 +173,6 @@ export default function CreatePage() {
             )}
 
             {step === 3 && (
-              <Step3Trailer
-                project={project}
-                onSection={updateSection}
-                onToggleTrailer={toggleTrailer}
-                onNext={next}
-              />
-            )}
-
-            {step === 4 && (
               <Step4WhoWeAre
                 project={project}
                 onSection={updateSection}
@@ -194,7 +180,7 @@ export default function CreatePage() {
               />
             )}
 
-            {step === 5 && (
+            {step === 4 && (
               <Step5HowWeMet
                 project={project}
                 onSection={updateSection}
@@ -202,7 +188,7 @@ export default function CreatePage() {
               />
             )}
 
-            {step === 6 && (
+            {step === 5 && (
               <Step6BecameLovers
                 project={project}
                 onSection={updateSection}
@@ -210,7 +196,7 @@ export default function CreatePage() {
               />
             )}
 
-            {step === 7 && (
+            {step === 6 && (
               <Step7Decision
                 project={project}
                 onSection={updateSection}
@@ -218,7 +204,7 @@ export default function CreatePage() {
               />
             )}
 
-            {step === 8 && (
+            {step === 7 && (
               <Step8Thanks
                 project={project}
                 onSection={updateSection}
@@ -226,7 +212,7 @@ export default function CreatePage() {
               />
             )}
 
-            {step === 9 && (
+            {step === 8 && (
               <Step9Review project={project} onFinish={handleFinish} />
             )}
 
