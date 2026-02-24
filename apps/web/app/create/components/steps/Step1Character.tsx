@@ -1,6 +1,10 @@
 'use client'
-import { useRef } from 'react'
 import type { ProjectData } from '../../data/projectData'
+
+/* ── Sample portrait data URIs (demo mode) ────────────────────────────────── */
+const GROOM_SAMPLE = `data:image/svg+xml,%3Csvg viewBox='0 0 120 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%234338ca'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='160' fill='url(%23bg)'/%3E%3Cpath d='M10 160 Q15 118 60 112 Q105 118 110 160Z' fill='%231e1b4b'/%3E%3Crect x='52' y='90' width='16' height='24' rx='5' fill='%23fcd34d'/%3E%3Cellipse cx='60' cy='72' rx='28' ry='30' fill='%23fcd34d'/%3E%3Cpath d='M32 62 Q32 40 60 38 Q88 40 88 62 Q84 46 60 44 Q36 46 32 62Z' fill='%233730a3'/%3E%3Ccircle cx='51' cy='70' r='4' fill='white'/%3E%3Ccircle cx='69' cy='70' r='4' fill='white'/%3E%3Ccircle cx='52' cy='70' r='2.5' fill='%231e1b4b'/%3E%3Ccircle cx='70' cy='70' r='2.5' fill='%231e1b4b'/%3E%3Cellipse cx='60' cy='80' rx='3' ry='2' fill='%23f59e0b' opacity='0.5'/%3E%3Cpath d='M51 86 Q60 93 69 86' stroke='%2392400e' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E`
+
+const BRIDE_SAMPLE = `data:image/svg+xml,%3Csvg viewBox='0 0 120 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23ec4899'/%3E%3Cstop offset='100%25' stop-color='%23be185d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='160' fill='url(%23bg)'/%3E%3Cpath d='M10 160 Q15 118 60 112 Q105 118 110 160Z' fill='%23831843'/%3E%3Cpath d='M32 65 Q28 50 28 95' stroke='%23f9a8d4' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M88 65 Q92 50 92 95' stroke='%23f9a8d4' stroke-width='8' stroke-linecap='round'/%3E%3Crect x='52' y='90' width='16' height='24' rx='5' fill='%23fcd34d'/%3E%3Cellipse cx='60' cy='72' rx='28' ry='30' fill='%23fcd34d'/%3E%3Cpath d='M32 62 Q32 38 60 36 Q88 38 88 62 Q84 44 60 42 Q36 44 32 62Z' fill='%23f9a8d4'/%3E%3Ccircle cx='51' cy='70' r='4' fill='white'/%3E%3Ccircle cx='69' cy='70' r='4' fill='white'/%3E%3Ccircle cx='52' cy='70' r='2.5' fill='%23831843'/%3E%3Ccircle cx='70' cy='70' r='2.5' fill='%23831843'/%3E%3Cellipse cx='60' cy='80' rx='3' ry='2' fill='%23f59e0b' opacity='0.5'/%3E%3Cpath d='M51 86 Q60 93 69 86' stroke='%23be185d' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E`
 
 type Props = {
   project: ProjectData
@@ -41,10 +45,10 @@ function PhotoUploadCard({
   label: string; gender: 'groom' | 'bride'; name: string; photoUrl: string
   onNameChange: (v: string) => void; onPhotoChange: (url: string) => void
 }) {
-  const fileRef = useRef<HTMLInputElement>(null)
   const isGroom = gender === 'groom'
+  const sample = isGroom ? GROOM_SAMPLE : BRIDE_SAMPLE
   const accentRing = isGroom ? 'focus:ring-indigo-400' : 'focus:ring-pink-400'
-  const overlayBg  = isGroom ? 'bg-indigo-600' : 'bg-pink-500'
+  const overlayBg  = isGroom ? 'bg-indigo-600/80' : 'bg-pink-500/80'
   const tagColor   = isGroom ? 'bg-indigo-100 text-indigo-600' : 'bg-pink-100 text-pink-600'
   const idleBorder = isGroom
     ? 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50/40'
@@ -52,11 +56,9 @@ function PhotoUploadCard({
   const activeBorder = isGroom ? 'border-indigo-400 bg-indigo-50' : 'border-pink-400 bg-pink-50'
   const iconColor  = isGroom ? 'text-indigo-500' : 'text-pink-500'
 
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    onPhotoChange(URL.createObjectURL(file))
-    e.target.value = ''
+  const handleClick = () => {
+    // Demo mode: toggle sample photo on/off
+    onPhotoChange(photoUrl ? '' : sample)
   }
 
   return (
@@ -66,7 +68,7 @@ function PhotoUploadCard({
       {/* Photo area */}
       <button
         type="button"
-        onClick={() => fileRef.current?.click()}
+        onClick={handleClick}
         className={`w-full aspect-[3/4] rounded-2xl border-2 border-dashed transition-all cursor-pointer overflow-hidden relative ${photoUrl ? activeBorder : idleBorder}`}
       >
         {photoUrl ? (
@@ -80,23 +82,23 @@ function PhotoUploadCard({
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
               </svg>
-              사진 업로드
+              탭하여 샘플 사용
             </div>
           </div>
         )}
         {photoUrl && (
-          <div className={`absolute inset-x-0 bottom-0 ${overlayBg} py-1.5 flex items-center justify-center gap-1`}>
+          <div className={`absolute inset-x-0 bottom-0 ${overlayBg} backdrop-blur-sm py-1.5 flex items-center justify-center gap-1`}>
             <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
-            <span className="text-white text-[10px] font-semibold">변경</span>
+            <span className="text-white text-[10px] font-semibold">제거</span>
           </div>
         )}
       </button>
-      <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleFile}/>
 
       <p className="text-[10px] text-gray-400 text-center leading-tight">
-        얼굴이 잘 보이는<br/>어깨까지 나온 정면 사진
+        {photoUrl ? '샘플 이미지 사용 중' : '탭하면 샘플 사진이 올라가요'}<br/>
+        <span className="text-gray-300">실제 서비스에서 직접 업로드</span>
       </p>
 
       <input
@@ -141,7 +143,7 @@ export function Step1Character({ project, onChange, onNext }: Props) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
         </svg>
         <p className="text-xs text-gray-500 leading-relaxed">
-          <span className="font-semibold text-gray-700">좋은 사진 조건</span> — 밝은 조명, 정면, 얼굴 선명, 선글라스·마스크 없음
+          <span className="font-semibold text-gray-700">데모 모드</span> — 사진 영역을 탭하면 샘플 이미지로 미리보기가 가능해요
         </p>
       </div>
 
