@@ -3,20 +3,45 @@ import Link from 'next/link'
 import { LangSwitcher } from './components/LangSwitcher'
 import { useLang } from './contexts/LangContext'
 
-/* ---------- 2D SVG Illustrations ---------- */
+/* ---------- SVG Illustrations ---------- */
 
 function IllustrationFilm() {
   return (
-    <svg viewBox="0 0 120 120" fill="none" className="w-full h-full">
-      <rect x="10" y="25" width="100" height="70" rx="8" fill="white" fillOpacity=".15"/>
-      <rect x="10" y="25" width="100" height="70" rx="8" stroke="white" strokeOpacity=".4" strokeWidth="2"/>
-      <rect x="20" y="35" width="20" height="14" rx="3" fill="white" fillOpacity=".5"/>
-      <rect x="50" y="35" width="20" height="14" rx="3" fill="white" fillOpacity=".5"/>
-      <rect x="80" y="35" width="20" height="14" rx="3" fill="white" fillOpacity=".5"/>
-      <rect x="20" y="57" width="80" height="28" rx="5" fill="white" fillOpacity=".2"/>
-      <polygon points="55,66 55,76 65,71" fill="white" fillOpacity=".8"/>
-      <circle cx="95" cy="15" r="10" fill="white" fillOpacity=".2"/>
-      <circle cx="95" cy="15" r="6" fill="white" fillOpacity=".4"/>
+    <svg viewBox="0 0 160 140" fill="none" className="w-full h-full">
+      {/* Film reel outer */}
+      <circle cx="120" cy="38" r="28" fill="white" fillOpacity=".08" stroke="white" strokeOpacity=".2" strokeWidth="1.5"/>
+      <circle cx="120" cy="38" r="18" fill="white" fillOpacity=".1" stroke="white" strokeOpacity=".25" strokeWidth="1.5"/>
+      <circle cx="120" cy="38" r="5" fill="white" fillOpacity=".4"/>
+      {/* Spokes */}
+      <line x1="120" y1="20" x2="120" y2="28" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
+      <line x1="120" y1="48" x2="120" y2="56" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
+      <line x1="102" y1="38" x2="110" y2="38" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
+      <line x1="130" y1="38" x2="138" y2="38" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
+      {/* Film strip body */}
+      <rect x="8" y="60" width="130" height="70" rx="10" fill="white" fillOpacity=".08" stroke="white" strokeOpacity=".25" strokeWidth="1.5"/>
+      {/* Sprocket holes top */}
+      <rect x="16" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="36" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="56" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="76" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="96" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="116" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      {/* Sprocket holes bottom */}
+      <rect x="16" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="36" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="56" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="76" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="96" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      <rect x="116" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
+      {/* Frames */}
+      <rect x="14" y="80" width="32" height="30" rx="4" fill="white" fillOpacity=".12"/>
+      <rect x="54" y="80" width="32" height="30" rx="4" fill="white" fillOpacity=".18"/>
+      <rect x="94" y="80" width="32" height="30" rx="4" fill="white" fillOpacity=".12"/>
+      {/* Play icon in middle frame */}
+      <polygon points="63,91 63,100 72,95.5" fill="white" fillOpacity=".7"/>
+      {/* Hearts in other frames */}
+      <path d="M26 92 C26 89 23 87 21 89 C19 87 16 89 16 92 C16 95 21 99 21 99 C21 99 26 95 26 92Z" fill="white" fillOpacity=".4"/>
+      <path d="M110 92 C110 89 107 87 105 89 C103 87 100 89 100 92 C100 95 105 99 105 99 C105 99 110 95 110 92Z" fill="white" fillOpacity=".4"/>
     </svg>
   )
 }
@@ -24,14 +49,23 @@ function IllustrationFilm() {
 function IllustrationNote() {
   return (
     <svg viewBox="0 0 120 120" fill="none" className="w-full h-full">
-      <rect x="25" y="20" width="70" height="85" rx="8" fill="white" fillOpacity=".15"/>
-      <rect x="25" y="20" width="70" height="85" rx="8" stroke="white" strokeOpacity=".35" strokeWidth="2"/>
-      <rect x="37" y="38" width="46" height="5" rx="2.5" fill="white" fillOpacity=".5"/>
-      <rect x="37" y="52" width="36" height="5" rx="2.5" fill="white" fillOpacity=".4"/>
-      <rect x="37" y="66" width="42" height="5" rx="2.5" fill="white" fillOpacity=".3"/>
-      <rect x="37" y="80" width="28" height="5" rx="2.5" fill="white" fillOpacity=".25"/>
-      <circle cx="85" cy="25" r="12" fill="white" fillOpacity=".2"/>
-      <path d="M81 25 L84 28 L90 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity=".7"/>
+      <rect x="25" y="20" width="70" height="85" rx="8" fill="white" fillOpacity=".1" stroke="white" strokeOpacity=".25" strokeWidth="1.5"/>
+      {/* Spine line */}
+      <line x1="40" y1="20" x2="40" y2="105" stroke="white" strokeOpacity=".15" strokeWidth="1"/>
+      {/* Title underline */}
+      <rect x="47" y="32" width="38" height="5" rx="2.5" fill="white" fillOpacity=".5"/>
+      <rect x="47" y="32" width="38" height="5" rx="2.5" fill="white" fillOpacity=".2"/>
+      {/* Lines */}
+      <rect x="47" y="47" width="30" height="4" rx="2" fill="white" fillOpacity=".35"/>
+      <rect x="47" y="58" width="36" height="4" rx="2" fill="white" fillOpacity=".28"/>
+      <rect x="47" y="69" width="26" height="4" rx="2" fill="white" fillOpacity=".22"/>
+      <rect x="47" y="80" width="32" height="4" rx="2" fill="white" fillOpacity=".18"/>
+      {/* Checkmark badge */}
+      <circle cx="82" cy="25" r="11" fill="white" fillOpacity=".15" stroke="white" strokeOpacity=".3" strokeWidth="1.5"/>
+      <path d="M77 25 L80 28 L87 21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeOpacity=".8"/>
+      {/* Pen icon */}
+      <path d="M32 88 L36 84 L40 88 L36 92 Z" fill="white" fillOpacity=".4"/>
+      <path d="M30 90 L28 95 L33 93 Z" fill="white" fillOpacity=".3"/>
     </svg>
   )
 }
@@ -40,75 +74,138 @@ export default function LandingPage() {
   const { t } = useLang()
 
   const SAMPLE_VIDEOS = [
-    { id: 1, title: '지훈 & 수연', desc: '홍대 카페에서 시작된 운명적인 만남', mood: t.landing.propose, bg: 'from-violet-600 to-indigo-700', duration: '1:02' },
-    { id: 2, title: '민준 & 서연', desc: '친구로 시작한 7년, 북한산 정상에서의 프로포즈', mood: t.landing.propose, bg: 'from-indigo-500 to-blue-700', duration: '0:58' },
-    { id: 3, title: '준혁 & 지은', desc: '파리 에펠탑 아래의 프로포즈', mood: t.landing.wedding, bg: 'from-slate-600 to-gray-800', duration: '1:05' },
-    { id: 4, title: '태양 & 하나', desc: '한강 퇴근길의 깜짝 이벤트', mood: t.landing.propose, bg: 'from-indigo-600 to-violet-800', duration: '1:00' },
-    { id: 5, title: '성현 & 유진', desc: '온라인에서 만나 3년, 첫 만남 장소에서 프로포즈', mood: t.landing.wedding, bg: 'from-gray-700 to-gray-900', duration: '1:03' },
-    { id: 6, title: '현우 & 다은', desc: '20년 만에 다시 만나 사랑이 된 이야기', mood: t.landing.wedding, bg: 'from-indigo-700 to-slate-800', duration: '1:07' },
+    { id: 1, title: '지훈 & 수연', desc: '홍대 카페에서 시작된 운명적인 만남', mood: t.landing.propose, bg: 'from-violet-600 to-indigo-700', duration: '1:02', moodColor: 'bg-violet-500' },
+    { id: 2, title: '민준 & 서연', desc: '친구로 시작한 7년, 북한산 정상에서의 프로포즈', mood: t.landing.propose, bg: 'from-indigo-500 to-blue-700', duration: '0:58', moodColor: 'bg-indigo-500' },
+    { id: 3, title: '준혁 & 지은', desc: '파리 에펠탑 아래의 프로포즈', mood: t.landing.wedding, bg: 'from-slate-600 to-gray-800', duration: '1:05', moodColor: 'bg-slate-500' },
+    { id: 4, title: '태양 & 하나', desc: '한강 퇴근길의 깜짝 이벤트', mood: t.landing.propose, bg: 'from-indigo-600 to-violet-800', duration: '1:00', moodColor: 'bg-violet-500' },
+    { id: 5, title: '성현 & 유진', desc: '온라인에서 만나 3년, 첫 만남 장소에서 프로포즈', mood: t.landing.wedding, bg: 'from-gray-700 to-gray-900', duration: '1:03', moodColor: 'bg-gray-500' },
+    { id: 6, title: '현우 & 다은', desc: '20년 만에 다시 만나 사랑이 된 이야기', mood: t.landing.wedding, bg: 'from-indigo-700 to-slate-800', duration: '1:07', moodColor: 'bg-indigo-500' },
   ]
 
   const PROCESS_STEPS = [
-    { n: '1', color: 'bg-indigo-50 border-indigo-100', num: 'text-indigo-600', title: t.landing.process1, desc: t.landing.process1desc },
-    { n: '2', color: 'bg-gray-50 border-gray-200', num: 'text-gray-600', title: t.landing.process2, desc: t.landing.process2desc },
-    { n: '3', color: 'bg-indigo-50 border-indigo-100', num: 'text-indigo-600', title: t.landing.process3, desc: t.landing.process3desc },
-    { n: '4', color: 'bg-gray-900 border-gray-900', num: 'text-white', title: t.landing.process4, desc: t.landing.process4desc },
+    {
+      n: '01', title: t.landing.process1, desc: t.landing.process1desc,
+      icon: (
+        <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
+        </svg>
+      ),
+    },
+    {
+      n: '02', title: t.landing.process2, desc: t.landing.process2desc,
+      icon: (
+        <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z"/>
+        </svg>
+      ),
+    },
+    {
+      n: '03', title: t.landing.process3, desc: t.landing.process3desc,
+      icon: (
+        <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+        </svg>
+      ),
+    },
+    {
+      n: '04', title: t.landing.process4, desc: t.landing.process4desc,
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347c-.75.412-1.667-.13-1.667-.986V5.653z"/>
+        </svg>
+      ),
+      dark: true,
+    },
   ]
 
   return (
-    <main className="min-h-screen bg-[#F5F4F0] text-gray-900">
+    <main className="min-h-screen bg-white text-gray-900">
 
-      {/* Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#F5F4F0]/90 backdrop-blur-sm border-b border-gray-200/60">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-5 sm:gap-8">
-            <span className="text-base font-bold tracking-tight">{t.common.brand}</span>
-            <nav className="hidden md:flex items-center gap-5 text-sm text-gray-500">
-              <a href="#features" className="hover:text-gray-900 transition-colors">{t.landing.navFeatures}</a>
-              <a href="#samples" className="hover:text-gray-900 transition-colors">{t.landing.navSample}</a>
-              <Link href="/blog" className="hover:text-gray-900 transition-colors">{t.common.blog}</Link>
-              <a href="#pricing" className="hover:text-gray-900 transition-colors">{t.landing.navPricing}</a>
-            </nav>
-          </div>
-          <div className="flex items-center gap-2">
-            <LangSwitcher />
-            <Link href="/login" className="hidden sm:block text-sm text-gray-500 hover:text-gray-900 transition-colors px-2">{t.common.login}</Link>
-            <Link href="/create" className="px-3 sm:px-4 py-2 bg-gray-900 text-white text-sm font-semibold rounded-full hover:bg-gray-700 transition-colors whitespace-nowrap">
-              <span className="hidden sm:inline">{t.common.createVideo}</span>
-              <span className="sm:hidden">{t.landing.heroBtn}</span>
-            </Link>
+      {/* ── NAVBAR ── */}
+      <header className="fixed top-3 left-4 right-4 z-50">
+        <div className="max-w-6xl mx-auto px-4 bg-white/90 backdrop-blur-md border border-gray-200/80 rounded-2xl shadow-sm">
+          <div className="h-14 flex items-center justify-between">
+            <div className="flex items-center gap-6 sm:gap-8">
+              <span className="text-base font-black tracking-tight text-gray-900">{t.common.brand}</span>
+              <nav className="hidden md:flex items-center gap-5 text-sm text-gray-500">
+                <a href="#features" className="hover:text-gray-900 transition-colors duration-200 cursor-pointer">{t.landing.navFeatures}</a>
+                <a href="#samples" className="hover:text-gray-900 transition-colors duration-200 cursor-pointer">{t.landing.navSample}</a>
+                <Link href="/blog" className="hover:text-gray-900 transition-colors duration-200 cursor-pointer">{t.common.blog}</Link>
+                <a href="#pricing" className="hover:text-gray-900 transition-colors duration-200 cursor-pointer">{t.landing.navPricing}</a>
+              </nav>
+            </div>
+            <div className="flex items-center gap-2">
+              <LangSwitcher />
+              <Link href="/login" className="hidden sm:block text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 px-2 cursor-pointer">{t.common.login}</Link>
+              <Link href="/create" className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors duration-200 whitespace-nowrap cursor-pointer">
+                <span className="hidden sm:inline">{t.common.createVideo}</span>
+                <span className="sm:hidden">{t.landing.heroBtn}</span>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
 
       {/* ── HERO ── */}
-      <section className="pt-24 md:pt-32 pb-8 px-5 sm:px-6 text-center max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-600 mb-6 md:mb-8">
-          <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse" />
-          {t.landing.heroLabel}
-        </div>
-        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black leading-none tracking-tighter text-gray-900 mb-5 md:mb-6">
-          {t.landing.heroTitle1}<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500">
-            {t.landing.heroTitle2}
-          </span>
-        </h1>
-        <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-          {t.landing.heroDesc}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/create" className="px-8 py-4 bg-gray-900 text-white font-bold text-base rounded-2xl hover:bg-gray-700 transition-colors">
-            {t.landing.heroBtn}
-          </Link>
-          <a href="#samples" className="px-8 py-4 bg-white text-gray-700 font-semibold text-base rounded-2xl border border-gray-200 hover:border-gray-300 transition-colors">
-            {t.landing.heroSample}
-          </a>
+      <section className="relative pt-28 md:pt-36 pb-10 px-5 sm:px-6 text-center max-w-4xl mx-auto overflow-hidden">
+        {/* Gradient blobs */}
+        <div className="absolute -top-20 -left-24 w-80 h-80 bg-indigo-100 blur-3xl opacity-60 rounded-full pointer-events-none" />
+        <div className="absolute -top-10 right-0 w-72 h-72 bg-violet-100 blur-3xl opacity-50 rounded-full pointer-events-none" />
+        <div className="absolute top-40 left-1/2 -translate-x-1/2 w-96 h-60 bg-pink-100 blur-3xl opacity-40 rounded-full pointer-events-none" />
+
+        <div className="relative">
+          <div className="inline-flex items-center gap-2 bg-white border border-indigo-100 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-600 mb-6 md:mb-8 shadow-sm">
+            <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse" />
+            {t.landing.heroLabel}
+          </div>
+
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black leading-none tracking-tighter text-gray-900 mb-5 md:mb-6">
+            {t.landing.heroTitle1}<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500">
+              {t.landing.heroTitle2}
+            </span>
+          </h1>
+
+          <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+            {t.landing.heroDesc}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+            <Link href="/create" className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base rounded-2xl transition-colors duration-200 cursor-pointer">
+              {t.landing.heroBtn}
+            </Link>
+            <a href="#samples" className="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 font-semibold text-base rounded-2xl border border-gray-200 hover:border-gray-300 transition-colors duration-200 cursor-pointer">
+              {t.landing.heroSample}
+            </a>
+          </div>
+
+          {/* Floating stats badges */}
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+              <svg className="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
+              <span className="text-sm font-bold text-gray-900">500+ 커플</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+              <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+              <span className="text-sm font-bold text-gray-900">4.9 / 5.0</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+              <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span className="text-sm font-bold text-gray-900">평균 3분</span>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── HERO VIDEO PREVIEW ── */}
-      <section className="px-5 sm:px-6 pb-10 max-w-4xl mx-auto">
-        <div className="w-full aspect-video rounded-3xl bg-gray-900 overflow-hidden relative shadow-2xl shadow-gray-900/20">
+      <section className="px-5 sm:px-6 pb-12 max-w-4xl mx-auto">
+        <div className="w-full aspect-video rounded-3xl bg-gray-900 overflow-hidden relative shadow-2xl shadow-indigo-900/20">
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-gray-900 to-gray-900" />
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8">
             <div className="text-center">
@@ -121,7 +218,7 @@ export default function LandingPage() {
           </div>
           <div className="absolute bottom-4 left-6 right-6">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors">
+              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors duration-200">
                 <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
               <span className="text-white/70 text-xs">0:18 / 1:02</span>
@@ -131,21 +228,23 @@ export default function LandingPage() {
               <div className="h-1 bg-indigo-400 rounded-full w-[28%]" />
             </div>
           </div>
-          <div className="absolute inset-0 pointer-events-none opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
         </div>
       </section>
 
       {/* ── BENTO GRID ── */}
-      <section id="features" className="px-5 sm:px-6 pb-6 max-w-6xl mx-auto">
+      <section id="features" className="px-5 sm:px-6 pb-8 max-w-6xl mx-auto">
         <div className="grid grid-cols-12 gap-3 sm:gap-4">
 
-          {/* 1 — AI Disney 변환 */}
-          <div className="col-span-12 md:col-span-7 rounded-3xl bg-indigo-600 p-6 md:p-8 min-h-52 md:min-h-64 flex flex-col justify-between overflow-hidden relative">
-            <div className="absolute right-0 top-0 w-48 h-48 opacity-30">
+          {/* 1 — AI Disney */}
+          <div className="col-span-12 md:col-span-7 rounded-3xl bg-indigo-600 p-6 md:p-8 min-h-56 md:min-h-72 flex flex-col justify-between overflow-hidden relative">
+            {/* decorative rings */}
+            <div className="absolute -right-8 -top-8 w-64 h-64 border-2 border-white/10 rounded-full" />
+            <div className="absolute -right-4 -top-4 w-48 h-48 border border-white/10 rounded-full" />
+            <div className="absolute right-0 top-0 w-52 h-52 opacity-25">
               <IllustrationFilm />
             </div>
-            <div>
-              <span className="inline-block text-xs font-bold text-indigo-200 uppercase tracking-widest mb-3">01</span>
+            <div className="relative">
+              <span className="inline-block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-3">01</span>
               <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-3">
                 {t.landing.feat1n1}<br />
                 {t.landing.feat1n2}
@@ -154,7 +253,7 @@ export default function LandingPage() {
                 {t.landing.feat1desc}
               </p>
             </div>
-            <Link href="/create" className="inline-flex items-center gap-1 text-sm font-bold text-white mt-6 hover:gap-2 transition-all">
+            <Link href="/create" className="relative inline-flex items-center gap-1.5 text-sm font-bold text-white mt-6 hover:gap-3 transition-all duration-200 cursor-pointer w-fit">
               {t.landing.feat1btn}
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -162,9 +261,9 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          {/* 2 — 감성 스토리 */}
-          <div className="col-span-12 md:col-span-5 rounded-3xl bg-gray-900 p-6 md:p-8 min-h-48 md:min-h-64 flex flex-col justify-between overflow-hidden relative">
-            <div className="absolute right-4 bottom-4 w-32 h-32 opacity-20">
+          {/* 2 — Story */}
+          <div className="col-span-12 md:col-span-5 rounded-3xl bg-gray-900 p-6 md:p-8 min-h-48 md:min-h-72 flex flex-col justify-between overflow-hidden relative">
+            <div className="absolute right-4 bottom-6 w-36 h-36 opacity-15">
               <IllustrationNote />
             </div>
             <div>
@@ -172,41 +271,60 @@ export default function LandingPage() {
               <h2 className="text-2xl font-black text-white leading-tight mb-3">
                 {t.landing.feat2n1}<br />{t.landing.feat2n2}
               </h2>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                 {t.landing.feat2desc}
               </p>
             </div>
           </div>
 
-          {/* 3 — 3분 완성 */}
+          {/* 3 — 3min */}
           <div className="col-span-12 md:col-span-4 rounded-3xl bg-white border border-gray-200 p-8 flex flex-col justify-between overflow-hidden relative">
-            <div>
+            <div className="absolute top-0 right-0 w-28 h-28 bg-indigo-50 rounded-full -translate-y-8 translate-x-8 pointer-events-none" />
+            <div className="relative">
               <span className="inline-block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">03</span>
               <p className="text-gray-500 text-sm font-semibold mb-1">{t.landing.feat3label}</p>
-              <h2 className="text-5xl font-black text-indigo-600 leading-none">{t.landing.feat3time}</h2>
+              <h2 className="text-6xl font-black text-indigo-600 leading-none">{t.landing.feat3time}</h2>
             </div>
-            <p className="text-gray-400 text-sm mt-4">{t.landing.feat3desc}</p>
+            <div className="mt-4">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-xs font-semibold text-gray-500">AI 자동 처리</span>
+              </div>
+              <p className="text-gray-400 text-sm">{t.landing.feat3desc}</p>
+            </div>
           </div>
 
-          {/* 4 — 시네마틱 편집 */}
-          <div className="col-span-12 md:col-span-4 rounded-3xl bg-indigo-50 border border-indigo-100 p-8 flex flex-col justify-between overflow-hidden">
-            <div>
+          {/* 4 — Cinematic */}
+          <div className="col-span-12 md:col-span-4 rounded-3xl bg-indigo-50 border border-indigo-100 p-8 flex flex-col justify-between overflow-hidden relative">
+            <div className="absolute bottom-0 right-0 w-24 h-24 bg-indigo-100 rounded-full translate-y-8 translate-x-8 pointer-events-none" />
+            <div className="relative">
               <span className="inline-block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-3">04</span>
               <h2 className="text-2xl font-black text-indigo-900 leading-tight mb-3">
                 {t.landing.feat4n1}<br />{t.landing.feat4n2}
               </h2>
-              <p className="text-indigo-600 text-sm">{t.landing.feat4desc}</p>
+              <p className="text-indigo-600 text-sm leading-relaxed">{t.landing.feat4desc}</p>
+            </div>
+            <div className="mt-4 flex items-center gap-2">
+              <svg className="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+              </svg>
+              <span className="text-xs font-semibold text-indigo-400">오케스트라 BGM 포함</span>
             </div>
           </div>
 
-          {/* 5 — 직접 편집 */}
-          <div className="col-span-12 md:col-span-4 rounded-3xl bg-gray-50 border border-gray-200 p-8 flex flex-col justify-between overflow-hidden">
+          {/* 5 — Edit */}
+          <div className="col-span-12 md:col-span-4 rounded-3xl bg-gray-50 border border-gray-200 p-8 flex flex-col justify-between overflow-hidden relative">
             <div>
               <span className="inline-block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">05</span>
               <h2 className="text-2xl font-black text-gray-900 leading-tight mb-3">
                 {t.landing.feat5n1}<br />{t.landing.feat5n2}
               </h2>
-              <p className="text-gray-500 text-sm">{t.landing.feat5desc}</p>
+              <p className="text-gray-500 text-sm leading-relaxed">{t.landing.feat5desc}</p>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {['나레이션 편집', '이미지 재생성', '장면 조정'].map(tag => (
+                <span key={tag} className="text-xs font-medium bg-white border border-gray-200 text-gray-600 px-2.5 py-1 rounded-full">{tag}</span>
+              ))}
             </div>
           </div>
 
@@ -214,14 +332,14 @@ export default function LandingPage() {
       </section>
 
       {/* ── SAMPLE VIDEOS ── */}
-      <section id="samples" className="py-16 sm:py-20 px-5 sm:px-6">
+      <section id="samples" className="py-16 sm:py-20 px-5 sm:px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-8 sm:mb-10">
             <div>
               <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{t.landing.samplesLabel}</p>
               <h2 className="text-3xl sm:text-4xl font-black text-gray-900">{t.landing.samplesTitle}</h2>
             </div>
-            <Link href="/create" className="hidden md:block text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+            <Link href="/create" className="hidden md:block text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors duration-200 cursor-pointer">
               {t.landing.samplesBtn}
             </Link>
           </div>
@@ -229,16 +347,23 @@ export default function LandingPage() {
             {SAMPLE_VIDEOS.map(v => (
               <div key={v.id} className="group cursor-pointer">
                 <div className={`w-full aspect-video rounded-xl sm:rounded-2xl bg-gradient-to-br ${v.bg} flex items-center justify-center mb-2 sm:mb-3 relative overflow-hidden`}>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-white/30">
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-200 group-hover:bg-white/30 relative z-10">
                     <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white ml-0.5 sm:ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   </div>
                   <span className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-1.5 sm:px-2 py-0.5 rounded font-medium">{v.duration}</span>
-                  <span className="absolute top-2 left-2 bg-white/20 text-white text-xs px-1.5 sm:px-2 py-0.5 rounded-full font-medium">{v.mood}</span>
+                  <span className={`absolute top-2 left-2 ${v.moodColor} text-white text-xs px-2 sm:px-2.5 py-0.5 rounded-full font-semibold`}>{v.mood}</span>
                 </div>
                 <p className="font-bold text-gray-900 text-xs sm:text-sm">{v.title}</p>
                 <p className="text-gray-500 text-xs mt-0.5 hidden sm:block">{v.desc}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-6 text-center md:hidden">
+            <Link href="/create" className="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors duration-200 cursor-pointer">
+              {t.landing.samplesBtn}
+            </Link>
           </div>
         </div>
       </section>
@@ -248,24 +373,43 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">{t.landing.processLabel}</p>
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-10 sm:mb-14">{t.landing.processTitle}</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {PROCESS_STEPS.map(s => (
-              <div key={s.n} className={`rounded-2xl border p-5 sm:p-6 ${s.color}`}>
-                <span className={`text-3xl sm:text-4xl font-black ${s.num} block mb-3`}>{s.n}</span>
-                <h3 className={`font-bold mb-1 text-sm sm:text-base ${s.num === 'text-white' ? 'text-white' : 'text-gray-900'}`}>{s.title}</h3>
-                <p className={`text-xs sm:text-sm leading-relaxed ${s.num === 'text-white' ? 'text-gray-400' : 'text-gray-500'}`}>{s.desc}</p>
-              </div>
-            ))}
+
+          {/* Horizontal timeline on desktop, vertical on mobile */}
+          <div className="relative">
+            {/* Connecting line — desktop */}
+            <div className="hidden md:block absolute top-8 left-[calc(12.5%+0px)] right-[calc(12.5%+0px)] h-0.5 bg-gradient-to-r from-indigo-200 via-indigo-300 to-gray-300 z-0" />
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-6 relative">
+              {PROCESS_STEPS.map((s, i) => (
+                <div key={s.n} className="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 pb-8 md:pb-0">
+                  {/* Vertical line — mobile */}
+                  {i < PROCESS_STEPS.length - 1 && (
+                    <div className="md:hidden absolute left-6 top-14 bottom-0 w-0.5 bg-gradient-to-b from-indigo-200 to-gray-200 z-0" />
+                  )}
+
+                  {/* Step circle */}
+                  <div className={`relative z-10 flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center ${s.dark ? 'bg-gray-900' : i % 2 === 0 ? 'bg-indigo-50 border border-indigo-100' : 'bg-gray-50 border border-gray-200'}`}>
+                    {s.icon}
+                  </div>
+
+                  <div className="md:mt-4 md:text-center">
+                    <span className={`block text-xs font-black tracking-widest mb-1 ${s.dark ? 'text-gray-400' : 'text-indigo-400'}`}>{s.n}</span>
+                    <h3 className="font-bold text-gray-900 text-sm sm:text-base mb-1">{s.title}</h3>
+                    <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── PRICING ── */}
-      <section id="pricing" className="py-16 sm:py-20 px-5 sm:px-6 bg-[#F5F4F0]">
+      <section id="pricing" className="py-16 sm:py-20 px-5 sm:px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">{t.landing.pricingLabel}</p>
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3">{t.landing.pricingTitle}</h2>
-          <p className="text-gray-500 mb-3">{t.landing.pricingSubtitle}</p>
+          <p className="text-gray-500 mb-4">{t.landing.pricingSubtitle}</p>
 
           <div className="inline-flex items-center gap-2 bg-rose-500 text-white text-sm font-bold px-4 py-2 rounded-full mb-8 sm:mb-10">
             <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
@@ -273,55 +417,70 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-            {[
-              {
-                name: 'Standard', price: '$49', originalPrice: '$99', event: true,
-                desc: t.landing.feat5n1, color: 'border-gray-200 bg-white',
-                features: ['FHD (1080p)', '3x Download', 'Share link', '30-day storage'],
-                descText: t.checkout.standardDesc,
-              },
-              {
-                name: 'Pro', price: '$199', originalPrice: null, highlight: true,
-                color: 'border-indigo-500 bg-indigo-600',
-                features: ['4K', 'Unlimited Downloads', 'Share link', 'Permanent storage', '5x Regen'],
-                descText: t.checkout.proDesc,
-              },
-              {
-                name: 'Ultra', price: '$299', originalPrice: null,
-                color: 'border-gray-200 bg-white',
-                features: ['4K', 'Unlimited Downloads', 'Permanent storage', 'Unlimited Regen', 'USB', 'Editor'],
-                descText: t.checkout.ultraDesc,
-              },
-            ].map(p => (
-              <div key={p.name} className={`rounded-2xl border-2 p-6 sm:p-7 relative ${p.color}`}>
-                {p.highlight && (
-                  <span className="absolute -top-3 left-6 bg-white text-indigo-600 text-xs font-black px-3 py-1 rounded-full border border-indigo-200">{t.landing.recommended}</span>
-                )}
-                {p.event && (
-                  <span className="absolute -top-3 right-6 bg-rose-500 text-white text-xs font-black px-3 py-1 rounded-full">{t.landing.eventLabel}</span>
-                )}
-                <h3 className={`font-black text-xl mb-0.5 ${p.highlight ? 'text-white' : 'text-gray-900'}`}>{p.name}</h3>
-                <p className={`text-xs mb-4 ${p.highlight ? 'text-indigo-200' : 'text-gray-400'}`}>{p.descText}</p>
-                <div className="mb-5">
-                  {p.originalPrice && (
-                    <span className={`text-base line-through mr-2 ${p.highlight ? 'text-indigo-300' : 'text-gray-300'}`}>{p.originalPrice}</span>
-                  )}
-                  <span className={`text-4xl font-black ${p.highlight ? 'text-white' : 'text-gray-900'}`}>{p.price}</span>
-                </div>
-                <ul className="space-y-2">
-                  {p.features.map(f => (
-                    <li key={f} className={`flex items-center gap-2 text-sm ${p.highlight ? 'text-indigo-100' : 'text-gray-600'}`}>
-                      <svg className={`w-4 h-4 flex-shrink-0 ${p.highlight ? 'text-indigo-300' : 'text-indigo-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+            {/* Standard */}
+            <div className="rounded-2xl border-2 border-gray-200 bg-white p-6 sm:p-7 relative">
+              <span className="absolute -top-3 right-6 bg-rose-500 text-white text-xs font-black px-3 py-1 rounded-full">{t.landing.eventLabel}</span>
+              <h3 className="font-black text-xl mb-0.5 text-gray-900">Standard</h3>
+              <p className="text-xs mb-4 text-gray-400">{t.checkout.standardDesc}</p>
+              <div className="mb-5 flex items-baseline gap-2">
+                <span className="text-base line-through text-gray-300">$99</span>
+                <span className="text-4xl font-black text-gray-900">$49</span>
               </div>
-            ))}
+              <ul className="space-y-2">
+                {['FHD (1080p)', '3x Download', 'Share link', '30-day storage'].map(f => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
+                    <svg className="w-4 h-4 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Pro — highlighted with dark gradient bg */}
+            <div className="rounded-2xl border-2 border-indigo-500 bg-gradient-to-b from-indigo-600 to-violet-700 p-6 sm:p-7 relative shadow-xl shadow-indigo-500/30">
+              <span className="absolute -top-3 left-6 bg-white text-indigo-600 text-xs font-black px-3 py-1 rounded-full border border-indigo-100">{t.landing.recommended}</span>
+              {/* Glow */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+              <h3 className="font-black text-xl mb-0.5 text-white relative">Pro</h3>
+              <p className="text-xs mb-4 text-indigo-200 relative">{t.checkout.proDesc}</p>
+              <div className="mb-5 relative">
+                <span className="text-4xl font-black text-white">$199</span>
+              </div>
+              <ul className="space-y-2 relative">
+                {['4K', 'Unlimited Downloads', 'Share link', 'Permanent storage', '5x Regen'].map(f => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-indigo-100">
+                    <svg className="w-4 h-4 flex-shrink-0 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Ultra */}
+            <div className="rounded-2xl border-2 border-gray-200 bg-white p-6 sm:p-7 relative">
+              <h3 className="font-black text-xl mb-0.5 text-gray-900">Ultra</h3>
+              <p className="text-xs mb-4 text-gray-400">{t.checkout.ultraDesc}</p>
+              <div className="mb-5">
+                <span className="text-4xl font-black text-gray-900">$299</span>
+              </div>
+              <ul className="space-y-2">
+                {['4K', 'Unlimited Downloads', 'Permanent storage', 'Unlimited Regen', 'USB', 'Editor'].map(f => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
+                    <svg className="w-4 h-4 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
+          {/* B2B */}
           <div className="bg-gray-900 rounded-2xl p-6 sm:p-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -330,13 +489,13 @@ export default function LandingPage() {
               </div>
               <p className="text-gray-400 text-sm">{t.landing.b2bDesc}</p>
             </div>
-            <a href="mailto:hello@onceuponus.kr" className="flex-shrink-0 px-5 py-2.5 bg-white text-gray-900 text-sm font-bold rounded-xl hover:bg-gray-100 transition-colors">
+            <a href="mailto:hello@onceuponus.kr" className="flex-shrink-0 px-5 py-2.5 bg-white text-gray-900 text-sm font-bold rounded-xl hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
               {t.landing.b2bBtn}
             </a>
           </div>
 
           <div className="text-center">
-            <Link href="/create" className="inline-block px-10 py-4 bg-gray-900 text-white font-bold text-base rounded-2xl hover:bg-gray-700 transition-colors">
+            <Link href="/create" className="inline-block px-10 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base rounded-2xl transition-colors duration-200 cursor-pointer">
               {t.landing.pricingBtn}
             </Link>
             <p className="text-sm text-gray-400 mt-3">{t.landing.pricingNote}</p>
@@ -344,15 +503,21 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-10 px-5 sm:px-6 border-t border-gray-200 bg-white">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-          <span className="text-base font-black text-gray-900">{t.common.brand}</span>
-          <div className="flex items-center gap-6 text-sm text-gray-400">
-            <Link href="/blog" className="hover:text-gray-600 transition-colors">{t.landing.footerBlog}</Link>
-            <a href="mailto:hello@onceuponus.kr" className="hover:text-gray-600 transition-colors">{t.landing.footerContact}</a>
+      {/* ── FOOTER ── */}
+      <footer className="py-12 px-5 sm:px-6 border-t border-gray-100 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col items-center text-center gap-4 mb-8">
+            <span className="text-xl font-black text-gray-900">{t.common.brand}</span>
+            <p className="text-sm text-gray-400 max-w-xs">프로포즈와 결혼식, 두 사람의 이야기를 세상에 하나뿐인 애니메이션으로</p>
           </div>
-          <p className="text-sm text-gray-400">© 2024 Once Upon Us.</p>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-gray-100">
+            <div className="flex items-center gap-6 text-sm text-gray-400">
+              <Link href="/blog" className="hover:text-gray-600 transition-colors duration-200 cursor-pointer">{t.landing.footerBlog}</Link>
+              <a href="mailto:hello@onceuponus.kr" className="hover:text-gray-600 transition-colors duration-200 cursor-pointer">{t.landing.footerContact}</a>
+              <a href="#pricing" className="hover:text-gray-600 transition-colors duration-200 cursor-pointer">{t.landing.navPricing}</a>
+            </div>
+            <p className="text-sm text-gray-400">© 2024 Once Upon Us. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </main>
