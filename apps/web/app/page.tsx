@@ -3,73 +3,6 @@ import Link from 'next/link'
 import { LangSwitcher } from './components/LangSwitcher'
 import { useLang } from './contexts/LangContext'
 
-/* ---------- SVG Illustrations ---------- */
-
-function IllustrationFilm() {
-  return (
-    <svg viewBox="0 0 160 140" fill="none" className="w-full h-full">
-      {/* Film reel outer */}
-      <circle cx="120" cy="38" r="28" fill="white" fillOpacity=".08" stroke="white" strokeOpacity=".2" strokeWidth="1.5"/>
-      <circle cx="120" cy="38" r="18" fill="white" fillOpacity=".1" stroke="white" strokeOpacity=".25" strokeWidth="1.5"/>
-      <circle cx="120" cy="38" r="5" fill="white" fillOpacity=".4"/>
-      {/* Spokes */}
-      <line x1="120" y1="20" x2="120" y2="28" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
-      <line x1="120" y1="48" x2="120" y2="56" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
-      <line x1="102" y1="38" x2="110" y2="38" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
-      <line x1="130" y1="38" x2="138" y2="38" stroke="white" strokeOpacity=".3" strokeWidth="2"/>
-      {/* Film strip body */}
-      <rect x="8" y="60" width="130" height="70" rx="10" fill="white" fillOpacity=".08" stroke="white" strokeOpacity=".25" strokeWidth="1.5"/>
-      {/* Sprocket holes top */}
-      <rect x="16" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="36" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="56" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="76" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="96" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="116" y="66" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      {/* Sprocket holes bottom */}
-      <rect x="16" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="36" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="56" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="76" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="96" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      <rect x="116" y="116" width="10" height="8" rx="2" fill="white" fillOpacity=".3"/>
-      {/* Frames */}
-      <rect x="14" y="80" width="32" height="30" rx="4" fill="white" fillOpacity=".12"/>
-      <rect x="54" y="80" width="32" height="30" rx="4" fill="white" fillOpacity=".18"/>
-      <rect x="94" y="80" width="32" height="30" rx="4" fill="white" fillOpacity=".12"/>
-      {/* Play icon in middle frame */}
-      <polygon points="63,91 63,100 72,95.5" fill="white" fillOpacity=".7"/>
-      {/* Hearts in other frames */}
-      <path d="M26 92 C26 89 23 87 21 89 C19 87 16 89 16 92 C16 95 21 99 21 99 C21 99 26 95 26 92Z" fill="white" fillOpacity=".4"/>
-      <path d="M110 92 C110 89 107 87 105 89 C103 87 100 89 100 92 C100 95 105 99 105 99 C105 99 110 95 110 92Z" fill="white" fillOpacity=".4"/>
-    </svg>
-  )
-}
-
-function IllustrationNote() {
-  return (
-    <svg viewBox="0 0 120 120" fill="none" className="w-full h-full">
-      <rect x="25" y="20" width="70" height="85" rx="8" fill="white" fillOpacity=".1" stroke="white" strokeOpacity=".25" strokeWidth="1.5"/>
-      {/* Spine line */}
-      <line x1="40" y1="20" x2="40" y2="105" stroke="white" strokeOpacity=".15" strokeWidth="1"/>
-      {/* Title underline */}
-      <rect x="47" y="32" width="38" height="5" rx="2.5" fill="white" fillOpacity=".5"/>
-      <rect x="47" y="32" width="38" height="5" rx="2.5" fill="white" fillOpacity=".2"/>
-      {/* Lines */}
-      <rect x="47" y="47" width="30" height="4" rx="2" fill="white" fillOpacity=".35"/>
-      <rect x="47" y="58" width="36" height="4" rx="2" fill="white" fillOpacity=".28"/>
-      <rect x="47" y="69" width="26" height="4" rx="2" fill="white" fillOpacity=".22"/>
-      <rect x="47" y="80" width="32" height="4" rx="2" fill="white" fillOpacity=".18"/>
-      {/* Checkmark badge */}
-      <circle cx="82" cy="25" r="11" fill="white" fillOpacity=".15" stroke="white" strokeOpacity=".3" strokeWidth="1.5"/>
-      <path d="M77 25 L80 28 L87 21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeOpacity=".8"/>
-      {/* Pen icon */}
-      <path d="M32 88 L36 84 L40 88 L36 92 Z" fill="white" fillOpacity=".4"/>
-      <path d="M30 90 L28 95 L33 93 Z" fill="white" fillOpacity=".3"/>
-    </svg>
-  )
-}
-
 export default function LandingPage() {
   const { t } = useLang()
 
@@ -147,58 +80,50 @@ export default function LandingPage() {
       </header>
 
       {/* ── HERO ── */}
-      <section className="relative pt-28 md:pt-36 pb-10 px-5 sm:px-6 text-center max-w-4xl mx-auto overflow-hidden">
-        {/* Gradient blobs */}
-        <div className="absolute -top-20 -left-24 w-80 h-80 bg-indigo-100 blur-3xl opacity-60 rounded-full pointer-events-none" />
-        <div className="absolute -top-10 right-0 w-72 h-72 bg-violet-100 blur-3xl opacity-50 rounded-full pointer-events-none" />
-        <div className="absolute top-40 left-1/2 -translate-x-1/2 w-96 h-60 bg-pink-100 blur-3xl opacity-40 rounded-full pointer-events-none" />
+      <section className="pt-28 md:pt-36 pb-10 px-5 sm:px-6 text-center max-w-4xl mx-auto">
+        <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 rounded-lg px-3 py-1 text-xs font-bold text-indigo-700 mb-6 md:mb-8 tracking-wide uppercase">
+          {t.landing.heroLabel}
+        </div>
 
-        <div className="relative">
-          <div className="inline-flex items-center gap-2 bg-white border border-indigo-100 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-600 mb-6 md:mb-8 shadow-sm">
-            <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse" />
-            {t.landing.heroLabel}
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black leading-none tracking-tight text-gray-900 mb-5 md:mb-6">
+          {t.landing.heroTitle1}<br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500">
+            {t.landing.heroTitle2}
+          </span>
+        </h1>
+
+        <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+          {t.landing.heroDesc}
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+          <Link href="/create" className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base rounded-2xl transition-colors duration-200 cursor-pointer">
+            {t.landing.heroBtn}
+          </Link>
+          <a href="#samples" className="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 font-semibold text-base rounded-2xl border border-gray-200 hover:border-gray-300 transition-colors duration-200 cursor-pointer">
+            {t.landing.heroSample}
+          </a>
+        </div>
+
+        {/* Floating stats badges */}
+        <div className="flex items-center justify-center gap-3 flex-wrap">
+          <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+            <svg className="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+            <span className="text-sm font-bold text-gray-900">500+ 커플</span>
           </div>
-
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black leading-none tracking-tighter text-gray-900 mb-5 md:mb-6">
-            {t.landing.heroTitle1}<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500">
-              {t.landing.heroTitle2}
-            </span>
-          </h1>
-
-          <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-            {t.landing.heroDesc}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
-            <Link href="/create" className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base rounded-2xl transition-colors duration-200 cursor-pointer">
-              {t.landing.heroBtn}
-            </Link>
-            <a href="#samples" className="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 font-semibold text-base rounded-2xl border border-gray-200 hover:border-gray-300 transition-colors duration-200 cursor-pointer">
-              {t.landing.heroSample}
-            </a>
+          <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+            <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <span className="text-sm font-bold text-gray-900">4.9 / 5.0</span>
           </div>
-
-          {/* Floating stats badges */}
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
-              <svg className="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-              </svg>
-              <span className="text-sm font-bold text-gray-900">500+ 커플</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
-              <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-              </svg>
-              <span className="text-sm font-bold text-gray-900">4.9 / 5.0</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
-              <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              <span className="text-sm font-bold text-gray-900">평균 3분</span>
-            </div>
+          <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+            <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span className="text-sm font-bold text-gray-900">평균 3분</span>
           </div>
         </div>
       </section>
@@ -231,103 +156,91 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── BENTO GRID ── */}
-      <section id="features" className="px-5 sm:px-6 pb-8 max-w-6xl mx-auto">
-        <div className="grid grid-cols-12 gap-3 sm:gap-4">
-
-          {/* 1 — AI Disney */}
-          <div className="col-span-12 md:col-span-7 rounded-3xl bg-indigo-600 p-6 md:p-8 min-h-56 md:min-h-72 flex flex-col justify-between overflow-hidden relative">
-            {/* decorative rings */}
-            <div className="absolute -right-8 -top-8 w-64 h-64 border-2 border-white/10 rounded-full" />
-            <div className="absolute -right-4 -top-4 w-48 h-48 border border-white/10 rounded-full" />
-            <div className="absolute right-0 top-0 w-52 h-52 opacity-25">
-              <IllustrationFilm />
-            </div>
-            <div className="relative">
-              <span className="inline-block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-3">01</span>
-              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-3">
-                {t.landing.feat1n1}<br />
-                {t.landing.feat1n2}
-              </h2>
-              <p className="text-indigo-200 text-sm leading-relaxed max-w-xs">
-                {t.landing.feat1desc}
-              </p>
-            </div>
-            <Link href="/create" className="relative inline-flex items-center gap-1.5 text-sm font-bold text-white mt-6 hover:gap-3 transition-all duration-200 cursor-pointer w-fit">
-              {t.landing.feat1btn}
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+      {/* ── FEATURES ── */}
+      <section id="features" className="py-16 sm:py-20 px-5 sm:px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10 sm:mb-14">
+            <p className="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-3">기능</p>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">Once Upon Us가 특별한 이유</h2>
           </div>
 
-          {/* 2 — Story */}
-          <div className="col-span-12 md:col-span-5 rounded-3xl bg-gray-900 p-6 md:p-8 min-h-48 md:min-h-72 flex flex-col justify-between overflow-hidden relative">
-            <div className="absolute right-4 bottom-6 w-36 h-36 opacity-15">
-              <IllustrationNote />
-            </div>
-            <div>
-              <span className="inline-block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">02</span>
-              <h2 className="text-2xl font-black text-white leading-tight mb-3">
-                {t.landing.feat2n1}<br />{t.landing.feat2n2}
-              </h2>
-              <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                {t.landing.feat2desc}
-              </p>
-            </div>
-          </div>
-
-          {/* 3 — 3min */}
-          <div className="col-span-12 md:col-span-4 rounded-3xl bg-white border border-gray-200 p-8 flex flex-col justify-between overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-28 h-28 bg-indigo-50 rounded-full -translate-y-8 translate-x-8 pointer-events-none" />
-            <div className="relative">
-              <span className="inline-block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">03</span>
-              <p className="text-gray-500 text-sm font-semibold mb-1">{t.landing.feat3label}</p>
-              <h2 className="text-6xl font-black text-indigo-600 leading-none">{t.landing.feat3time}</h2>
-            </div>
-            <div className="mt-4">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="text-xs font-semibold text-gray-500">AI 자동 처리</span>
+          {/* Row 1: 3 equal cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all duration-200">
+              <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+                </svg>
               </div>
-              <p className="text-gray-400 text-sm">{t.landing.feat3desc}</p>
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">01</span>
+              <h3 className="text-lg font-black text-gray-900 mt-1 mb-2">{t.landing.feat1n1}<br/>{t.landing.feat1n2}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{t.landing.feat1desc}</p>
+              <Link href="/create" className="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 mt-4 hover:gap-3 transition-all duration-200 cursor-pointer">
+                {t.landing.feat1btn}
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </Link>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all duration-200">
+              <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
+                </svg>
+              </div>
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">02</span>
+              <h3 className="text-lg font-black text-gray-900 mt-1 mb-2">{t.landing.feat2n1}<br/>{t.landing.feat2n2}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{t.landing.feat2desc}</p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all duration-200">
+              <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">03</span>
+              <h3 className="text-lg font-black text-gray-900 mt-1 mb-2">{t.landing.feat3label}</h3>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-5xl font-black text-indigo-600 leading-none">{t.landing.feat3time}</span>
+              </div>
+              <p className="text-gray-500 text-sm leading-relaxed">{t.landing.feat3desc}</p>
             </div>
           </div>
 
-          {/* 4 — Cinematic */}
-          <div className="col-span-12 md:col-span-4 rounded-3xl bg-indigo-50 border border-indigo-100 p-8 flex flex-col justify-between overflow-hidden relative">
-            <div className="absolute bottom-0 right-0 w-24 h-24 bg-indigo-100 rounded-full translate-y-8 translate-x-8 pointer-events-none" />
-            <div className="relative">
-              <span className="inline-block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-3">04</span>
-              <h2 className="text-2xl font-black text-indigo-900 leading-tight mb-3">
-                {t.landing.feat4n1}<br />{t.landing.feat4n2}
-              </h2>
-              <p className="text-indigo-600 text-sm leading-relaxed">{t.landing.feat4desc}</p>
+          {/* Row 2: 2 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all duration-200">
+              <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                </svg>
+              </div>
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">04</span>
+              <h3 className="text-lg font-black text-gray-900 mt-1 mb-2">{t.landing.feat4n1}<br/>{t.landing.feat4n2}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{t.landing.feat4desc}</p>
+              <div className="mt-3 flex items-center gap-2">
+                <span className="text-xs font-semibold bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-full">오케스트라 BGM</span>
+              </div>
             </div>
-            <div className="mt-4 flex items-center gap-2">
-              <svg className="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-              </svg>
-              <span className="text-xs font-semibold text-indigo-400">오케스트라 BGM 포함</span>
-            </div>
-          </div>
 
-          {/* 5 — Edit */}
-          <div className="col-span-12 md:col-span-4 rounded-3xl bg-gray-50 border border-gray-200 p-8 flex flex-col justify-between overflow-hidden relative">
-            <div>
-              <span className="inline-block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">05</span>
-              <h2 className="text-2xl font-black text-gray-900 leading-tight mb-3">
-                {t.landing.feat5n1}<br />{t.landing.feat5n2}
-              </h2>
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all duration-200">
+              <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
+                </svg>
+              </div>
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">05</span>
+              <h3 className="text-lg font-black text-gray-900 mt-1 mb-2">{t.landing.feat5n1}<br/>{t.landing.feat5n2}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{t.landing.feat5desc}</p>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {['나레이션 편집', '이미지 재생성', '장면 조정'].map(tag => (
-                <span key={tag} className="text-xs font-medium bg-white border border-gray-200 text-gray-600 px-2.5 py-1 rounded-full">{tag}</span>
-              ))}
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {['나레이션 편집', '이미지 재생성', '장면 조정'].map(tag => (
+                  <span key={tag} className="text-xs font-medium bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -438,11 +351,9 @@ export default function LandingPage() {
               </ul>
             </div>
 
-            {/* Pro — highlighted with dark gradient bg */}
-            <div className="rounded-2xl border-2 border-indigo-500 bg-gradient-to-b from-indigo-600 to-violet-700 p-6 sm:p-7 relative shadow-xl shadow-indigo-500/30">
+            {/* Pro */}
+            <div className="rounded-2xl border-2 border-indigo-600 bg-indigo-600 p-6 sm:p-7 relative shadow-lg shadow-indigo-500/20">
               <span className="absolute -top-3 left-6 bg-white text-indigo-600 text-xs font-black px-3 py-1 rounded-full border border-indigo-100">{t.landing.recommended}</span>
-              {/* Glow */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
               <h3 className="font-black text-xl mb-0.5 text-white relative">Pro</h3>
               <p className="text-xs mb-4 text-indigo-200 relative">{t.checkout.proDesc}</p>
               <div className="mb-5 relative">

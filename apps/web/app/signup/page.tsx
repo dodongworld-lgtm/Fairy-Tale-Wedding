@@ -25,14 +25,11 @@ export default function SignupPage() {
     <div className="min-h-screen flex">
 
       {/* ── LEFT PANEL (desktop only) ── */}
-      <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-between p-10 overflow-hidden bg-gradient-to-br from-violet-700 via-indigo-700 to-indigo-900">
+      <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-between p-10 overflow-hidden bg-indigo-600">
         {/* Background pattern */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-32 -right-16 w-96 h-96 bg-indigo-400/25 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 -left-20 w-80 h-80 bg-violet-500/25 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 right-1/4 w-56 h-56 bg-pink-500/10 rounded-full blur-2xl" />
           {/* Subtle dot grid */}
-          <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+          <svg className="absolute inset-0 w-full h-full opacity-[0.15]" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="dot-grid-signup" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
                 <circle cx="2" cy="2" r="1.2" fill="white"/>
