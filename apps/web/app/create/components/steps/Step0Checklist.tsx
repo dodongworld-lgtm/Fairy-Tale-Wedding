@@ -2,146 +2,139 @@
 
 type Props = { onNext: () => void }
 
-/* ── SVG Illustrations ──────────────────────────────────────────────────── */
+/* ── Hand-drawn 2D illustrations ────────────────────────────────────────── */
 
 function GroomIllustration() {
   return (
-    <svg viewBox="0 0 120 140" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      {/* Photo frame bg */}
-      <rect x="10" y="10" width="100" height="120" rx="12" fill="#EEF2FF"/>
-      {/* Soft light gradient */}
-      <rect x="10" y="10" width="100" height="50" rx="12" fill="url(#groomLight)"/>
-      <defs>
-        <linearGradient id="groomLight" x1="60" y1="10" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#C7D2FE" stopOpacity="0.6"/>
-          <stop offset="1" stopColor="#EEF2FF" stopOpacity="0"/>
-        </linearGradient>
-      </defs>
+    <svg viewBox="0 0 120 130" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      {/* Body */}
+      <path d="M30 130 Q28 105 36 98 Q48 90 60 90 Q72 90 84 98 Q92 105 90 130Z"
+        fill="white" stroke="#111" strokeWidth="3.5" strokeLinejoin="round"/>
+      {/* Collar / tie */}
+      <path d="M52 95 L60 108 L68 95" stroke="#111" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
       {/* Neck */}
-      <rect x="50" y="74" width="20" height="22" rx="5" fill="#FBBF24"/>
-      {/* Body / Suit */}
-      <path d="M28 130 Q28 105 60 105 Q92 105 92 130Z" fill="#4338CA"/>
-      {/* Collar */}
-      <path d="M50 105 L60 115 L70 105" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+      <rect x="53" y="78" width="14" height="16" rx="7" fill="white" stroke="#111" strokeWidth="3.5"/>
       {/* Head */}
-      <ellipse cx="60" cy="58" rx="22" ry="24" fill="#FBBF24"/>
-      {/* Hair */}
-      <path d="M38 52 Q38 35 60 35 Q82 35 82 52" fill="#92400E"/>
+      <ellipse cx="60" cy="58" rx="26" ry="28" fill="white" stroke="#111" strokeWidth="3.5"/>
+      {/* Hair — short, brushed side */}
+      <path d="M34 50 Q34 28 60 26 Q86 28 86 50 Q82 36 60 35 Q38 36 34 50Z"
+        fill="#111" stroke="#111" strokeWidth="1" strokeLinejoin="round"/>
       {/* Eyes */}
-      <ellipse cx="52" cy="56" rx="3.5" ry="4" fill="#1E1B4B"/>
-      <ellipse cx="68" cy="56" rx="3.5" ry="4" fill="#1E1B4B"/>
+      <circle cx="50" cy="58" r="3.5" fill="#111"/>
+      <circle cx="70" cy="58" r="3.5" fill="#111"/>
       {/* Eye shine */}
-      <circle cx="54" cy="54.5" r="1.2" fill="white"/>
-      <circle cx="70" cy="54.5" r="1.2" fill="white"/>
+      <circle cx="52" cy="56.5" r="1.3" fill="white"/>
+      <circle cx="72" cy="56.5" r="1.3" fill="white"/>
+      {/* Nose */}
+      <path d="M60 62 Q62 67 60 68" stroke="#111" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
       {/* Smile */}
-      <path d="M53 66 Q60 72 67 66" stroke="#92400E" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-      {/* Cheek blush */}
-      <ellipse cx="45" cy="64" rx="5" ry="3" fill="#FCA5A5" opacity="0.4"/>
-      <ellipse cx="75" cy="64" rx="5" ry="3" fill="#FCA5A5" opacity="0.4"/>
-      {/* Corner badge */}
-      <circle cx="100" cy="22" r="10" fill="#6366F1"/>
-      <path d="M95 22 L99 26 L105 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M51 74 Q60 82 69 74" stroke="#111" strokeWidth="3" strokeLinecap="round" fill="none"/>
+      {/* Ear L */}
+      <path d="M34 56 Q28 58 30 64 Q32 68 36 65" fill="white" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
+      {/* Ear R */}
+      <path d="M86 56 Q92 58 90 64 Q88 68 84 65" fill="white" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
     </svg>
   )
 }
 
 function BrideIllustration() {
   return (
-    <svg viewBox="0 0 120 140" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      {/* Photo frame bg */}
-      <rect x="10" y="10" width="100" height="120" rx="12" fill="#FFF1F2"/>
-      {/* Soft light */}
-      <rect x="10" y="10" width="100" height="50" rx="12" fill="url(#brideLight)"/>
-      <defs>
-        <linearGradient id="brideLight" x1="60" y1="10" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FBCFE8" stopOpacity="0.6"/>
-          <stop offset="1" stopColor="#FFF1F2" stopOpacity="0"/>
-        </linearGradient>
-      </defs>
+    <svg viewBox="0 0 120 130" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
       {/* Long hair back */}
-      <path d="M34 58 Q30 90 38 115 Q46 108 46 85Z" fill="#92400E"/>
-      <path d="M86 58 Q90 90 82 115 Q74 108 74 85Z" fill="#92400E"/>
+      <path d="M36 56 Q30 80 34 115 Q40 110 44 90 Q44 70 38 58Z" fill="#111"/>
+      <path d="M84 56 Q90 80 86 115 Q80 110 76 90 Q76 70 82 58Z" fill="#111"/>
+      {/* Body / dress */}
+      <path d="M26 130 Q24 108 34 100 Q46 92 60 92 Q74 92 86 100 Q96 108 94 130Z"
+        fill="white" stroke="#111" strokeWidth="3.5" strokeLinejoin="round"/>
       {/* Neck */}
-      <rect x="51" y="74" width="18" height="20" rx="5" fill="#FDE68A"/>
-      {/* Body / Dress */}
-      <path d="M28 130 Q25 108 60 108 Q95 108 92 130Z" fill="#EC4899"/>
-      {/* Veil hint */}
-      <path d="M38 40 Q60 30 82 40 Q86 42 88 48" stroke="white" strokeWidth="1.5" strokeOpacity="0.8" fill="none"/>
+      <rect x="53" y="78" width="14" height="16" rx="7" fill="white" stroke="#111" strokeWidth="3.5"/>
       {/* Head */}
-      <ellipse cx="60" cy="58" rx="21" ry="23" fill="#FDE68A"/>
+      <ellipse cx="60" cy="57" rx="25" ry="27" fill="white" stroke="#111" strokeWidth="3.5"/>
       {/* Hair top */}
-      <path d="M39 50 Q39 34 60 33 Q81 34 81 50" fill="#92400E"/>
+      <path d="M35 50 Q35 28 60 26 Q85 28 85 50 Q80 34 60 33 Q40 34 35 50Z"
+        fill="#111" stroke="#111" strokeWidth="1" strokeLinejoin="round"/>
       {/* Eyes */}
-      <ellipse cx="52.5" cy="56" rx="3" ry="3.5" fill="#1E1B4B"/>
-      <ellipse cx="67.5" cy="56" rx="3" ry="3.5" fill="#1E1B4B"/>
-      {/* Eye lashes */}
-      <path d="M49.5 52.5 Q52.5 50.5 55.5 52.5" stroke="#1E1B4B" strokeWidth="1.2" fill="none"/>
-      <path d="M64.5 52.5 Q67.5 50.5 70.5 52.5" stroke="#1E1B4B" strokeWidth="1.2" fill="none"/>
+      <circle cx="50" cy="56" r="3.5" fill="#111"/>
+      <circle cx="70" cy="56" r="3.5" fill="#111"/>
+      {/* Lashes */}
+      <path d="M47 52.5 Q50 50 53 52.5" stroke="#111" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+      <path d="M67 52.5 Q70 50 73 52.5" stroke="#111" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
       {/* Eye shine */}
-      <circle cx="54" cy="54.8" r="1" fill="white"/>
-      <circle cx="69" cy="54.8" r="1" fill="white"/>
-      {/* Lips */}
-      <path d="M54 66 Q60 71 66 66" stroke="#F472B6" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      {/* Cheek blush */}
-      <ellipse cx="45" cy="63" rx="5" ry="3" fill="#FDA4AF" opacity="0.5"/>
-      <ellipse cx="75" cy="63" rx="5" ry="3" fill="#FDA4AF" opacity="0.5"/>
-      {/* Small tiara */}
-      <path d="M50 37 L53 31 L57 37 L60 29 L63 37 L67 31 L70 37" stroke="#FCD34D" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-      {/* Corner badge */}
-      <circle cx="100" cy="22" r="10" fill="#EC4899"/>
-      <path d="M95 22 L99 26 L105 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="52" cy="55" r="1.2" fill="white"/>
+      <circle cx="72" cy="55" r="1.2" fill="white"/>
+      {/* Nose */}
+      <path d="M60 61 Q62 66 60 67" stroke="#111" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+      {/* Smile */}
+      <path d="M52 73 Q60 80 68 73" stroke="#111" strokeWidth="3" strokeLinecap="round" fill="none"/>
+      {/* Ear L */}
+      <path d="M35 55 Q29 57 31 63 Q33 67 37 64" fill="white" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
+      {/* Ear R */}
+      <path d="M85 55 Q91 57 89 63 Q87 67 83 64" fill="white" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
+      {/* Small flower in hair */}
+      <circle cx="74" cy="34" r="4" fill="white" stroke="#111" strokeWidth="2.5"/>
+      <circle cx="74" cy="34" r="1.5" fill="#111"/>
     </svg>
   )
 }
 
 function CouplePhotosIllustration() {
   return (
-    <svg viewBox="0 0 120 140" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      {/* Back card 3 */}
-      <rect x="20" y="25" width="68" height="85" rx="8" fill="#E0E7FF" transform="rotate(-8 20 25)"/>
-      {/* Back card 2 */}
-      <rect x="18" y="22" width="68" height="85" rx="8" fill="#C7D2FE" transform="rotate(4 18 22)"/>
-      {/* Main card */}
-      <rect x="18" y="20" width="72" height="90" rx="10" fill="#EEF2FF"/>
-      <rect x="18" y="20" width="72" height="45" rx="10" fill="url(#coupleLight)"/>
-      <defs>
-        <linearGradient id="coupleLight" x1="54" y1="20" x2="54" y2="65" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#A5B4FC" stopOpacity="0.4"/>
-          <stop offset="1" stopColor="#EEF2FF" stopOpacity="0"/>
-        </linearGradient>
-      </defs>
+    <svg viewBox="0 0 130 130" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      {/* === LEFT: Groom (smaller, behind) === */}
+      {/* Body */}
+      <path d="M8 130 Q8 108 18 102 Q28 96 44 96 Q56 96 64 102 Q72 108 72 130Z"
+        fill="white" stroke="#111" strokeWidth="3" strokeLinejoin="round"/>
+      {/* Collar */}
+      <path d="M37 100 L43 111 L49 100" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      {/* Neck */}
+      <rect x="38" y="82" width="10" height="16" rx="5" fill="white" stroke="#111" strokeWidth="3"/>
+      {/* Head */}
+      <ellipse cx="43" cy="62" rx="20" ry="22" fill="white" stroke="#111" strokeWidth="3"/>
+      {/* Hair */}
+      <path d="M23 55 Q23 38 43 36 Q63 38 63 55 Q59 44 43 43 Q27 44 23 55Z"
+        fill="#111" stroke="#111" strokeWidth="1"/>
+      {/* Eyes */}
+      <circle cx="36.5" cy="62" r="2.8" fill="#111"/>
+      <circle cx="49.5" cy="62" r="2.8" fill="#111"/>
+      <circle cx="38" cy="60.8" r="1.1" fill="white"/>
+      <circle cx="51" cy="60.8" r="1.1" fill="white"/>
+      {/* Nose */}
+      <path d="M43 66 Q44.5 70 43 71" stroke="#111" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+      {/* Smile */}
+      <path d="M37 77 Q43 83 49 77" stroke="#111" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
 
-      {/* Groom mini */}
-      <ellipse cx="43" cy="62" rx="10" ry="11" fill="#FBBF24"/>
-      <path d="M33 58 Q33 50 43 50 Q53 50 53 58" fill="#92400E"/>
-      <ellipse cx="39.5" cy="61" rx="1.8" ry="2" fill="#1E1B4B"/>
-      <ellipse cx="46.5" cy="61" rx="1.8" ry="2" fill="#1E1B4B"/>
-      <path d="M40 68 Q43 71 46 68" stroke="#92400E" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M27 95 Q27 80 43 80 Q59 80 59 95Z" fill="#4338CA"/>
+      {/* === RIGHT: Bride (foreground) === */}
+      {/* Long hair back right */}
+      <path d="M90 58 Q96 82 92 120 Q86 116 84 95 Q83 72 88 60Z" fill="#111"/>
+      {/* Body / dress */}
+      <path d="M62 130 Q60 110 70 103 Q80 96 94 96 Q108 96 118 103 Q128 110 126 130Z"
+        fill="white" stroke="#111" strokeWidth="3" strokeLinejoin="round"/>
+      {/* Neck */}
+      <rect x="88" y="80" width="12" height="18" rx="6" fill="white" stroke="#111" strokeWidth="3"/>
+      {/* Head */}
+      <ellipse cx="94" cy="60" rx="22" ry="24" fill="white" stroke="#111" strokeWidth="3"/>
+      {/* Hair top */}
+      <path d="M72 53 Q72 34 94 32 Q116 34 116 53 Q112 40 94 39 Q76 40 72 53Z"
+        fill="#111" stroke="#111" strokeWidth="1"/>
+      {/* Long hair front-left */}
+      <path d="M72 52 Q66 76 70 112 Q76 108 78 88 Q78 68 74 54Z" fill="#111"/>
+      {/* Eyes */}
+      <circle cx="87" cy="59" r="3" fill="#111"/>
+      <circle cx="101" cy="59" r="3" fill="#111"/>
+      {/* Lashes */}
+      <path d="M84 55.5 Q87 53 90 55.5" stroke="#111" strokeWidth="2" strokeLinecap="round" fill="none"/>
+      <path d="M98 55.5 Q101 53 104 55.5" stroke="#111" strokeWidth="2" strokeLinecap="round" fill="none"/>
+      <circle cx="88.5" cy="58" r="1.1" fill="white"/>
+      <circle cx="102.5" cy="58" r="1.1" fill="white"/>
+      {/* Smile */}
+      <path d="M87 73 Q94 80 101 73" stroke="#111" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      {/* Flower */}
+      <circle cx="107" cy="38" r="4" fill="white" stroke="#111" strokeWidth="2.5"/>
+      <circle cx="107" cy="38" r="1.5" fill="#111"/>
 
-      {/* Bride mini */}
-      <ellipse cx="66" cy="62" rx="10" ry="11" fill="#FDE68A"/>
-      <path d="M56 58 Q56 50 66 50 Q76 50 76 58" fill="#92400E"/>
-      <path d="M56 65 Q53 78 58 90" fill="#92400E" opacity="0.7"/>
-      <path d="M76 65 Q79 78 74 90" fill="#92400E" opacity="0.7"/>
-      <ellipse cx="62.5" cy="61" rx="1.8" ry="2" fill="#1E1B4B"/>
-      <ellipse cx="69.5" cy="61" rx="1.8" ry="2" fill="#1E1B4B"/>
-      <path d="M63 68 Q66 71 69 68" stroke="#F472B6" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-      <path d="M50 95 Q50 80 66 80 Q82 80 82 95Z" fill="#EC4899"/>
-
-      {/* Heart between */}
-      <path d="M54 60 C54 57 51 55 49 58 C47 55 44 57 44 60 C44 64 49 67 49 67 C49 67 54 64 54 60Z" fill="#F43F5E" transform="translate(5 -2) scale(0.9)"/>
-
-      {/* Stack indicator dots */}
-      <circle cx="95" cy="50" r="4.5" fill="#6366F1"/>
-      <circle cx="95" cy="62" r="4.5" fill="#818CF8"/>
-      <circle cx="95" cy="74" r="4.5" fill="#A5B4FC"/>
-      {/* Plus text */}
-      <text x="91" y="90" fontSize="10" fill="#6B7280" fontWeight="bold">n장</text>
-
-      {/* Corner badge */}
-      <circle cx="80" cy="30" r="10" fill="#6366F1"/>
-      <path d="M75 30 L79 34 L85 22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Heart between them */}
+      <path d="M67 80 C67 76 62 74 60 77 C58 74 53 76 53 80 C53 85 60 91 60 91 C60 91 67 85 67 80Z"
+        fill="#111" stroke="#111" strokeWidth="1"/>
     </svg>
   )
 }
@@ -155,7 +148,8 @@ export function Step0Checklist({ onNext }: Props) {
       number: '01',
       title: '신랑 얼굴 사진',
       desc: '정면·밝은 조명 1장',
-      accent: 'bg-indigo-50 border-indigo-200',
+      bg: 'bg-indigo-50',
+      border: 'border-indigo-200',
       numColor: 'text-indigo-400',
     },
     {
@@ -163,7 +157,8 @@ export function Step0Checklist({ onNext }: Props) {
       number: '02',
       title: '신부 얼굴 사진',
       desc: '정면·밝은 조명 1장',
-      accent: 'bg-pink-50 border-pink-200',
+      bg: 'bg-pink-50',
+      border: 'border-pink-200',
       numColor: 'text-pink-400',
     },
     {
@@ -171,7 +166,8 @@ export function Step0Checklist({ onNext }: Props) {
       number: '03',
       title: '커플 추억 사진',
       desc: '섹션별 최소 1장씩',
-      accent: 'bg-violet-50 border-violet-200',
+      bg: 'bg-violet-50',
+      border: 'border-violet-200',
       numColor: 'text-violet-400',
     },
   ]
@@ -187,12 +183,10 @@ export function Step0Checklist({ onNext }: Props) {
       {/* Illustration cards */}
       <div className="grid grid-cols-3 gap-3">
         {CARDS.map(card => (
-          <div key={card.number} className={`rounded-2xl border-2 ${card.accent} p-3 flex flex-col items-center gap-2.5`}>
-            {/* Illustration */}
+          <div key={card.number} className={`rounded-2xl border-2 ${card.border} ${card.bg} p-3 flex flex-col items-center gap-2`}>
             <div className="w-full aspect-[5/6]">
               {card.illustration}
             </div>
-            {/* Label */}
             <div className="text-center">
               <span className={`text-[10px] font-black tracking-widest ${card.numColor}`}>{card.number}</span>
               <p className="text-xs font-bold text-gray-900 leading-tight mt-0.5">{card.title}</p>
