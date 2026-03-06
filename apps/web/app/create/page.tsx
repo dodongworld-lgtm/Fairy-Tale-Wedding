@@ -94,55 +94,45 @@ export default function CreatePage() {
     <div className="h-screen bg-bg flex flex-col overflow-hidden">
 
       {/* Top bar */}
-      <header className="flex-shrink-0 h-14 border-b border-border flex items-center px-4 sm:px-6 justify-between bg-bg z-10">
+      <header className="flex-shrink-0 h-16 border-b border-border/60 flex items-center px-4 sm:px-6 justify-between backdrop-blur-md bg-bg/80 z-10">
         {/* Left: back + brand */}
         <div className="flex items-center gap-3">
           {step > 0 && (
             <button
               onClick={prev}
-              className="flex items-center gap-1 text-sm text-text-secondary hover:text-text transition-colors cursor-pointer"
+              className="group flex items-center gap-1 text-sm text-text-secondary hover:text-text transition-colors cursor-pointer"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
               </svg>
               <span className="hidden sm:block">이전</span>
             </button>
           )}
-          <a href="/" className="text-base font-semibold text-text">Once Upon Us</a>
+          <a href="/" className="text-lg font-semibold font-serif tracking-wide text-text">Once Upon Us</a>
         </div>
 
         {/* Center: progress bar (steps 1-7 only) */}
         {step >= 1 && step <= 7 && (
-          <div className="hidden sm:flex items-center gap-1">
-            {STEP_META.slice(1, 8).map((_, i) => {
-              const n = i + 1
-              const isActive = step === n
-              const isDone = step > n
-              return (
-                <div key={n} className="flex items-center gap-0.5">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${
-                    isDone ? 'bg-text text-white' : isActive ? 'bg-primary text-white' : 'bg-bg-subtle text-text-muted'
-                  }`}>
-                    {isDone ? (
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                      </svg>
-                    ) : n}
-                  </div>
-                  {n < 7 && (
-                    <div className={`w-4 h-px ${step > n ? 'bg-text-muted' : 'bg-bg-subtle'}`} />
-                  )}
-                </div>
-              )
-            })}
+          <div className="hidden sm:flex flex-col items-center gap-1">
+            <div className="w-48 h-1.5 bg-bg-subtle rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${((step - 1) / 6) * 100}%` }}
+              />
+            </div>
+            <span className="text-[10px] text-text-muted font-medium">
+              {STEP_META[step]?.label}
+            </span>
           </div>
         )}
 
-        {/* Right: step label + lang */}
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-text-muted hidden sm:block">
-            {STEP_META[step]?.label}
-          </span>
+        {/* Right: step counter + lang */}
+        <div className="flex items-center gap-3">
+          {step >= 1 && step <= 8 && (
+            <span className="text-xs text-text-muted font-medium hidden sm:block">
+              {step} / {TOTAL_STEPS - 1}
+            </span>
+          )}
           <LangSwitcher />
         </div>
       </header>
@@ -220,7 +210,7 @@ export default function CreatePage() {
         </div>
 
         {/* RIGHT — Live Mock Player (desktop only) */}
-        <div className="hidden md:flex md:w-1/2 bg-bg-subtle border-l border-border items-center justify-center overflow-hidden relative">
+        <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-bg-subtle to-primary-light/5 border-l border-border items-center justify-center overflow-hidden relative">
           <LiveMockPlayer step={step} project={project} />
         </div>
 
@@ -265,7 +255,7 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-text mb-1">계속하려면 로그인이 필요해요</h2>
+          <h2 className="text-xl font-serif font-bold text-text mb-1">계속하려면 로그인이 필요해요</h2>
           <p className="text-sm text-text-muted">입력하신 내용은 그대로 유지돼요</p>
         </div>
 
@@ -289,7 +279,7 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
           <div className="space-y-3">
             <button
               onClick={onSuccess}
-              className="w-full py-3 border border-border rounded-xl text-sm font-medium text-text hover:bg-bg-subtle transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 border border-border rounded-xl text-sm font-medium text-text hover:bg-bg-subtle shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -301,7 +291,7 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
             </button>
             <button
               onClick={onSuccess}
-              className="w-full py-3 border border-border rounded-xl text-sm font-medium text-text hover:bg-primary-light/20 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 border border-border rounded-xl text-sm font-medium text-text hover:bg-primary-light/20 shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <div className="w-4 h-4 bg-primary-light rounded-sm flex items-center justify-center">
                 <span className="text-black text-xs font-black leading-none">K</span>

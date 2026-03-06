@@ -20,7 +20,7 @@ export function Step2Opening({ project, onSection, onNext }: Props) {
   return (
     <div className="w-full space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-text mb-2">오프닝 인사</h2>
+        <h2 className="text-2xl font-serif font-bold text-text mb-2">오프닝 인사</h2>
         <p className="text-sm text-text-muted">두 분이 등장하며 하객분께 인사해요</p>
       </div>
 
@@ -38,9 +38,9 @@ export function Step2Opening({ project, onSection, onNext }: Props) {
           <p className="text-right text-xs text-text-muted mt-1">{(sec.customText || '').length}/120</p>
         </div>
 
-        <div className="p-4 bg-primary-light/30 rounded-2xl border border-primary-light/30">
+        <div className="p-5 bg-bg-subtle rounded-2xl border-l-4 border-primary">
           <p className="text-xs font-semibold text-primary mb-1.5">나레이션 미리보기</p>
-          <p className="text-sm text-primary-dark leading-relaxed">
+          <p className="text-sm text-text leading-relaxed">
             &ldquo;{sec.narration || buildNarration.opening(groomName, brideName)}&rdquo;
           </p>
         </div>
@@ -48,9 +48,12 @@ export function Step2Opening({ project, onSection, onNext }: Props) {
 
       <button
         onClick={onNext}
-        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors cursor-pointer"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-all hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
       >
         다음
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
       </button>
     </div>
   )

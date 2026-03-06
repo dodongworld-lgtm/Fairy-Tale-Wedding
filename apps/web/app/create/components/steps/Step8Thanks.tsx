@@ -15,7 +15,7 @@ export function Step8Thanks({ project, onSection, onNext }: Props) {
   return (
     <div className="w-full space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-text mb-2">감사합니다</h2>
+        <h2 className="text-2xl font-serif font-bold text-text mb-2">감사합니다</h2>
         <p className="text-sm text-text-muted">하객분들께 전하는 마지막 인사예요</p>
       </div>
 
@@ -53,7 +53,7 @@ export function Step8Thanks({ project, onSection, onNext }: Props) {
             {sec.photos.length === 0 && (
               <button
                 onClick={() => fileRef.current?.click()}
-                className="w-32 h-24 rounded-xl border-2 border-dashed border-border hover:border-primary-light hover:bg-primary-light/20 transition-colors cursor-pointer flex flex-col items-center justify-center gap-1"
+                className="w-32 h-24 rounded-2xl border-2 border-dashed border-border-hover hover:border-primary hover:bg-primary-light/10 transition-all cursor-pointer flex flex-col items-center justify-center gap-1"
               >
                 <svg className="w-5 h-5 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -72,9 +72,12 @@ export function Step8Thanks({ project, onSection, onNext }: Props) {
 
       <button
         onClick={onNext}
-        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors cursor-pointer"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-all hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
       >
         최종 검토하기
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
       </button>
     </div>
   )

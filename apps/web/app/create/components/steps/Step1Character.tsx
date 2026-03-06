@@ -119,7 +119,7 @@ export function Step1Character({ project, onChange, onNext }: Props) {
   return (
     <div className="w-full space-y-5">
       <div>
-        <h2 className="text-2xl font-bold text-text mb-1.5">두 분의 사진을 올려주세요</h2>
+        <h2 className="text-2xl font-serif font-bold text-text mb-1.5">두 분의 사진을 올려주세요</h2>
         <p className="text-sm text-text-muted">AI가 사진으로 캐릭터를 만들어줘요</p>
       </div>
 
@@ -138,7 +138,7 @@ export function Step1Character({ project, onChange, onNext }: Props) {
         />
       </div>
 
-      <div className="p-3 bg-bg-subtle rounded-2xl border border-border flex items-start gap-3">
+      <div className="p-4 bg-bg-subtle rounded-2xl border-l-4 border-primary flex items-start gap-3">
         <svg className="w-4 h-4 text-primary-light flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
         </svg>
@@ -150,9 +150,12 @@ export function Step1Character({ project, onChange, onNext }: Props) {
       <button
         onClick={onNext}
         disabled={!canProceed}
-        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-all hover:shadow-lg disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:shadow-none cursor-pointer flex items-center justify-center gap-2"
       >
         다음
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
       </button>
     </div>
   )

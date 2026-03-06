@@ -222,7 +222,7 @@ export function LiveMockPlayer({ step, project }: Props) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-6 gap-4">
       {/* 16:9 preview container */}
-      <div className="w-full max-w-[480px] aspect-video rounded-2xl overflow-hidden relative shadow-2xl shadow-black/40">
+      <div className="w-full max-w-[480px] aspect-video rounded-3xl overflow-hidden relative shadow-2xl shadow-black/20 border border-border">
         {/* Background */}
         <div className={`absolute inset-0 bg-gradient-to-br ${scene.bg}`} />
 
@@ -248,19 +248,19 @@ export function LiveMockPlayer({ step, project }: Props) {
       </div>
 
       {/* Example/My input toggle */}
-      <div className="flex items-center gap-1 bg-bg-subtle rounded-xl p-1">
+      <div className="flex items-center gap-1 bg-bg-card rounded-full p-1 shadow-md border border-border">
         <button
           onClick={() => setExMode(true)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-            exMode ? 'bg-white text-text shadow-sm' : 'text-text-muted hover:text-text-secondary'
+          className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            exMode ? 'bg-primary text-white shadow-sm' : 'text-text-secondary hover:text-text'
           }`}
         >
           예시 보기
         </button>
         <button
           onClick={() => setExMode(false)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-            !exMode ? 'bg-white text-text shadow-sm' : 'text-text-muted hover:text-text-secondary'
+          className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            !exMode ? 'bg-primary text-white shadow-sm' : 'text-text-secondary hover:text-text'
           }`}
         >
           내 입력 보기
