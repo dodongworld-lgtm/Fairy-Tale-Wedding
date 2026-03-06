@@ -163,7 +163,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 sm:mb-14">
             <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.navFeatures}</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-black text-text tracking-tight">{t.landing.featuredTitle}</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl font-black text-text tracking-tight">{t.landing.featuresTitle}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <div className="bg-bg-card border border-border rounded-2xl p-6 hover:border-border-hover hover:shadow-md transition-all group">
