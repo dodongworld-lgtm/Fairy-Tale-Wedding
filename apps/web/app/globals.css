@@ -1,14 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111827;
+  --background: #FFF8F0;
+  --foreground: #2D2520;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-noto-sans-kr), var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  /* Primary */
+  --color-primary: #9B7B5B;
+  --color-primary-light: #C4A882;
+  --color-primary-dark: #7A5F42;
+
+  /* Accent */
+  --color-accent: #C9A0A0;
+  --color-accent-light: #E8D4D4;
+
+  /* Backgrounds */
+  --color-bg: #FFF8F0;
+  --color-bg-card: #FFFFFF;
+  --color-bg-subtle: #FDF5ED;
+
+  /* Text */
+  --color-text: #2D2520;
+  --color-text-secondary: #8B7E74;
+  --color-text-muted: #B8AFA6;
+
+  /* Borders */
+  --color-border: #E8DFD6;
+  --color-border-hover: #C4A882;
+
+  /* Semantic */
+  --color-success: #6B8F71;
+  --color-error: #C75C5C;
+
+  /* Dark surfaces */
+  --color-dark-bg: #1E1A16;
+  --color-dark-text: #F5EDE4;
+
+  /* Fonts */
+  --font-sans: var(--font-pretendard), var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 }
 
 body {
@@ -21,13 +55,4 @@ body {
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
-}
-
-/* Korean text gets Noto Sans KR, Latin gets Inter */
-:lang(ko) {
-  font-family: var(--font-noto-sans-kr), var(--font-inter), sans-serif;
-}
-
-:lang(en) {
-  font-family: var(--font-inter), sans-serif;
 }
