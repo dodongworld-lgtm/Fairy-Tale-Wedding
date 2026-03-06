@@ -10,7 +10,7 @@ function SceneIllustration({ bg, size = 'sm' }: { bg: Background; size?: 'sm' | 
   const h = size === 'lg' ? 'h-28' : 'h-16'
   const scenes: Record<Background, { gradient: string; svg: React.ReactNode }> = {
     castle: {
-      gradient: 'from-slate-700 via-gray-800 to-slate-900',
+      gradient: 'from-slate-700 via-slate-800 to-slate-900',
       svg: (
         <svg viewBox="0 0 120 60" className="w-full h-full" fill="none">
           {/* Stars */}
@@ -70,7 +70,7 @@ function SceneIllustration({ bg, size = 'sm' }: { bg: Background; size?: 'sm' | 
       ),
     },
     sea: {
-      gradient: 'from-cyan-700 via-blue-800 to-indigo-900',
+      gradient: 'from-cyan-700 via-blue-800 to-blue-900',
       svg: (
         <svg viewBox="0 0 120 60" className="w-full h-full" fill="none">
           {/* Stars */}
@@ -120,7 +120,7 @@ function SceneIllustration({ bg, size = 'sm' }: { bg: Background; size?: 'sm' | 
       ),
     },
     city: {
-      gradient: 'from-violet-800 via-purple-900 to-indigo-950',
+      gradient: 'from-violet-800 via-purple-900 to-violet-950',
       svg: (
         <svg viewBox="0 0 120 60" className="w-full h-full" fill="none">
           {/* Stars */}
@@ -214,8 +214,8 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
   return (
     <div className="w-full space-y-5">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-1">{t.cutEditor.title}</h2>
-        <p className="text-sm text-gray-400">{t.cutEditor.subtitle}</p>
+        <h2 className="text-2xl font-bold text-text mb-1">{t.cutEditor.title}</h2>
+        <p className="text-sm text-text-muted">{t.cutEditor.subtitle}</p>
       </div>
 
       {/* Cut tabs */}
@@ -226,8 +226,8 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
             onClick={() => setActiveCut(i)}
             className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               activeCut === i
-                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
-                : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                ? 'bg-primary text-white shadow-md shadow-primary-light/20'
+                : 'bg-bg-subtle text-text-muted hover:bg-bg-subtle'
             }`}
           >
             {i + 1}
@@ -239,10 +239,10 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
         <div className="space-y-4">
           {/* Scene title */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">
+            <span className="text-xs font-bold text-primary bg-primary-light/30 px-2.5 py-1 rounded-full">
               장면 {activeCut + 1}
             </span>
-            <span className="text-sm text-gray-600 font-medium">{current.sceneTitle}</span>
+            <span className="text-sm text-text-secondary font-medium">{current.sceneTitle}</span>
           </div>
 
           {/* Current scene preview */}
@@ -250,7 +250,7 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
 
           {/* Background selection - 2D card grid */}
           <div>
-            <p className="text-xs font-semibold text-gray-500 mb-2.5">{t.cutEditor.background}</p>
+            <p className="text-xs font-semibold text-text-secondary mb-2.5">{t.cutEditor.background}</p>
             <div className="grid grid-cols-3 gap-2">
               {BACKGROUNDS.map((bg) => {
                 const isActive = current.background === bg.id
@@ -259,7 +259,7 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
                     key={bg.id}
                     onClick={() => updateBackground(bg.id)}
                     className={`relative rounded-xl overflow-hidden cursor-pointer transition-all ${
-                      isActive ? 'ring-2 ring-indigo-500 ring-offset-1 scale-[1.02]' : 'opacity-70 hover:opacity-100'
+                      isActive ? 'ring-2 ring-primary/30 ring-offset-1 scale-[1.02]' : 'opacity-70 hover:opacity-100'
                     }`}
                   >
                     <SceneIllustration bg={bg.id} size="sm" />
@@ -268,7 +268,7 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
                     </div>
                     {isActive && (
                       <div className="absolute top-1 right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center shadow">
-                        <svg className="w-2.5 h-2.5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <svg className="w-2.5 h-2.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
                         </svg>
                       </div>
@@ -282,15 +282,15 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
           {/* Dialogue */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs font-semibold text-gray-500">{t.cutEditor.dialogue}</p>
-              <span className="text-xs text-gray-400">{current.dialogue.length}/100</span>
+              <p className="text-xs font-semibold text-text-secondary">{t.cutEditor.dialogue}</p>
+              <span className="text-xs text-text-muted">{current.dialogue.length}/100</span>
             </div>
             <textarea
               value={current.dialogue}
               onChange={(e) => updateDialogue(e.target.value)}
               placeholder={t.cutEditor.dialoguePlaceholder}
               rows={3}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-50 resize-none transition-colors"
+              className="w-full px-4 py-3 border border-border rounded-xl text-sm text-text placeholder-text-muted focus:outline-none focus:border-border-hover focus:ring-2 focus:ring-primary/30 resize-none transition-colors"
             />
           </div>
 
@@ -299,14 +299,14 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
             <button
               onClick={() => setActiveCut(i => Math.max(0, i - 1))}
               disabled={activeCut === 0}
-              className="flex-1 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 disabled:opacity-30 hover:border-gray-300 transition-colors cursor-pointer disabled:cursor-not-allowed"
+              className="flex-1 py-2.5 border border-border rounded-xl text-sm text-text-secondary disabled:opacity-30 hover:border-border-hover transition-colors cursor-pointer disabled:cursor-not-allowed"
             >
               ← 이전 장면
             </button>
             <button
               onClick={() => setActiveCut(i => Math.min(cuts.length - 1, i + 1))}
               disabled={activeCut === cuts.length - 1}
-              className="flex-1 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 disabled:opacity-30 hover:border-gray-300 transition-colors cursor-pointer disabled:cursor-not-allowed"
+              className="flex-1 py-2.5 border border-border rounded-xl text-sm text-text-secondary disabled:opacity-30 hover:border-border-hover transition-colors cursor-pointer disabled:cursor-not-allowed"
             >
               다음 장면 →
             </button>
@@ -317,13 +317,13 @@ export function StepCutEditor({ initialCuts, onNext }: Props) {
       {/* Progress */}
       <div className="flex gap-1.5">
         {cuts.map((_, i) => (
-          <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i <= activeCut ? 'bg-indigo-500' : 'bg-gray-100'}`} />
+          <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i <= activeCut ? 'bg-primary-light/300' : 'bg-bg-subtle'}`} />
         ))}
       </div>
 
       <button
         onClick={() => onNext(cuts)}
-        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-base transition-colors cursor-pointer"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors cursor-pointer"
       >
         {t.cutEditor.complete}
       </button>

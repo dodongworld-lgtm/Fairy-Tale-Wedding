@@ -10,15 +10,15 @@ type Props = {
 // Steps: 0=checklist, 1=photos, 2=opening, 3=whoWeAre,
 //        4=howWeMet, 5=becameLovers, 6=decision, 7=thanks, 8=review
 const STEP_SCENES = [
-  { bg: 'from-slate-800 via-gray-900 to-slate-900',      label: '준비'   },  // 0
-  { bg: 'from-violet-800 via-purple-900 to-indigo-900',  label: '사진'   },  // 1
-  { bg: 'from-indigo-700 via-blue-800 to-indigo-900',    label: '오프닝' },  // 2
+  { bg: 'from-slate-800 via-slate-900 to-slate-900',      label: '준비'   },  // 0
+  { bg: 'from-violet-800 via-purple-900 to-violet-900',  label: '사진'   },  // 1
+  { bg: 'from-blue-700 via-blue-800 to-blue-900',        label: '오프닝' },  // 2
   { bg: 'from-rose-700 via-pink-800 to-rose-900',        label: '우리는' },  // 3
   { bg: 'from-emerald-700 via-teal-800 to-emerald-900',  label: '만남'   },  // 4
   { bg: 'from-amber-600 via-orange-700 to-red-800',      label: '연인'   },  // 5
-  { bg: 'from-blue-700 via-indigo-800 to-violet-900',    label: '결심'   },  // 6
-  { bg: 'from-slate-700 via-gray-800 to-slate-900',      label: '감사'   },  // 7
-  { bg: 'from-indigo-600 via-violet-700 to-purple-800',  label: '완성'   },  // 8
+  { bg: 'from-blue-700 via-violet-800 to-violet-900',    label: '결심'   },  // 6
+  { bg: 'from-slate-700 via-slate-800 to-slate-900',     label: '감사'   },  // 7
+  { bg: 'from-violet-600 via-violet-700 to-purple-800',  label: '완성'   },  // 8
 ]
 
 function SceneContent({ step, project, exMode }: { step: number; project: ProjectData; exMode: boolean }) {
@@ -39,7 +39,7 @@ function SceneContent({ step, project, exMode }: { step: number; project: Projec
           {['신랑 사진', '신부 사진', '섹션별 사진'].map((item, i) => (
             <div key={i} className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-2">
               <div className="w-4 h-4 rounded-full border border-white/40 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-indigo-400" />
+                <div className="w-2 h-2 rounded-full bg-primary-light" />
               </div>
               <span className="text-white/70 text-xs">{item}</span>
             </div>
@@ -199,7 +199,7 @@ function SceneContent({ step, project, exMode }: { step: number; project: Projec
         <div className="space-y-1.5 w-full max-w-[200px]">
           {sections.map((s, i) => (
             <div key={i} className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-1.5">
-              <div className="w-3.5 h-3.5 rounded-full bg-indigo-400 flex items-center justify-center flex-shrink-0">
+              <div className="w-3.5 h-3.5 rounded-full bg-primary-light flex items-center justify-center flex-shrink-0">
                 <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -248,11 +248,11 @@ export function LiveMockPlayer({ step, project }: Props) {
       </div>
 
       {/* Example/My input toggle */}
-      <div className="flex items-center gap-1 bg-gray-100 rounded-xl p-1">
+      <div className="flex items-center gap-1 bg-bg-subtle rounded-xl p-1">
         <button
           onClick={() => setExMode(true)}
           className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-            exMode ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-400 hover:text-gray-600'
+            exMode ? 'bg-white text-text shadow-sm' : 'text-text-muted hover:text-text-secondary'
           }`}
         >
           예시 보기
@@ -260,7 +260,7 @@ export function LiveMockPlayer({ step, project }: Props) {
         <button
           onClick={() => setExMode(false)}
           className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-            !exMode ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-400 hover:text-gray-600'
+            !exMode ? 'bg-white text-text shadow-sm' : 'text-text-muted hover:text-text-secondary'
           }`}
         >
           내 입력 보기

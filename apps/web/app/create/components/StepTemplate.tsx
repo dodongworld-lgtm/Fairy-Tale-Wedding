@@ -9,7 +9,7 @@ export function StepTemplate({ onNext }: { onNext: (type: string, subType: strin
       type: 'propose',
       title: t.template.proposeTitle,
       subtitle: t.template.proposeSubtitle,
-      color: 'from-indigo-500 to-violet-600',
+      color: 'from-violet-500 to-violet-600',
       illustration: (
         <svg viewBox="0 0 80 80" fill="none" className="w-16 h-16 opacity-40">
           <circle cx="40" cy="32" r="16" stroke="white" strokeWidth="3" fill="none"/>
@@ -28,7 +28,7 @@ export function StepTemplate({ onNext }: { onNext: (type: string, subType: strin
       type: 'wedding',
       title: t.template.weddingTitle,
       subtitle: t.template.weddingSubtitle,
-      color: 'from-rose-400 to-pink-600',
+      color: 'from-accent to-accent/80',
       illustration: (
         <svg viewBox="0 0 80 80" fill="none" className="w-16 h-16 opacity-40">
           <path d="M15 55 L40 20 L65 55 Z" stroke="white" strokeWidth="2.5" fill="none"/>
@@ -48,21 +48,21 @@ export function StepTemplate({ onNext }: { onNext: (type: string, subType: strin
   return (
     <div className="min-h-screen bg-[#F5F4F0] flex flex-col">
       {/* Minimal header */}
-      <header className="flex-shrink-0 h-14 flex items-center px-6 border-b border-gray-100 bg-white/80 backdrop-blur-sm">
-        <a href="/" className="text-sm font-bold text-gray-900">Once Upon Us</a>
+      <header className="flex-shrink-0 h-14 flex items-center px-6 border-b border-border bg-white/80 backdrop-blur-sm">
+        <a href="/" className="text-sm font-bold text-text">Once Upon Us</a>
       </header>
 
       {/* Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-5 py-12">
         <div className="text-center mb-10">
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">{t.template.start}</p>
-          <h1 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">{t.template.question}</h1>
-          <p className="text-gray-500 text-sm">{t.template.questionDesc}</p>
+          <p className="text-xs font-bold text-text-muted uppercase tracking-widest mb-3">{t.template.start}</p>
+          <h1 className="text-2xl sm:text-3xl font-black text-text mb-2">{t.template.question}</h1>
+          <p className="text-text-secondary text-sm">{t.template.questionDesc}</p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4 w-full max-w-2xl">
           {TEMPLATES.map(tmpl => (
-            <div key={tmpl.type} className="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div key={tmpl.type} className="bg-white rounded-3xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               {/* Card top */}
               <div className={`bg-gradient-to-br ${tmpl.color} px-6 pt-6 pb-5 flex items-start justify-between`}>
                 <div>
@@ -78,10 +78,10 @@ export function StepTemplate({ onNext }: { onNext: (type: string, subType: strin
                   <button
                     key={opt.id}
                     onClick={() => onNext(tmpl.type, opt.id)}
-                    className="w-full text-left px-4 py-3.5 rounded-2xl border border-gray-100 hover:border-indigo-300 hover:bg-indigo-50 transition-all group cursor-pointer"
+                    className="w-full text-left px-4 py-3.5 rounded-2xl border border-border hover:border-primary-light hover:bg-primary-light/10 transition-all group cursor-pointer"
                   >
-                    <div className="font-semibold text-gray-900 text-sm group-hover:text-indigo-700">{opt.label}</div>
-                    <div className="text-xs text-gray-400 mt-0.5 group-hover:text-indigo-500">{opt.desc}</div>
+                    <div className="font-semibold text-text text-sm group-hover:text-primary-dark">{opt.label}</div>
+                    <div className="text-xs text-text-muted mt-0.5 group-hover:text-primary">{opt.desc}</div>
                   </button>
                 ))}
               </div>

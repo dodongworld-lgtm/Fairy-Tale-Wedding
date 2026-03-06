@@ -18,8 +18,8 @@ export function Step3StyleSelect({ onNext, onStyleChange }: { onNext: (opts: Sty
       onClick={() => set(field, value)}
       className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all cursor-pointer ${
         opts[field] === value
-          ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-          : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+          ? 'border-primary bg-primary-light/30 text-primary-dark'
+          : 'border-border bg-white text-text-secondary hover:border-border-hover'
       }`}
     >
       {label}
@@ -29,13 +29,13 @@ export function Step3StyleSelect({ onNext, onStyleChange }: { onNext: (opts: Sty
   return (
     <div className="w-full space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">{t.step3.title}</h2>
-        <p className="text-sm text-gray-400">{t.step3.subtitle}</p>
+        <h2 className="text-2xl font-bold text-text mb-2">{t.step3.title}</h2>
+        <p className="text-sm text-text-muted">{t.step3.subtitle}</p>
       </div>
 
       <div className="space-y-6">
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-3">{t.step3.mood}</p>
+          <p className="text-sm font-medium text-text mb-3">{t.step3.mood}</p>
           <div className="flex gap-2 flex-wrap">
             <Chip label={t.step3.fantasy} field="mood" value="fantasy" />
             <Chip label={t.step3.romantic} field="mood" value="romantic" />
@@ -44,7 +44,7 @@ export function Step3StyleSelect({ onNext, onStyleChange }: { onNext: (opts: Sty
         </div>
 
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-3">{t.step3.background}</p>
+          <p className="text-sm font-medium text-text mb-3">{t.step3.background}</p>
           <div className="flex gap-2 flex-wrap">
             <Chip label={t.step3.castle} field="background" value="castle" />
             <Chip label={t.step3.forest} field="background" value="forest" />
@@ -53,7 +53,7 @@ export function Step3StyleSelect({ onNext, onStyleChange }: { onNext: (opts: Sty
         </div>
 
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-3">{t.step3.narration}</p>
+          <p className="text-sm font-medium text-text mb-3">{t.step3.narration}</p>
           <div className="flex gap-2">
             <Chip label={t.step3.female} field="narratorGender" value="female" />
             <Chip label={t.step3.male} field="narratorGender" value="male" />
@@ -61,7 +61,7 @@ export function Step3StyleSelect({ onNext, onStyleChange }: { onNext: (opts: Sty
         </div>
 
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-3">{t.step3.language}</p>
+          <p className="text-sm font-medium text-text mb-3">{t.step3.language}</p>
           <div className="flex gap-2">
             <Chip label={t.step3.korean} field="language" value="ko" />
             <Chip label={t.step3.english} field="language" value="en" />
@@ -71,7 +71,7 @@ export function Step3StyleSelect({ onNext, onStyleChange }: { onNext: (opts: Sty
 
       <button
         onClick={() => onNext(opts)}
-        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-base transition-colors cursor-pointer"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors cursor-pointer"
       >
         {t.step3.generateBtn}
       </button>

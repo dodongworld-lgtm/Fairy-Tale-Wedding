@@ -43,8 +43,8 @@ export function StepStorySelect({ templateType, templateSubType, onNext }: Props
   return (
     <div className="w-full space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-1">{t.storySelect.title}</h2>
-        <p className="text-sm text-gray-400">{t.storySelect.subtitle}</p>
+        <h2 className="text-2xl font-bold text-text mb-1">{t.storySelect.title}</h2>
+        <p className="text-sm text-text-muted">{t.storySelect.subtitle}</p>
       </div>
 
       <div className="space-y-3">
@@ -57,16 +57,16 @@ export function StepStorySelect({ templateType, templateSubType, onNext }: Props
                 onClick={() => handleSelect(story)}
                 className={`w-full text-left p-4 rounded-2xl border-2 transition-all cursor-pointer ${
                   isSelected
-                    ? 'border-indigo-500 bg-indigo-50'
-                    : 'border-gray-100 bg-white hover:border-gray-200'
+                    ? 'border-primary bg-primary-light/30'
+                    : 'border-border bg-white hover:border-border'
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
-                    <p className={`font-semibold text-sm mb-0.5 ${isSelected ? 'text-indigo-700' : 'text-gray-900'}`}>
+                    <p className={`font-semibold text-sm mb-0.5 ${isSelected ? 'text-primary-dark' : 'text-text'}`}>
                       {story.title}
                     </p>
-                    <p className="text-xs text-gray-400 mb-3">{story.subtitle}</p>
+                    <p className="text-xs text-text-muted mb-3">{story.subtitle}</p>
                     <div className="flex items-center gap-1.5">
                       {story.cuts.map((cut) => (
                         <div
@@ -75,11 +75,11 @@ export function StepStorySelect({ templateType, templateSubType, onNext }: Props
                           title={BG_LABEL[cut.background]}
                         />
                       ))}
-                      <span className="text-xs text-gray-400 ml-1">5장면</span>
+                      <span className="text-xs text-text-muted ml-1">5장면</span>
                     </div>
                   </div>
                   {isSelected && (
-                    <div className="w-5 h-5 bg-indigo-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-5 h-5 bg-primary-light/300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
@@ -91,11 +91,11 @@ export function StepStorySelect({ templateType, templateSubType, onNext }: Props
               {isExpanded && (
                 <div className="mt-1 ml-2 space-y-1.5 overflow-hidden">
                   {story.cuts.map((cut) => (
-                    <div key={cut.id} className="flex items-start gap-2.5 px-3 py-2 bg-gray-50 rounded-xl">
+                    <div key={cut.id} className="flex items-start gap-2.5 px-3 py-2 bg-bg-subtle rounded-xl">
                       <span className="text-base flex-shrink-0">{BG_LABEL[cut.background]}</span>
                       <div className="min-w-0">
-                        <p className="text-xs font-semibold text-gray-600">{cut.sceneTitle}</p>
-                        <p className="text-xs text-gray-400 truncate">{cut.dialogue}</p>
+                        <p className="text-xs font-semibold text-text-secondary">{cut.sceneTitle}</p>
+                        <p className="text-xs text-text-muted truncate">{cut.dialogue}</p>
                       </div>
                     </div>
                   ))}
@@ -109,7 +109,7 @@ export function StepStorySelect({ templateType, templateSubType, onNext }: Props
       <button
         onClick={() => selected && onNext(selected)}
         disabled={!selected}
-        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-200 disabled:text-gray-400 text-white font-semibold rounded-xl text-base transition-colors cursor-pointer disabled:cursor-not-allowed"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark disabled:bg-bg-subtle disabled:text-text-muted text-white font-semibold rounded-xl text-base transition-colors cursor-pointer disabled:cursor-not-allowed"
       >
         {t.storySelect.select}
       </button>

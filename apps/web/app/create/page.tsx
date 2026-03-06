@@ -130,7 +130,7 @@ export default function CreatePage() {
                     ) : n}
                   </div>
                   {n < 7 && (
-                    <div className={`w-4 h-px ${step > n ? 'bg-gray-400' : 'bg-bg-subtle'}`} />
+                    <div className={`w-4 h-px ${step > n ? 'bg-text-muted' : 'bg-bg-subtle'}`} />
                   )}
                 </div>
               )

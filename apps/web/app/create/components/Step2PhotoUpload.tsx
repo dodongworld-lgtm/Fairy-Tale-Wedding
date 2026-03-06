@@ -12,7 +12,7 @@ type Props = {
 
 const SAMPLE_AVATARS = [
   'from-rose-400 to-pink-600',
-  'from-violet-400 to-indigo-600',
+  'from-violet-400 to-violet-600',
 ]
 
 function PhotoSlot({
@@ -30,13 +30,13 @@ function PhotoSlot({
 }) {
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">{label}</p>
+      <p className="text-xs font-semibold text-text-secondary tracking-widest uppercase">{label}</p>
 
       <button type="button" onClick={onSelect} className="w-full relative group cursor-pointer">
         <div className={`w-full aspect-[3/4] rounded-2xl overflow-hidden border-2 transition-all ${
           filled
-            ? 'border-indigo-400 shadow-lg shadow-indigo-100'
-            : 'border-dashed border-gray-300 hover:border-indigo-400 hover:bg-indigo-50/40'
+            ? 'border-primary-light shadow-lg shadow-primary-light/20'
+            : 'border-dashed border-border-hover hover:border-primary-light hover:bg-primary-light/10'
         }`}>
           {filled ? (
             <div className={`w-full h-full bg-gradient-to-br ${avatarGradient} flex items-center justify-center relative`}>
@@ -51,22 +51,22 @@ function PhotoSlot({
               </div>
               {/* Check badge */}
               <div className="absolute top-2 right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow">
-                <svg className="w-3.5 h-3.5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
                 </svg>
               </div>
             </div>
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-4">
-              <svg viewBox="0 0 80 100" className="w-16 h-20 text-gray-200" fill="currentColor">
+              <svg viewBox="0 0 80 100" className="w-16 h-20 text-border" fill="currentColor">
                 <ellipse cx="40" cy="28" rx="18" ry="20" />
                 <path d="M10 95 Q10 65 40 65 Q70 65 70 95Z" />
               </svg>
               <div className="flex flex-col items-center gap-1">
-                <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg className="w-5 h-5 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
                 </svg>
-                <span className="text-xs text-gray-400">눌러서 추가</span>
+                <span className="text-xs text-text-muted">눌러서 추가</span>
               </div>
             </div>
           )}
@@ -74,14 +74,14 @@ function PhotoSlot({
 
         {/* Name tag */}
         <div className={`absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-bold shadow-sm whitespace-nowrap ${
-          filled ? 'bg-indigo-600 text-white' : 'bg-white border border-gray-200 text-gray-500'
+          filled ? 'bg-primary text-white' : 'bg-white border border-border text-text-secondary'
         }`}>
           {name || label}
         </div>
       </button>
 
-      <div className="mt-4 flex items-center gap-1.5 text-[10px] text-gray-400">
-        <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="mt-4 flex items-center gap-1.5 text-[10px] text-text-muted">
+        <svg className="w-3.5 h-3.5 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
         </svg>
         <span>AI가 동화 캐릭터로 변환</span>
@@ -106,8 +106,8 @@ export function Step2PhotoUpload({ person1, person2, onNext }: Props) {
   return (
     <div className="w-full space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">두 사람의 사진을 올려주세요</h2>
-        <p className="text-sm text-gray-400">각각 얼굴이 잘 보이는 사진 1장씩 필요해요</p>
+        <h2 className="text-2xl font-bold text-text mb-2">두 사람의 사진을 올려주세요</h2>
+        <p className="text-sm text-text-muted">각각 얼굴이 잘 보이는 사진 1장씩 필요해요</p>
       </div>
 
       <div className="grid grid-cols-2 gap-6 mt-2">
@@ -130,7 +130,7 @@ export function Step2PhotoUpload({ person1, person2, onNext }: Props) {
       <button
         onClick={handleNext}
         disabled={!canAdvance}
-        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer mt-4"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer mt-4"
       >
         다음
       </button>

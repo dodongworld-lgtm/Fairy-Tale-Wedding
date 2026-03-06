@@ -21,7 +21,7 @@ const BG_EMOJI: Record<Background, string> = {
 }
 
 const BG_COLOR: Record<Background, string> = {
-  castle:  'from-slate-400 to-gray-600',
+  castle:  'from-slate-400 to-slate-600',
   forest:  'from-emerald-500 to-green-700',
   sea:     'from-cyan-400 to-blue-600',
   meadow:  'from-green-400 to-emerald-600',
@@ -39,25 +39,25 @@ function Step1Preview({ data }: { data: FormData }) {
       {/* Invitation card */}
       <div className="relative bg-[#fdfaf5] rounded-2xl shadow-2xl shadow-amber-200/40 overflow-hidden border border-amber-100">
         {/* Top floral border */}
-        <div className="h-2 bg-gradient-to-r from-rose-300 via-pink-400 to-rose-300" />
+        <div className="h-2 bg-gradient-to-r from-accent/30 via-accent/40 to-accent/30" />
         <div className="px-8 py-8 text-center">
           {/* Decorative top */}
           <div className="flex items-center justify-center gap-2 mb-5">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-rose-300" />
-            <svg viewBox="0 0 24 24" className="w-5 h-5 text-rose-400" fill="currentColor">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/30" />
+            <svg viewBox="0 0 24 24" className="w-5 h-5 text-accent" fill="currentColor">
               <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402C1 3.199 3.516 1 6.26 1c1.23 0 2.44.493 3.26 1.33C10.3 1.493 11.51 1 12.74 1 15.484 1 18 3.199 18 7.191c0 4.105-5.37 8.863-11 14.402z"/>
             </svg>
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-rose-300" />
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/30" />
           </div>
 
           {/* 청첩장 타이틀 */}
-          <p className="text-[10px] tracking-[0.25em] text-rose-400 font-semibold uppercase mb-4">Wedding Invitation</p>
+          <p className="text-[10px] tracking-[0.25em] text-accent font-semibold uppercase mb-4">Wedding Invitation</p>
 
           {/* Names */}
           <div className={`transition-all duration-500 ${hasNames ? 'opacity-100' : 'opacity-40'}`}>
-            <p className="text-3xl font-black text-gray-800 tracking-tight">{name1}</p>
-            <p className="text-rose-400 text-lg font-light my-1">&</p>
-            <p className="text-3xl font-black text-gray-800 tracking-tight">{name2}</p>
+            <p className="text-3xl font-black text-text tracking-tight">{name1}</p>
+            <p className="text-accent text-lg font-light my-1">&</p>
+            <p className="text-3xl font-black text-text tracking-tight">{name2}</p>
           </div>
 
           {/* Divider */}
@@ -69,14 +69,14 @@ function Step1Preview({ data }: { data: FormData }) {
             <div className="flex-1 h-px bg-amber-200" />
           </div>
 
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-text-muted leading-relaxed">
             두 사람의 아름다운 이야기가<br/>동화로 완성됩니다
           </p>
         </div>
         {/* Bottom border */}
-        <div className="h-2 bg-gradient-to-r from-rose-300 via-pink-400 to-rose-300" />
+        <div className="h-2 bg-gradient-to-r from-accent/30 via-accent/40 to-accent/30" />
       </div>
-      <p className="text-center text-xs text-gray-400 mt-3">이름을 입력하면 미리보기가 바뀌어요</p>
+      <p className="text-center text-xs text-text-muted mt-3">이름을 입력하면 미리보기가 바뀌어요</p>
     </div>
   )
 }
@@ -87,7 +87,7 @@ function Step2Preview({ photos }: { photos: UploadedPhoto[] }) {
   const rotations = [-3, 2, -1.5, 3, -2, 1]
   return (
     <div className="w-full max-w-xs mx-auto px-4">
-      <p className="text-center text-xs font-semibold text-gray-500 mb-4 tracking-widest uppercase">Photo Wall</p>
+      <p className="text-center text-xs font-semibold text-text-secondary mb-4 tracking-widest uppercase">Photo Wall</p>
       <div className="grid grid-cols-3 gap-3">
         {slots.map((photo, i) => (
           <div
@@ -96,18 +96,18 @@ function Step2Preview({ photos }: { photos: UploadedPhoto[] }) {
             style={{ transform: `rotate(${rotations[i]}deg)` }}
           >
             {/* Polaroid */}
-            <div className={`bg-white shadow-lg shadow-gray-300/50 p-2 pb-6 ${photo ? 'border-2 border-rose-200' : ''}`}>
+            <div className={`bg-white shadow-lg shadow-border/50 p-2 pb-6 ${photo ? 'border-2 border-accent/20' : ''}`}>
               <div className={`aspect-square flex items-center justify-center overflow-hidden ${
-                photo ? 'bg-gradient-to-br from-rose-100 to-pink-200' : 'bg-gray-100'
+                photo ? 'bg-gradient-to-br from-accent/10 to-accent/20' : 'bg-bg-subtle'
               }`}>
                 {photo?.previewUrl ? (
                   <img src={photo.previewUrl} alt={photo.fileName} className="w-full h-full object-cover" />
                 ) : photo ? (
-                  <svg className="w-6 h-6 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                   </svg>
                 ) : (
-                  <svg className="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-5 h-5 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
                   </svg>
                 )}
@@ -117,10 +117,10 @@ function Step2Preview({ photos }: { photos: UploadedPhoto[] }) {
         ))}
       </div>
       <div className="mt-5 text-center">
-        <p className="text-sm font-bold text-gray-700">
+        <p className="text-sm font-bold text-text">
           {photos.length === 0 ? '사진을 올려주세요' : `${photos.length}장 업로드됨`}
         </p>
-        <p className="text-xs text-gray-400 mt-0.5">얼굴이 잘 보이는 사진이 좋아요</p>
+        <p className="text-xs text-text-muted mt-0.5">얼굴이 잘 보이는 사진이 좋아요</p>
       </div>
     </div>
   )
@@ -134,9 +134,9 @@ function Step3Preview({ characters }: { characters?: CharacterAssignment[] }) {
       {/* Book */}
       <div className="relative bg-white rounded-2xl shadow-2xl shadow-violet-200/40 overflow-hidden" style={{ minHeight: 220 }}>
         {/* Book spine */}
-        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-1.5 bg-gradient-to-b from-violet-300 to-indigo-400 z-10" />
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-1.5 bg-gradient-to-b from-violet-300 to-violet-400 z-10" />
         {/* Book texture */}
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-50 to-indigo-50 opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-50 to-violet-50 opacity-60" />
 
         <div className="relative grid grid-cols-2 min-h-[220px]">
           {/* Left page */}
@@ -146,11 +146,11 @@ function Step3Preview({ characters }: { characters?: CharacterAssignment[] }) {
                 <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${characters![0].character.color} flex items-center justify-center mb-2 shadow-lg`}>
                   <span className="text-2xl">{characters![0].character.emoji}</span>
                 </div>
-                <p className="text-xs font-bold text-gray-500 mb-0.5">{characters![0].person}</p>
-                <p className="text-sm font-black text-gray-800">{characters![0].character.name}</p>
+                <p className="text-xs font-bold text-text-secondary mb-0.5">{characters![0].person}</p>
+                <p className="text-sm font-black text-text">{characters![0].character.name}</p>
               </>
             ) : (
-              <div className="w-14 h-14 rounded-full bg-gray-100 animate-pulse mx-auto" />
+              <div className="w-14 h-14 rounded-full bg-bg-subtle animate-pulse mx-auto" />
             )}
           </div>
           {/* Right page */}
@@ -160,11 +160,11 @@ function Step3Preview({ characters }: { characters?: CharacterAssignment[] }) {
                 <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${characters![1].character.color} flex items-center justify-center mb-2 shadow-lg`}>
                   <span className="text-2xl">{characters![1].character.emoji}</span>
                 </div>
-                <p className="text-xs font-bold text-gray-500 mb-0.5">{characters![1].person}</p>
-                <p className="text-sm font-black text-gray-800">{characters![1].character.name}</p>
+                <p className="text-xs font-bold text-text-secondary mb-0.5">{characters![1].person}</p>
+                <p className="text-sm font-black text-text">{characters![1].character.name}</p>
               </>
             ) : (
-              <div className="w-14 h-14 rounded-full bg-gray-100 animate-pulse mx-auto" />
+              <div className="w-14 h-14 rounded-full bg-bg-subtle animate-pulse mx-auto" />
             )}
           </div>
         </div>
@@ -201,15 +201,15 @@ function Step4Preview({ selectedStory }: { selectedStory?: StoryTemplate | null 
         <div className="relative">
           {selectedStory ? (
             <>
-              <p className="text-center font-black text-gray-800 text-base mb-1">{selectedStory.title}</p>
+              <p className="text-center font-black text-text text-base mb-1">{selectedStory.title}</p>
               <p className="text-center text-xs text-amber-600 mb-4">{selectedStory.subtitle}</p>
               <div className="space-y-2">
                 {selectedStory.cuts.map((cut, i) => (
                   <div key={cut.id} className="flex items-start gap-2">
                     <span className="text-amber-500 font-black text-xs mt-0.5 w-4 shrink-0">{i + 1}.</span>
                     <div>
-                      <p className="text-xs font-semibold text-gray-700">{cut.sceneTitle}</p>
-                      <p className="text-[10px] text-gray-400 line-clamp-1">{cut.dialogue}</p>
+                      <p className="text-xs font-semibold text-text">{cut.sceneTitle}</p>
+                      <p className="text-[10px] text-text-muted line-clamp-1">{cut.dialogue}</p>
                     </div>
                   </div>
                 ))}
@@ -235,11 +235,11 @@ function Step4Preview({ selectedStory }: { selectedStory?: StoryTemplate | null 
 
 /* ── Step 5: 스토리보드 ── */
 const SCENE_GRADIENTS: Record<Background, string> = {
-  castle:  'from-slate-700 via-gray-800 to-slate-900',
+  castle:  'from-slate-700 via-slate-800 to-slate-900',
   forest:  'from-emerald-800 via-green-900 to-emerald-950',
-  sea:     'from-cyan-700 via-blue-800 to-indigo-900',
+  sea:     'from-cyan-700 via-blue-800 to-blue-900',
   meadow:  'from-green-600 via-emerald-700 to-teal-800',
-  city:    'from-violet-800 via-purple-900 to-indigo-950',
+  city:    'from-violet-800 via-purple-900 to-violet-950',
   palace:  'from-amber-700 via-orange-800 to-amber-900',
 }
 
@@ -271,26 +271,26 @@ function Step5Preview({ cuts, activeCutIndex = 0 }: { cuts?: Cut[]; activeCutInd
       </div>
 
       {/* Filmstrip thumbnail row */}
-      <div className="bg-gray-900 rounded-xl p-2.5">
+      <div className="bg-dark-bg rounded-xl p-2.5">
         <div className="flex gap-1.5">
           {cuts.map((cut, i) => (
             <div
               key={cut.id}
               className={`flex-1 aspect-square rounded-lg bg-gradient-to-br ${BG_COLOR[cut.background]} flex items-center justify-center transition-all duration-200 relative ${
                 i === activeCutIndex
-                  ? 'ring-2 ring-white ring-offset-1 ring-offset-gray-900'
+                  ? 'ring-2 ring-white ring-offset-1 ring-offset-dark-bg'
                   : 'opacity-50'
               }`}
             >
               <span className="text-xs">{BG_EMOJI[cut.background]}</span>
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[8px] text-gray-400 font-bold">{i+1}</div>
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[8px] text-text-muted font-bold">{i+1}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Progress hint */}
-      <p className="text-center text-xs text-gray-500">
+      <p className="text-center text-xs text-text-secondary">
         {activeCutIndex + 1} / {cuts.length} 장면 편집 중
       </p>
     </div>
@@ -299,8 +299,8 @@ function Step5Preview({ cuts, activeCutIndex = 0 }: { cuts?: Cut[]; activeCutInd
 
 /* ── Step 6: 무드보드 ── */
 const STYLE_CONFIG: Record<string, { gradient: string; label: string; sub: string; orb1: string; orb2: string }> = {
-  fantasy:   { gradient: 'from-violet-900 to-indigo-900',  label: '동화 / 판타지', sub: '마법 같은 동화 세계', orb1: 'bg-violet-500', orb2: 'bg-indigo-400' },
-  romantic:  { gradient: 'from-rose-800 to-pink-900',      label: '로맨틱',        sub: '따뜻하고 감성적인',    orb1: 'bg-rose-400',   orb2: 'bg-pink-300'   },
+  fantasy:   { gradient: 'from-violet-900 to-violet-900',  label: '동화 / 판타지', sub: '마법 같은 동화 세계', orb1: 'bg-violet-500', orb2: 'bg-violet-400' },
+  romantic:  { gradient: 'from-rose-800 to-rose-900',      label: '로맨틱',        sub: '따뜻하고 감성적인',    orb1: 'bg-accent',     orb2: 'bg-accent/60'  },
   adventure: { gradient: 'from-amber-800 to-orange-900',   label: '모험',          sub: '설레는 여행 같은',     orb1: 'bg-amber-400',  orb2: 'bg-orange-300' },
 }
 
@@ -328,7 +328,7 @@ function Step6Preview({ selectedStyle }: { selectedStyle: string }) {
               </div>
               {isActive && (
                 <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shadow">
-                  <svg className="w-3.5 h-3.5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
                   </svg>
                 </div>
@@ -337,9 +337,9 @@ function Step6Preview({ selectedStyle }: { selectedStyle: string }) {
           </div>
         )
       })}
-      <div className="bg-indigo-600 rounded-xl p-3 text-center mt-2">
+      <div className="bg-primary rounded-xl p-3 text-center mt-2">
         <p className="text-white font-bold text-xs">선택 완료 후 AI 영상 생성 시작</p>
-        <p className="text-indigo-200 text-[10px] mt-0.5">평균 3분 소요됩니다</p>
+        <p className="text-primary-light/70 text-[10px] mt-0.5">평균 3분 소요됩니다</p>
       </div>
     </div>
   )
@@ -348,12 +348,12 @@ function Step6Preview({ selectedStyle }: { selectedStyle: string }) {
 /* ── Main export ── */
 export function RightPanel({ step, formData, photos, selectedStyle, characters, selectedStory, activeCutIndex, cuts }: Props) {
   const bgColors: Record<number, string> = {
-    1: 'bg-gradient-to-br from-rose-50 via-amber-50 to-pink-50',
-    2: 'bg-gradient-to-br from-gray-50 via-stone-50 to-gray-100',
-    3: 'bg-gradient-to-br from-violet-50 via-indigo-50 to-purple-50',
+    1: 'bg-gradient-to-br from-accent/5 via-amber-50 to-accent/5',
+    2: 'bg-gradient-to-br from-bg-subtle via-stone-50 to-bg-subtle',
+    3: 'bg-gradient-to-br from-violet-50 via-violet-50 to-purple-50',
     4: 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50',
-    5: 'bg-gradient-to-br from-gray-800 via-gray-900 to-black',
-    6: 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800',
+    5: 'bg-gradient-to-br from-dark-bg/80 via-dark-bg to-black',
+    6: 'bg-gradient-to-br from-dark-bg via-slate-900 to-dark-bg/80',
   }
 
   return (
