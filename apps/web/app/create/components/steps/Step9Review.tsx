@@ -39,19 +39,19 @@ export function Step9Review({ project, onFinish }: Props) {
   if (done) {
     return (
       <div className="w-full flex flex-col items-center gap-6 py-8 text-center">
-        <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center">
-          <svg className="w-10 h-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <div className="w-20 h-20 bg-primary-light/20 rounded-full flex items-center justify-center">
+          <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
         </div>
         <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2">영상 준비 중이에요!</h3>
-          <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+          <h3 className="text-xl font-bold text-text mb-2">영상 준비 중이에요!</h3>
+          <p className="text-sm text-text-muted leading-relaxed max-w-xs">
             1080p MP4로 렌더링 후 다운로드 링크를 보내드릴게요.<br />
-            <span className="text-indigo-500 font-medium">곧 제공 예정입니다.</span>
+            <span className="text-primary font-medium">곧 제공 예정입니다.</span>
           </p>
         </div>
-        <a href="/dashboard" className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors">
+        <a href="/dashboard" className="px-5 py-2.5 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-xl transition-colors">
           대시보드로 가기
         </a>
       </div>
@@ -61,8 +61,8 @@ export function Step9Review({ project, onFinish }: Props) {
   return (
     <div className="w-full space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">최종 검토</h2>
-        <p className="text-sm text-gray-400">모든 섹션을 확인하고 영상을 완성해요</p>
+        <h2 className="text-2xl font-bold text-text mb-2">최종 검토</h2>
+        <p className="text-sm text-text-muted">모든 섹션을 확인하고 영상을 완성해요</p>
       </div>
 
       {/* Section checklist */}
@@ -73,9 +73,9 @@ export function Step9Review({ project, onFinish }: Props) {
           const hasNarr = sec.narration.trim().length > 0
           const ok = !required || hasPhoto
           return (
-            <div key={key} className={`flex items-center justify-between px-4 py-3 rounded-xl border ${ok ? 'bg-gray-50 border-gray-100' : 'bg-rose-50 border-rose-100'}`}>
+            <div key={key} className={`flex items-center justify-between px-4 py-3 rounded-xl border ${ok ? 'bg-bg-subtle border-border' : 'bg-error/10 border-error/15'}`}>
               <div className="flex items-center gap-3">
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${ok ? 'bg-indigo-500' : 'bg-rose-300'}`}>
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${ok ? 'bg-primary' : 'bg-error/60'}`}>
                   {ok ? (
                     <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -86,12 +86,12 @@ export function Step9Review({ project, onFinish }: Props) {
                     </svg>
                   )}
                 </div>
-                <span className="text-sm font-medium text-gray-700">{label}</span>
-                {required && <span className="text-[10px] text-gray-400">(필수)</span>}
+                <span className="text-sm font-medium text-text">{label}</span>
+                {required && <span className="text-[10px] text-text-muted">(필수)</span>}
               </div>
               <div className="flex items-center gap-1.5">
-                {hasPhoto && <span className="text-[10px] bg-gray-200 rounded px-1.5 py-0.5 text-gray-600">사진 {sec.photos.length}장</span>}
-                {hasNarr && <span className="text-[10px] bg-indigo-100 rounded px-1.5 py-0.5 text-indigo-600">나레이션</span>}
+                {hasPhoto && <span className="text-[10px] bg-bg-subtle rounded px-1.5 py-0.5 text-text-secondary">사진 {sec.photos.length}장</span>}
+                {hasNarr && <span className="text-[10px] bg-primary-light/20 rounded px-1.5 py-0.5 text-primary">나레이션</span>}
               </div>
             </div>
           )
@@ -99,18 +99,18 @@ export function Step9Review({ project, onFinish }: Props) {
       </div>
 
       {missingRequired.length > 0 && (
-        <div className="p-4 bg-rose-50 rounded-xl border border-rose-100">
-          <p className="text-sm text-rose-600 font-medium">
+        <div className="p-4 bg-error/10 rounded-xl border border-error/15">
+          <p className="text-sm text-error font-medium">
             필수 사진이 없는 섹션: {missingRequired.map(s => s.label).join(', ')}
           </p>
-          <p className="text-xs text-rose-400 mt-1">이전 단계로 돌아가서 추가해주세요.</p>
+          <p className="text-xs text-error/60 mt-1">이전 단계로 돌아가서 추가해주세요.</p>
         </div>
       )}
 
       <button
         onClick={handleRender}
         disabled={!canRender || rendering}
-        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
       >
         {rendering ? (
           <>

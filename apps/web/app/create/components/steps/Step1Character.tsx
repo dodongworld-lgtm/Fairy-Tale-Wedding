@@ -47,14 +47,14 @@ function PhotoUploadCard({
 }) {
   const isGroom = gender === 'groom'
   const sample = isGroom ? GROOM_SAMPLE : BRIDE_SAMPLE
-  const accentRing = isGroom ? 'focus:ring-indigo-400' : 'focus:ring-pink-400'
-  const overlayBg  = isGroom ? 'bg-indigo-600/80' : 'bg-pink-500/80'
-  const tagColor   = isGroom ? 'bg-indigo-100 text-indigo-600' : 'bg-pink-100 text-pink-600'
+  const accentRing = isGroom ? 'focus:ring-primary/30' : 'focus:ring-accent/30'
+  const overlayBg  = isGroom ? 'bg-primary/80' : 'bg-accent/80'
+  const tagColor   = isGroom ? 'bg-primary-light/20 text-primary' : 'bg-accent-light text-accent'
   const idleBorder = isGroom
-    ? 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50/40'
-    : 'border-pink-200 hover:border-pink-400 hover:bg-pink-50/40'
-  const activeBorder = isGroom ? 'border-indigo-400 bg-indigo-50' : 'border-pink-400 bg-pink-50'
-  const iconColor  = isGroom ? 'text-indigo-500' : 'text-pink-500'
+    ? 'border-primary-light/50 hover:border-primary-light hover:bg-primary-light/20'
+    : 'border-accent-light hover:border-accent hover:bg-accent-light/20'
+  const activeBorder = isGroom ? 'border-primary-light bg-primary-light/30' : 'border-accent bg-accent-light/50'
+  const iconColor  = isGroom ? 'text-primary' : 'text-accent'
 
   const handleClick = () => {
     // Demo mode: toggle sample photo on/off
@@ -96,9 +96,9 @@ function PhotoUploadCard({
         )}
       </button>
 
-      <p className="text-[10px] text-gray-400 text-center leading-tight">
+      <p className="text-[10px] text-text-muted text-center leading-tight">
         {photoUrl ? '샘플 이미지 사용 중' : '탭하면 샘플 사진이 올라가요'}<br/>
-        <span className="text-gray-300">실제 서비스에서 직접 업로드</span>
+        <span className="text-text-muted">실제 서비스에서 직접 업로드</span>
       </p>
 
       <input
@@ -106,7 +106,7 @@ function PhotoUploadCard({
         value={name}
         onChange={e => onNameChange(e.target.value)}
         placeholder={`${label} 이름`}
-        className={`w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 ${accentRing} focus:border-transparent bg-white transition-shadow`}
+        className={`w-full px-3 py-2.5 rounded-xl border border-border text-sm text-text placeholder-text-muted focus:outline-none focus:ring-2 ${accentRing} focus:border-border-hover bg-white transition-shadow`}
       />
     </div>
   )
@@ -119,8 +119,8 @@ export function Step1Character({ project, onChange, onNext }: Props) {
   return (
     <div className="w-full space-y-5">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-1.5">두 분의 사진을 올려주세요</h2>
-        <p className="text-sm text-gray-400">AI가 사진으로 캐릭터를 만들어줘요</p>
+        <h2 className="text-2xl font-bold text-text mb-1.5">두 분의 사진을 올려주세요</h2>
+        <p className="text-sm text-text-muted">AI가 사진으로 캐릭터를 만들어줘요</p>
       </div>
 
       <div className="flex gap-4">
@@ -138,19 +138,19 @@ export function Step1Character({ project, onChange, onNext }: Props) {
         />
       </div>
 
-      <div className="p-3 bg-gray-50 rounded-2xl border border-gray-100 flex items-start gap-3">
-        <svg className="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="p-3 bg-bg-subtle rounded-2xl border border-border flex items-start gap-3">
+        <svg className="w-4 h-4 text-primary-light flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
         </svg>
-        <p className="text-xs text-gray-500 leading-relaxed">
-          <span className="font-semibold text-gray-700">데모 모드</span> — 사진 영역을 탭하면 샘플 이미지로 미리보기가 가능해요
+        <p className="text-xs text-text-secondary leading-relaxed">
+          <span className="font-semibold text-text">데모 모드</span> — 사진 영역을 탭하면 샘플 이미지로 미리보기가 가능해요
         </p>
       </div>
 
       <button
         onClick={onNext}
         disabled={!canProceed}
-        className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+        className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
       >
         다음
       </button>

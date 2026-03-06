@@ -91,16 +91,16 @@ export default function CreatePage() {
   }
 
   return (
-    <div className="h-screen bg-white flex flex-col overflow-hidden">
+    <div className="h-screen bg-bg flex flex-col overflow-hidden">
 
       {/* Top bar */}
-      <header className="flex-shrink-0 h-14 border-b border-gray-100 flex items-center px-4 sm:px-6 justify-between bg-white z-10">
+      <header className="flex-shrink-0 h-14 border-b border-border flex items-center px-4 sm:px-6 justify-between bg-bg z-10">
         {/* Left: back + brand */}
         <div className="flex items-center gap-3">
           {step > 0 && (
             <button
               onClick={prev}
-              className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+              className="flex items-center gap-1 text-sm text-text-secondary hover:text-text transition-colors cursor-pointer"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
@@ -108,7 +108,7 @@ export default function CreatePage() {
               <span className="hidden sm:block">이전</span>
             </button>
           )}
-          <a href="/" className="text-base font-semibold text-gray-900">Once Upon Us</a>
+          <a href="/" className="text-base font-semibold text-text">Once Upon Us</a>
         </div>
 
         {/* Center: progress bar (steps 1-7 only) */}
@@ -121,7 +121,7 @@ export default function CreatePage() {
               return (
                 <div key={n} className="flex items-center gap-0.5">
                   <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${
-                    isDone ? 'bg-gray-800 text-white' : isActive ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-400'
+                    isDone ? 'bg-text text-white' : isActive ? 'bg-primary text-white' : 'bg-bg-subtle text-text-muted'
                   }`}>
                     {isDone ? (
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -130,7 +130,7 @@ export default function CreatePage() {
                     ) : n}
                   </div>
                   {n < 7 && (
-                    <div className={`w-4 h-px ${step > n ? 'bg-gray-400' : 'bg-gray-200'}`} />
+                    <div className={`w-4 h-px ${step > n ? 'bg-gray-400' : 'bg-bg-subtle'}`} />
                   )}
                 </div>
               )
@@ -140,7 +140,7 @@ export default function CreatePage() {
 
         {/* Right: step label + lang */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-400 hidden sm:block">
+          <span className="text-xs text-text-muted hidden sm:block">
             {STEP_META[step]?.label}
           </span>
           <LangSwitcher />
@@ -220,7 +220,7 @@ export default function CreatePage() {
         </div>
 
         {/* RIGHT — Live Mock Player (desktop only) */}
-        <div className="hidden md:flex md:w-1/2 bg-gray-50 border-l border-gray-100 items-center justify-center overflow-hidden relative">
+        <div className="hidden md:flex md:w-1/2 bg-bg-subtle border-l border-border items-center justify-center overflow-hidden relative">
           <LiveMockPlayer step={step} project={project} />
         </div>
 
@@ -250,9 +250,9 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
 
       {/* Card */}
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8">
+      <div className="relative bg-bg-card rounded-3xl shadow-2xl w-full max-w-sm p-8">
         {/* Close */}
-        <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-700 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+        <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-text-muted hover:text-text rounded-xl hover:bg-bg-subtle transition-colors cursor-pointer">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -260,26 +260,26 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
 
         {/* Header */}
         <div className="text-center mb-6">
-          <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="w-12 h-12 bg-primary-light/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-1">계속하려면 로그인이 필요해요</h2>
-          <p className="text-sm text-gray-400">입력하신 내용은 그대로 유지돼요</p>
+          <h2 className="text-xl font-bold text-text mb-1">계속하려면 로그인이 필요해요</h2>
+          <p className="text-sm text-text-muted">입력하신 내용은 그대로 유지돼요</p>
         </div>
 
         {/* Tab */}
-        <div className="flex bg-gray-100 rounded-xl p-1 mb-5">
+        <div className="flex bg-bg-subtle rounded-xl p-1 mb-5">
           <button
             onClick={() => setTab('social')}
-            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer ${tab === 'social' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500'}`}
+            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer ${tab === 'social' ? 'bg-white shadow-sm text-text' : 'text-text-secondary'}`}
           >
             소셜 로그인
           </button>
           <button
             onClick={() => setTab('email')}
-            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer ${tab === 'email' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500'}`}
+            className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer ${tab === 'email' ? 'bg-white shadow-sm text-text' : 'text-text-secondary'}`}
           >
             이메일
           </button>
@@ -289,7 +289,7 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
           <div className="space-y-3">
             <button
               onClick={onSuccess}
-              className="w-full py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 border border-border rounded-xl text-sm font-medium text-text hover:bg-bg-subtle transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -301,9 +301,9 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
             </button>
             <button
               onClick={onSuccess}
-              className="w-full py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:bg-yellow-50 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 border border-border rounded-xl text-sm font-medium text-text hover:bg-primary-light/20 transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
-              <div className="w-4 h-4 bg-yellow-400 rounded-sm flex items-center justify-center">
+              <div className="w-4 h-4 bg-primary-light rounded-sm flex items-center justify-center">
                 <span className="text-black text-xs font-black leading-none">K</span>
               </div>
               Kakao로 계속하기
@@ -316,27 +316,27 @@ function LoginGateModal({ onSuccess, onClose }: { onSuccess: () => void; onClose
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="이메일"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow"
+              className="w-full px-4 py-3 rounded-xl border border-border text-sm text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-border-hover transition-shadow"
             />
             <input
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder="비밀번호"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow"
+              className="w-full px-4 py-3 rounded-xl border border-border text-sm text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-border-hover transition-shadow"
             />
             <button
               onClick={onSuccess}
-              className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-sm transition-colors cursor-pointer"
+              className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-sm transition-colors cursor-pointer"
             >
               로그인하기
             </button>
           </div>
         )}
 
-        <p className="text-center text-xs text-gray-400 mt-5">
+        <p className="text-center text-xs text-text-muted mt-5">
           계정이 없으신가요?{' '}
-          <Link href="/signup" className="text-indigo-600 font-semibold hover:text-indigo-700">
+          <Link href="/signup" className="text-primary font-semibold hover:text-primary-dark">
             회원가입
           </Link>
         </p>
