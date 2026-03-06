@@ -57,18 +57,18 @@ export default function MyPage() {
       : t.mypage.emailLogin
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-bg-subtle">
       {/* Header */}
-      <header className="bg-white border-b border-gray-100 sticky top-0 z-40">
+      <header className="bg-bg-card border-b border-border sticky top-0 z-40">
         <div className="max-w-4xl mx-auto px-5 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3 sm:gap-4">
-            <Link href="/" className="text-base font-semibold text-gray-900">Once Upon Us</Link>
-            <span className="text-gray-300">/</span>
-            <span className="text-sm text-gray-500">{t.mypage.header}</span>
+            <Link href="/" className="text-base font-semibold text-text">Once Upon Us</Link>
+            <span className="text-text-muted">/</span>
+            <span className="text-sm text-text-secondary">{t.mypage.header}</span>
           </div>
           <div className="flex items-center gap-2">
             <LangSwitcher />
-            <Link href="/dashboard" className="text-sm text-gray-500 hover:text-gray-900 transition-colors px-2">
+            <Link href="/dashboard" className="text-sm text-text-secondary hover:text-text transition-colors px-2">
               {t.mypage.myProjects}
             </Link>
           </div>
@@ -78,21 +78,21 @@ export default function MyPage() {
       <div className="max-w-4xl mx-auto px-5 sm:px-6 py-8 sm:py-10">
 
         {/* Profile top */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <div className="bg-bg-card rounded-2xl border border-border p-6 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
           {/* Avatar */}
-          <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center text-white text-xl font-black flex-shrink-0">
+          <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-white text-xl font-black flex-shrink-0">
             {initials}
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-black text-gray-900">{name}</h1>
-            <p className="text-sm text-gray-500 mt-0.5">{email}</p>
+            <h1 className="text-xl font-black text-text">{name}</h1>
+            <p className="text-sm text-text-secondary mt-0.5">{email}</p>
             <div className="flex items-center gap-3 mt-2">
               <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${
                 MOCK_USER.provider === 'google'
-                  ? 'bg-blue-50 text-blue-700'
+                  ? 'bg-primary-light/20 text-primary-dark'
                   : MOCK_USER.provider === 'kakao'
-                  ? 'bg-yellow-50 text-yellow-700'
-                  : 'bg-gray-100 text-gray-600'
+                  ? 'bg-primary-light/20 text-primary-dark'
+                  : 'bg-bg-subtle text-text-secondary'
               }`}>
                 {MOCK_USER.provider === 'google' && (
                   <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none">
@@ -107,32 +107,32 @@ export default function MyPage() {
                 )}
                 {providerLabel}
               </span>
-              <span className="text-xs text-gray-400">{MOCK_USER.createdAt} {t.mypage.joined}</span>
+              <span className="text-xs text-text-muted">{MOCK_USER.createdAt} {t.mypage.joined}</span>
             </div>
           </div>
           <div className="flex sm:flex-col gap-4 sm:gap-1 text-center">
             <div>
-              <p className="text-xl font-black text-gray-900">{MOCK_USER.totalProjects}</p>
-              <p className="text-xs text-gray-400">{t.mypage.totalProjects}</p>
+              <p className="text-xl font-black text-text">{MOCK_USER.totalProjects}</p>
+              <p className="text-xs text-text-muted">{t.mypage.totalProjects}</p>
             </div>
-            <div className="w-px sm:w-auto sm:h-px bg-gray-100 self-stretch sm:self-auto" />
+            <div className="w-px sm:w-auto sm:h-px bg-border self-stretch sm:self-auto" />
             <div>
-              <p className="text-xl font-black text-indigo-600">{MOCK_USER.paidOrders}</p>
-              <p className="text-xs text-gray-400">{t.mypage.completedVideos}</p>
+              <p className="text-xl font-black text-primary">{MOCK_USER.paidOrders}</p>
+              <p className="text-xs text-text-muted">{t.mypage.completedVideos}</p>
             </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-gray-100 p-1 rounded-xl mb-6">
+        <div className="flex gap-1 bg-bg-subtle p-1 rounded-xl mb-6">
           {TABS.map(t => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
               className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer ${
                 tab === t.key
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'bg-bg-card text-text shadow-sm'
+                  : 'text-text-secondary hover:text-text'
               }`}
             >
               {t.label}
@@ -142,38 +142,38 @@ export default function MyPage() {
 
         {/* Tab content */}
         {tab === 'profile' && (
-          <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 space-y-5">
-            <h2 className="text-base font-bold text-gray-900">{t.mypage.editProfile}</h2>
+          <div className="bg-bg-card rounded-2xl border border-border p-6 sm:p-8 space-y-5">
+            <h2 className="text-base font-bold text-text">{t.mypage.editProfile}</h2>
 
             <div>
-              <label className="text-sm font-medium text-gray-700 block mb-1.5">{t.mypage.name}</label>
+              <label className="text-sm font-medium text-text block mb-1.5">{t.mypage.name}</label>
               <input
                 type="text"
                 value={name}
                 onChange={e => setName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm transition-shadow"
+                className="w-full px-4 py-3 rounded-xl border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-border-hover text-sm transition-shadow"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700 block mb-1.5">{t.mypage.email}</label>
+              <label className="text-sm font-medium text-text block mb-1.5">{t.mypage.email}</label>
               <input
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm transition-shadow"
+                className="w-full px-4 py-3 rounded-xl border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-border-hover text-sm transition-shadow"
               />
             </div>
 
             <div className="pt-2 flex items-center gap-3">
               <button
                 onClick={handleSaveProfile}
-                className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors cursor-pointer"
+                className="px-6 py-2.5 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-xl transition-colors cursor-pointer"
               >
                 {t.mypage.save}
               </button>
               {saved && (
-                <span className="text-sm text-green-600 font-medium flex items-center gap-1">
+                <span className="text-sm text-success font-medium flex items-center gap-1">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
@@ -187,21 +187,21 @@ export default function MyPage() {
         {tab === 'orders' && (
           <div className="space-y-3">
             {MOCK_ORDERS.length === 0 ? (
-              <div className="bg-white rounded-2xl border border-gray-200 p-12 text-center">
-                <p className="text-gray-500 text-sm">{t.mypage.noOrders}</p>
+              <div className="bg-bg-card rounded-2xl border border-border p-12 text-center">
+                <p className="text-text-secondary text-sm">{t.mypage.noOrders}</p>
               </div>
             ) : (
               MOCK_ORDERS.map(order => (
-                <div key={order.id} className="bg-white rounded-2xl border border-gray-200 p-5 flex items-center justify-between gap-4">
+                <div key={order.id} className="bg-bg-card rounded-2xl border border-border p-5 flex items-center justify-between gap-4">
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-900 text-sm truncate">{order.projectName}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{order.date}</p>
+                    <p className="font-semibold text-text text-sm truncate">{order.projectName}</p>
+                    <p className="text-xs text-text-muted mt-0.5">{order.date}</p>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <span className="text-xs font-semibold px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded-full">{order.plan}</span>
-                    <p className="font-black text-gray-900 text-base mt-1">{order.price}</p>
+                    <span className="text-xs font-semibold px-2 py-0.5 bg-primary-light/30 text-primary rounded-full">{order.plan}</span>
+                    <p className="font-black text-text text-base mt-1">{order.price}</p>
                   </div>
-                  <span className="text-xs font-semibold text-green-700 bg-green-50 px-2.5 py-1 rounded-full flex-shrink-0">{t.mypage.orderComplete}</span>
+                  <span className="text-xs font-semibold text-success bg-success/10 px-2.5 py-1 rounded-full flex-shrink-0">{t.mypage.orderComplete}</span>
                 </div>
               ))
             )}
@@ -212,25 +212,25 @@ export default function MyPage() {
           <div className="space-y-4">
             {/* Password change (email users only) */}
             {MOCK_USER.provider === 'email' && (
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 space-y-4">
-                <h2 className="text-base font-bold text-gray-900">{t.mypage.changePassword}</h2>
+              <div className="bg-bg-card rounded-2xl border border-border p-6 sm:p-8 space-y-4">
+                <h2 className="text-base font-bold text-text">{t.mypage.changePassword}</h2>
                 <div>
-                  <label className="text-sm font-medium text-gray-700 block mb-1.5">{t.mypage.currentPassword}</label>
-                  <input type="password" placeholder="••••••••" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm" />
+                  <label className="text-sm font-medium text-text block mb-1.5">{t.mypage.currentPassword}</label>
+                  <input type="password" placeholder="••••••••" className="w-full px-4 py-3 rounded-xl border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-border-hover text-sm" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-700 block mb-1.5">{t.mypage.newPassword}</label>
-                  <input type="password" placeholder={t.mypage.passwordHint} className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm" />
+                  <label className="text-sm font-medium text-text block mb-1.5">{t.mypage.newPassword}</label>
+                  <input type="password" placeholder={t.mypage.passwordHint} className="w-full px-4 py-3 rounded-xl border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-border-hover text-sm" />
                 </div>
-                <button className="px-6 py-2.5 bg-gray-900 hover:bg-gray-700 text-white text-sm font-semibold rounded-xl transition-colors cursor-pointer">
+                <button className="px-6 py-2.5 bg-dark-bg hover:bg-dark-bg/60 text-white text-sm font-semibold rounded-xl transition-colors cursor-pointer">
                   {t.mypage.changePasswordBtn}
                 </button>
               </div>
             )}
 
             {/* Linked accounts */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
-              <h2 className="text-base font-bold text-gray-900 mb-4">{t.mypage.linkedAccounts}</h2>
+            <div className="bg-bg-card rounded-2xl border border-border p-6 sm:p-8">
+              <h2 className="text-base font-bold text-text mb-4">{t.mypage.linkedAccounts}</h2>
               <div className="space-y-3">
                 <div className="flex items-center justify-between py-2">
                   <div className="flex items-center gap-3">
@@ -240,41 +240,41 @@ export default function MyPage() {
                       <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                       <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                     </svg>
-                    <span className="text-sm font-medium text-gray-700">Google</span>
+                    <span className="text-sm font-medium text-text">Google</span>
                   </div>
                   {MOCK_USER.provider === 'google' ? (
-                    <span className="text-xs font-semibold text-green-700 bg-green-50 px-2.5 py-1 rounded-full">{t.mypage.connected}</span>
+                    <span className="text-xs font-semibold text-success bg-success/10 px-2.5 py-1 rounded-full">{t.mypage.connected}</span>
                   ) : (
-                    <button className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 cursor-pointer">{t.mypage.connect}</button>
+                    <button className="text-xs font-semibold text-primary hover:text-primary-dark cursor-pointer">{t.mypage.connect}</button>
                   )}
                 </div>
-                <div className="border-t border-gray-50" />
+                <div className="border-t border-border" />
                 <div className="flex items-center justify-between py-2">
                   <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 bg-yellow-400 rounded flex items-center justify-center">
+                    <div className="w-5 h-5 bg-primary-light rounded flex items-center justify-center">
                       <span className="text-black text-xs font-black leading-none">K</span>
                     </div>
-                    <span className="text-sm font-medium text-gray-700">Kakao</span>
+                    <span className="text-sm font-medium text-text">Kakao</span>
                   </div>
                   {MOCK_USER.provider === 'kakao' ? (
-                    <span className="text-xs font-semibold text-green-700 bg-green-50 px-2.5 py-1 rounded-full">{t.mypage.connected}</span>
+                    <span className="text-xs font-semibold text-success bg-success/10 px-2.5 py-1 rounded-full">{t.mypage.connected}</span>
                   ) : (
-                    <button className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 cursor-pointer">{t.mypage.connect}</button>
+                    <button className="text-xs font-semibold text-primary hover:text-primary-dark cursor-pointer">{t.mypage.connect}</button>
                   )}
                 </div>
               </div>
             </div>
 
             {/* Logout */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6">
+            <div className="bg-bg-card rounded-2xl border border-border p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">{t.mypage.logout}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">{t.mypage.logoutDesc}</p>
+                  <p className="text-sm font-semibold text-text">{t.mypage.logout}</p>
+                  <p className="text-xs text-text-muted mt-0.5">{t.mypage.logoutDesc}</p>
                 </div>
                 <button
                   onClick={() => { window.location.href = '/login' }}
-                  className="px-4 py-2 border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+                  className="px-4 py-2 border border-border text-text text-sm font-medium rounded-lg hover:bg-bg-subtle transition-colors cursor-pointer"
                 >
                   {t.mypage.logoutBtn}
                 </button>
@@ -282,28 +282,28 @@ export default function MyPage() {
             </div>
 
             {/* Delete account */}
-            <div className="bg-white rounded-2xl border border-red-100 p-6">
+            <div className="bg-bg-card rounded-2xl border border-error/15 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-red-600">{t.mypage.deleteAccount}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">{t.mypage.deleteAccountDesc}</p>
+                  <p className="text-sm font-semibold text-error">{t.mypage.deleteAccount}</p>
+                  <p className="text-xs text-text-muted mt-0.5">{t.mypage.deleteAccountDesc}</p>
                 </div>
                 {deleteConfirm ? (
                   <div className="flex gap-2">
                     <button
                       onClick={() => setDeleteConfirm(false)}
-                      className="px-3 py-2 border border-gray-200 text-gray-600 text-xs font-medium rounded-lg hover:bg-gray-50 cursor-pointer"
+                      className="px-3 py-2 border border-border text-text-secondary text-xs font-medium rounded-lg hover:bg-bg-subtle cursor-pointer"
                     >
                       {t.mypage.cancel}
                     </button>
-                    <button className="px-3 py-2 bg-red-500 text-white text-xs font-semibold rounded-lg hover:bg-red-600 cursor-pointer">
+                    <button className="px-3 py-2 bg-error text-white text-xs font-semibold rounded-lg hover:bg-error/90 cursor-pointer">
                       {t.mypage.confirmDelete}
                     </button>
                   </div>
                 ) : (
                   <button
                     onClick={() => setDeleteConfirm(true)}
-                    className="px-4 py-2 border border-red-200 text-red-500 text-sm font-medium rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                    className="px-4 py-2 border border-error/15 text-error text-sm font-medium rounded-lg hover:bg-error/10 transition-colors cursor-pointer"
                   >
                     {t.mypage.deleteBtn}
                   </button>

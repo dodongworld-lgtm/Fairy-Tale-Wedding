@@ -57,23 +57,23 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
   const selectedPlan = PLANS.find(p => p.id === plan)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-bg-subtle">
       {/* Header */}
-      <header className="bg-white border-b border-gray-100">
+      <header className="bg-bg-card border-b border-border">
         <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-          <a href="/" className="text-base font-semibold text-gray-900">Once Upon Us</a>
+          <a href="/" className="text-base font-semibold text-text">Once Upon Us</a>
           <LangSwitcher />
         </div>
       </header>
 
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t.checkout.header}</h1>
-          <p className="text-gray-500">{t.checkout.subheader}</p>
+          <h1 className="text-3xl font-bold text-text mb-2">{t.checkout.header}</h1>
+          <p className="text-text-secondary">{t.checkout.subheader}</p>
         </div>
 
         {/* Event banner */}
-        <div className="inline-flex items-center gap-2 bg-rose-500 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-6">
+        <div className="inline-flex items-center gap-2 bg-accent text-white text-xs font-bold px-3 py-1.5 rounded-full mb-6">
           <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
           {t.checkout.eventBanner}
         </div>
@@ -84,36 +84,36 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
             <div
               key={p.id}
               onClick={() => setPlan(p.id)}
-              className={`relative bg-white rounded-2xl p-6 cursor-pointer border-2 transition-all ${
+              className={`relative bg-bg-card rounded-2xl p-6 cursor-pointer border-2 transition-all ${
                 plan === p.id
-                  ? 'border-indigo-500 shadow-md shadow-indigo-100'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-primary shadow-md shadow-primary/20'
+                  : 'border-border hover:border-border-hover'
               }`}
             >
               {p.recommended && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">{t.checkout.recommended}</span>
+                  <span className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">{t.checkout.recommended}</span>
                 </div>
               )}
               {p.event && (
                 <div className="absolute -top-3 right-4">
-                  <span className="bg-rose-500 text-white text-xs font-semibold px-3 py-1 rounded-full">{t.checkout.halfPrice}</span>
+                  <span className="bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full">{t.checkout.halfPrice}</span>
                 </div>
               )}
               <div className="mb-3">
-                <h3 className="text-base font-bold text-gray-900">{p.name}</h3>
-                <p className="text-xs text-gray-400 mt-0.5">{p.desc}</p>
+                <h3 className="text-base font-bold text-text">{p.name}</h3>
+                <p className="text-xs text-text-muted mt-0.5">{p.desc}</p>
               </div>
               <div className="mb-4">
                 {p.originalPrice && (
-                  <span className="text-sm text-gray-300 line-through mr-2">{p.originalPrice}</span>
+                  <span className="text-sm text-text-muted line-through mr-2">{p.originalPrice}</span>
                 )}
-                <span className="text-3xl font-bold text-gray-900">{p.displayPrice}</span>
+                <span className="text-3xl font-bold text-text">{p.displayPrice}</span>
               </div>
               <ul className="space-y-2">
                 {p.features.map(f => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
-                    <svg className="w-4 h-4 text-indigo-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <li key={f} className="flex items-start gap-2 text-sm text-text-secondary">
+                    <svg className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     {f}
@@ -125,39 +125,39 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
         </div>
 
         {/* B2B */}
-        <div className="bg-gray-900 rounded-2xl p-6 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="bg-dark-bg rounded-2xl p-6 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-white font-bold text-base">{t.checkout.b2bTitle}</span>
               <span className="text-xs font-semibold bg-white/10 text-white px-2 py-0.5 rounded-full">{t.checkout.b2bBadge}</span>
             </div>
-            <p className="text-gray-400 text-sm">{t.checkout.b2bDesc}</p>
+            <p className="text-text-muted text-sm">{t.checkout.b2bDesc}</p>
           </div>
           <a
             href="mailto:hello@onceuponus.kr"
-            className="flex-shrink-0 px-5 py-2.5 bg-white text-gray-900 text-sm font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+            className="flex-shrink-0 px-5 py-2.5 bg-white text-text text-sm font-semibold rounded-xl hover:bg-bg-subtle transition-colors"
           >
             {t.checkout.b2bBtn}
           </a>
         </div>
 
         {/* Payment button */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6">
+        <div className="bg-bg-card rounded-2xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-sm text-gray-500">{t.checkout.selectedPlan}</p>
-              <p className="font-semibold text-gray-900">{selectedPlan?.name}</p>
+              <p className="text-sm text-text-secondary">{t.checkout.selectedPlan}</p>
+              <p className="font-semibold text-text">{selectedPlan?.name}</p>
             </div>
-            <p className="text-2xl font-bold text-gray-900">{selectedPlan?.displayPrice}</p>
+            <p className="text-2xl font-bold text-text">{selectedPlan?.displayPrice}</p>
           </div>
           <button
             onClick={handlePayment}
             disabled={loading}
-            className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-50 cursor-pointer"
+            className="w-full py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-base transition-colors disabled:opacity-50 cursor-pointer"
           >
             {loading ? t.checkout.processing : t.checkout.payBtn}
           </button>
-          <p className="text-xs text-gray-400 text-center mt-3">{t.checkout.payNote}</p>
+          <p className="text-xs text-text-muted text-center mt-3">{t.checkout.payNote}</p>
         </div>
       </div>
     </div>

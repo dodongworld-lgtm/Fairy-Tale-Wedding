@@ -88,12 +88,12 @@ export default function CompletePage({
   return (
     <div className="min-h-screen bg-[#F5F4F0]">
       {/* Header */}
-      <header className="bg-white border-b border-gray-100">
+      <header className="bg-bg-card border-b border-border">
         <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/" className="text-base font-semibold text-gray-900">Once Upon Us</Link>
+          <Link href="/" className="text-base font-semibold text-text">Once Upon Us</Link>
           <div className="flex items-center gap-3">
             <LangSwitcher />
-            <Link href="/dashboard" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+            <Link href="/dashboard" className="text-sm text-text-secondary hover:text-text transition-colors">
               {t.complete.myProjects}
             </Link>
           </div>
@@ -104,28 +104,28 @@ export default function CompletePage({
 
         {/* Success icon + title */}
         <div className="text-center mb-10">
-          <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-5">
+          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-5">
             <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">{t.complete.title}</h1>
-          <p className="text-gray-500 text-sm sm:text-base">{t.complete.subtitle}</p>
+          <h1 className="text-2xl sm:text-3xl font-black text-text mb-2">{t.complete.title}</h1>
+          <p className="text-text-secondary text-sm sm:text-base">{t.complete.subtitle}</p>
         </div>
 
         {/* Order summary */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-4">
+        <div className="bg-bg-card rounded-2xl border border-border p-6 mb-4">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-1">{t.complete.purchasedPlan}</p>
-              <p className="font-black text-gray-900 text-lg">{planInfo.name}</p>
+              <p className="text-xs text-text-muted font-semibold uppercase tracking-wide mb-1">{t.complete.purchasedPlan}</p>
+              <p className="font-black text-text text-lg">{planInfo.name}</p>
             </div>
-            <span className="text-2xl font-black text-indigo-600">{planInfo.displayPrice}</span>
+            <span className="text-2xl font-black text-primary">{planInfo.displayPrice}</span>
           </div>
-          <div className="border-t border-gray-100 pt-4 flex flex-wrap gap-2">
+          <div className="border-t border-border pt-4 flex flex-wrap gap-2">
             {planInfo.features.map(f => (
-              <span key={f} className="inline-flex items-center gap-1 text-xs text-gray-600 bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-full">
-                <svg className="w-3 h-3 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <span key={f} className="inline-flex items-center gap-1 text-xs text-text-secondary bg-bg-subtle border border-border px-2.5 py-1 rounded-full">
+                <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 {f}
@@ -135,12 +135,12 @@ export default function CompletePage({
         </div>
 
         {/* Download */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-4">
-          <p className="text-sm font-semibold text-gray-700 mb-3">{t.complete.downloadSection}</p>
+        <div className="bg-bg-card rounded-2xl border border-border p-6 mb-4">
+          <p className="text-sm font-semibold text-text mb-3">{t.complete.downloadSection}</p>
           <button
             onClick={handleDownload}
             disabled={downloading}
-            className="w-full py-3.5 bg-gray-900 hover:bg-gray-700 text-white font-semibold rounded-xl text-sm transition-colors disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+            className="w-full py-3.5 bg-dark-bg hover:bg-dark-bg/60 text-white font-semibold rounded-xl text-sm transition-colors disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
           >
             {downloading ? (
               <>
@@ -159,12 +159,12 @@ export default function CompletePage({
         </div>
 
         {/* Share */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
-          <p className="text-sm font-semibold text-gray-700 mb-3">{t.complete.shareSection}</p>
+        <div className="bg-bg-card rounded-2xl border border-border p-6 mb-8">
+          <p className="text-sm font-semibold text-text mb-3">{t.complete.shareSection}</p>
 
           {/* Share link */}
           <div className="flex gap-2 mb-3">
-            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-400 truncate">
+            <div className="flex-1 bg-bg-subtle border border-border rounded-xl px-3 py-2.5 text-sm text-text-muted truncate">
               {shareUrl || `onceuponus.kr/share/...`}
             </div>
             <button
@@ -172,8 +172,8 @@ export default function CompletePage({
               disabled={!shareUrl}
               className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors cursor-pointer flex-shrink-0 ${
                 copied
-                  ? 'bg-green-500 text-white'
-                  : 'bg-gray-900 text-white hover:bg-gray-700 disabled:opacity-40'
+                  ? 'bg-success text-white'
+                  : 'bg-dark-bg text-white hover:bg-dark-bg/60 disabled:opacity-40'
               }`}
             >
               {copied ? t.complete.copied : t.complete.copyLink}
@@ -184,10 +184,10 @@ export default function CompletePage({
           <div className="flex gap-2">
             <button
               onClick={shareKakao}
-              className="flex-1 py-2.5 bg-yellow-400 hover:bg-yellow-300 text-gray-900 text-sm font-semibold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
+              className="flex-1 py-2.5 bg-primary-light hover:bg-primary-light/70 text-text text-sm font-semibold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
             >
-              <div className="w-4 h-4 bg-gray-900 rounded-sm flex items-center justify-center flex-shrink-0">
-                <span className="text-yellow-400 text-xs font-black leading-none">K</span>
+              <div className="w-4 h-4 bg-dark-bg rounded-sm flex items-center justify-center flex-shrink-0">
+                <span className="text-primary-light text-xs font-black leading-none">K</span>
               </div>
               {t.complete.kakaoShare}
             </button>
@@ -199,7 +199,7 @@ export default function CompletePage({
                   copyShareLink()
                 }
               }}
-              className="flex-1 py-2.5 border border-gray-200 text-gray-700 text-sm font-semibold rounded-xl hover:bg-gray-50 transition-colors cursor-pointer"
+              className="flex-1 py-2.5 border border-border text-text text-sm font-semibold rounded-xl hover:bg-bg-subtle transition-colors cursor-pointer"
             >
               {t.complete.more}
             </button>
@@ -210,21 +210,21 @@ export default function CompletePage({
         <div className="flex flex-col sm:flex-row gap-3">
           <Link
             href={`/projects/${params.id}/edit`}
-            className="flex-1 py-3 border border-gray-200 text-gray-700 text-sm font-semibold rounded-xl hover:bg-white transition-colors text-center"
+            className="flex-1 py-3 border border-border text-text text-sm font-semibold rounded-xl hover:bg-bg-card transition-colors text-center"
           >
             {t.complete.editBtn}
           </Link>
           <Link
             href="/create"
-            className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors text-center"
+            className="flex-1 py-3 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-xl transition-colors text-center"
           >
             {t.complete.newVideoBtn}
           </Link>
         </div>
 
-        <p className="text-xs text-gray-400 text-center mt-6">
+        <p className="text-xs text-text-muted text-center mt-6">
           {t.complete.supportText}{' '}
-          <a href="mailto:hello@onceuponus.kr" className="text-indigo-600 hover:underline">
+          <a href="mailto:hello@onceuponus.kr" className="text-primary hover:underline">
             hello@onceuponus.kr
           </a>
           {t.complete.supportText2}

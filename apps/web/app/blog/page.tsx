@@ -28,7 +28,7 @@ const POSTS: Post[] = [
     date: '2024.12.20',
     readTime: '2분',
     event: true,
-    thumbnail: { bg: 'from-indigo-600 to-violet-700', label: '무료 이벤트' },
+    thumbnail: { bg: 'from-primary to-primary-dark', label: '무료 이벤트' },
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const POSTS: Post[] = [
     desc: '결혼식 피로연 시작 전, 하객들이 자리에 앉을 때 스크린으로 틀었어요. 음악이 흐르고 나레이션이 시작되자마자 어머니들이 먼저 우셨습니다. 신랑도 눈물을 참지 못했고요.',
     date: '2024.12.15',
     readTime: '5분',
-    thumbnail: { bg: 'from-rose-500 to-pink-700', label: '결혼식 현장' },
+    thumbnail: { bg: 'from-accent to-pink-700', label: '결혼식 현장' },
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const POSTS: Post[] = [
     desc: '노트북으로 틀려고 했는데 너무 작을 것 같아서 작은 빔프로젝터를 빌렸어요. 영상이 시작되고 수연이가 자기 이름이 나오자마자 멈춰버렸습니다. "이거 우리 이야기야?"라고 하더니...',
     date: '2024.12.10',
     readTime: '4분',
-    thumbnail: { bg: 'from-amber-500 to-orange-700', label: '한강 프로포즈' },
+    thumbnail: { bg: 'from-primary-light to-primary', label: '한강 프로포즈' },
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ const POSTS: Post[] = [
     desc: '수백 개의 영상을 만들면서 알게 된 것들을 공유합니다. "제주도 여행"보다 "제주도에서 처음으로 손을 잡았던 밤"이 훨씬 더 감동적인 장면을 만들어냅니다.',
     date: '2024.12.05',
     readTime: '3분',
-    thumbnail: { bg: 'from-teal-600 to-cyan-800', label: '제작 팁' },
+    thumbnail: { bg: 'from-success to-success', label: '제작 팁' },
   },
   {
     id: 5,
@@ -64,7 +64,7 @@ const POSTS: Post[] = [
     desc: '결혼식이 끝나고 웨딩홀 매니저분이 와서 "영상 어디서 만드셨냐"고 물으셨어요. 하객들 반응이 너무 좋았다고 하셨고, 앞으로 다른 예비부부들한테도 소개해주고 싶다고 하셨습니다.',
     date: '2024.11.28',
     readTime: '6분',
-    thumbnail: { bg: 'from-purple-600 to-blue-800', label: '웨딩홀 후기' },
+    thumbnail: { bg: 'from-primary to-primary-dark', label: '웨딩홀 후기' },
   },
   {
     id: 6,
@@ -73,7 +73,7 @@ const POSTS: Post[] = [
     desc: '남산 N타워 전망대에서 미리 태블릿을 숨겨놨어요. 야경 보러 가자고 데려간 다음, 자리에 앉자마자 영상을 틀었습니다. "이거 직접 만들었어?" 물어보는데 어떻게 대답해야 할지...',
     date: '2024.11.20',
     readTime: '4분',
-    thumbnail: { bg: 'from-emerald-600 to-green-800', label: 'N타워 프로포즈' },
+    thumbnail: { bg: 'from-success to-success', label: 'N타워 프로포즈' },
   },
   {
     id: 7,
@@ -83,7 +83,7 @@ const POSTS: Post[] = [
     date: '2024.11.15',
     readTime: '2분',
     event: true,
-    thumbnail: { bg: 'from-violet-600 to-indigo-900', label: '공유 이벤트' },
+    thumbnail: { bg: 'from-primary to-primary-dark', label: '공유 이벤트' },
   },
   {
     id: 8,
@@ -92,15 +92,15 @@ const POSTS: Post[] = [
     desc: '야외 프로포즈라면 빔프로젝터, 실내라면 TV나 대형 모니터가 가장 좋습니다. 결혼식장 스크린은 웨딩홀에 미리 HDMI 연결 가능 여부를 확인하세요.',
     date: '2024.11.08',
     readTime: '3분',
-    thumbnail: { bg: 'from-gray-600 to-gray-800', label: '재생 가이드' },
+    thumbnail: { bg: 'from-dark-bg/50 to-dark-bg/80', label: '재생 가이드' },
   },
 ]
 
 const TAG_COLORS: Record<PostTag, string> = {
-  '결혼식 후기': 'bg-rose-50 text-rose-600',
-  '프로포즈 후기': 'bg-amber-50 text-amber-700',
-  '이벤트': 'bg-indigo-50 text-indigo-600',
-  '제작 팁': 'bg-teal-50 text-teal-700',
+  '결혼식 후기': 'bg-accent-light/50 text-accent',
+  '프로포즈 후기': 'bg-primary-light/20 text-primary-dark',
+  '이벤트': 'bg-primary-light/30 text-primary',
+  '제작 팁': 'bg-success/10 text-success',
 }
 
 export default function BlogPage() {
@@ -110,20 +110,20 @@ export default function BlogPage() {
   const regularPosts = POSTS.filter(p => !p.event)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-bg">
       {/* Header */}
-      <header className="border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur-sm z-40">
+      <header className="border-b border-border sticky top-0 bg-bg/90 backdrop-blur-sm z-40">
         <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-base font-semibold text-gray-900">Once Upon Us</Link>
-            <span className="text-gray-300">/</span>
-            <span className="text-sm text-gray-500">{t.blog.header}</span>
+            <Link href="/" className="text-base font-semibold text-text">Once Upon Us</Link>
+            <span className="text-text-muted">/</span>
+            <span className="text-sm text-text-secondary">{t.blog.header}</span>
           </div>
           <div className="flex items-center gap-2">
             <LangSwitcher />
             <Link
               href="/create"
-              className="px-3 sm:px-4 py-1.5 bg-indigo-600 text-white text-sm font-medium rounded-full hover:bg-indigo-700 transition-colors"
+              className="px-3 sm:px-4 py-1.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary-dark transition-colors"
             >
               {t.common.createVideo}
             </Link>
@@ -134,32 +134,32 @@ export default function BlogPage() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         {/* Page title */}
         <div className="mb-10">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t.blog.title}</h1>
-          <p className="text-gray-500">{t.blog.subtitle}</p>
+          <h1 className="text-3xl font-bold text-text mb-2">{t.blog.title}</h1>
+          <p className="text-text-secondary">{t.blog.subtitle}</p>
         </div>
 
         {/* Event Banner */}
-        <div className="mb-10 bg-indigo-600 rounded-2xl p-6 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="mb-10 bg-primary rounded-2xl p-6 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wide text-indigo-200 mb-2 block">{t.blog.currentEvent}</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-primary-light/70 mb-2 block">{t.blog.currentEvent}</span>
             <h2 className="text-xl font-bold mb-1">프로포즈 영상 무료 제작 이벤트</h2>
-            <p className="text-indigo-200 text-sm">프로포즈 과정을 영상으로 찍어 올려주시면 AI 영상을 무료로 만들어 드립니다</p>
+            <p className="text-primary-light/70 text-sm">프로포즈 과정을 영상으로 찍어 올려주시면 AI 영상을 무료로 만들어 드립니다</p>
           </div>
           <Link
             href="/blog/1"
-            className="flex-shrink-0 px-5 py-2.5 bg-white text-indigo-600 text-sm font-semibold rounded-xl hover:bg-indigo-50 transition-colors"
+            className="flex-shrink-0 px-5 py-2.5 bg-white text-primary text-sm font-semibold rounded-xl hover:bg-primary-light/30 transition-colors"
           >
             자세히 보기
           </Link>
         </div>
 
         {/* Post list */}
-        <div className="space-y-0 divide-y divide-gray-100">
+        <div className="space-y-0 divide-y divide-border">
           {POSTS.map(post => (
             <Link
               key={post.id}
               href={`/blog/${post.id}`}
-              className="flex gap-5 py-6 hover:bg-gray-50 -mx-4 px-4 rounded-xl transition-colors group"
+              className="flex gap-5 py-6 hover:bg-bg-subtle -mx-4 px-4 rounded-xl transition-colors group"
             >
               {/* Thumbnail */}
               <div className={`flex-shrink-0 w-24 h-16 md:w-32 md:h-20 rounded-xl bg-gradient-to-br ${post.thumbnail.bg} flex items-center justify-center`}>
@@ -173,16 +173,16 @@ export default function BlogPage() {
                     {post.tag}
                   </span>
                   {post.event && (
-                    <span className="text-xs font-semibold text-white bg-indigo-500 px-2 py-0.5 rounded-full">{t.blog.currentEvent}</span>
+                    <span className="text-xs font-semibold text-white bg-primary px-2 py-0.5 rounded-full">{t.blog.currentEvent}</span>
                   )}
                 </div>
-                <h3 className="font-bold text-gray-900 text-base leading-snug mb-1.5 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                <h3 className="font-bold text-text text-base leading-snug mb-1.5 group-hover:text-primary transition-colors line-clamp-2">
                   {post.title}
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-2 hidden md:block">
+                <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-2 hidden md:block">
                   {post.desc}
                 </p>
-                <div className="flex items-center gap-3 text-xs text-gray-400">
+                <div className="flex items-center gap-3 text-xs text-text-muted">
                   <span>{post.date}</span>
                   <span>·</span>
                   <span>{t.blog.readTime} {post.readTime}</span>
@@ -193,12 +193,12 @@ export default function BlogPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-16 text-center border border-gray-200 rounded-2xl p-10">
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.blog.ctaTitle}</h3>
-          <p className="text-gray-500 mb-6">{t.blog.ctaDesc}</p>
+        <div className="mt-16 text-center border border-border rounded-2xl p-10">
+          <h3 className="text-2xl font-bold text-text mb-3">{t.blog.ctaTitle}</h3>
+          <p className="text-text-secondary mb-6">{t.blog.ctaDesc}</p>
           <Link
             href="/create"
-            className="inline-block px-8 py-3.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
+            className="inline-block px-8 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-colors"
           >
             {t.blog.ctaBtn}
           </Link>
