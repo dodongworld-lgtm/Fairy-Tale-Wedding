@@ -52,7 +52,6 @@ export function StepBlockPicker({ selectedBlocks, onChangeBlocks, onNext }: Prop
     onChangeBlocks(next)
   }
 
-  const blockMap = BLOCK_MAP
   const canProceed = selectedBlocks.length === 5
 
   return (
@@ -134,7 +133,7 @@ export function StepBlockPicker({ selectedBlocks, onChangeBlocks, onNext }: Prop
           <p className="text-xs font-bold text-text-secondary mb-1">선택 순서</p>
           <div className="flex flex-col gap-1.5">
             {selectedBlocks.map((id, idx) => {
-              const block = blockMap[id]
+              const block = BLOCK_MAP[id]
               if (!block) return null
               return (
                 <div

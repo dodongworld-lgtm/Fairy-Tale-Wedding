@@ -385,7 +385,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-border/50">
-          <p className="text-xs text-text-muted">© 2025 Once Upon Us. All rights reserved.</p>
+          <p className="text-xs text-text-muted">© 2026 Once Upon Us. All rights reserved.</p>
         </div>
       </footer>
     </main>

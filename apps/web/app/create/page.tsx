@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { LangSwitcher } from '../components/LangSwitcher'
 import { Step1Character } from './components/steps/Step1Character'
 import { Step2Opening } from './components/steps/Step2Opening'
 import { StepTemplateSelect } from './components/steps/StepTemplateSelect'
@@ -118,7 +117,6 @@ export default function CreatePage() {
               {step} / {TOTAL_STEPS - 1}
             </span>
           )}
-          <LangSwitcher />
         </div>
       </header>
 

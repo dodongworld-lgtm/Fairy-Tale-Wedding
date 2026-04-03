@@ -6,13 +6,17 @@ export default defineConfig({
     globals: true,
     alias: {
       '../lib/prisma': path.resolve(__dirname, 'src/__mocks__/prisma.ts'),
-      '../../lib/prisma': path.resolve(__dirname, 'src/__mocks__/prisma.ts')
+      '../../lib/prisma': path.resolve(__dirname, 'src/__mocks__/prisma.ts'),
+      '../lib/geminiClient': path.resolve(__dirname, 'src/__mocks__/geminiClient.ts'),
+      '../../lib/geminiClient': path.resolve(__dirname, 'src/__mocks__/geminiClient.ts')
     }
   },
   resolve: {
     alias: {
       '../lib/prisma': path.resolve(__dirname, 'src/__mocks__/prisma.ts'),
-      '../../lib/prisma': path.resolve(__dirname, 'src/__mocks__/prisma.ts')
+      '../../lib/prisma': path.resolve(__dirname, 'src/__mocks__/prisma.ts'),
+      '../lib/geminiClient': path.resolve(__dirname, 'src/__mocks__/geminiClient.ts'),
+      '../../lib/geminiClient': path.resolve(__dirname, 'src/__mocks__/geminiClient.ts')
     }
   }
 })
