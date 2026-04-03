@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import { LangSwitcher } from '../components/LangSwitcher'
-import { LiveMockPlayer } from './components/LiveMockPlayer'
 import { Step1Character } from './components/steps/Step1Character'
 import { Step2Opening } from './components/steps/Step2Opening'
 import { StepTemplateSelect } from './components/steps/StepTemplateSelect'
@@ -25,7 +24,6 @@ export default function CreatePage() {
   const [project, setProject] = useState<ProjectData>(createDefaultProject)
   const [showBlockPicker, setShowBlockPicker] = useState(false)
 
-  // Dynamic step meta: template(0) → photos(1) → opening(2) → blocks → outro → review
   const stepMeta = buildStepMeta(project.selectedBlocks)
   const TOTAL_STEPS = stepMeta.length
   const currentStepKey = stepMeta[step]?.key || 'template'
@@ -83,6 +81,9 @@ export default function CreatePage() {
     }
   }
 
+  // Template step uses wider layout, others use centered narrow layout
+  const isWideStep = currentStepKey === 'template'
+
   return (
     <div className="h-screen bg-bg flex flex-col overflow-hidden">
       {/* Top bar */}
@@ -121,84 +122,68 @@ export default function CreatePage() {
         </div>
       </header>
 
-      {/* Body */}
-      <div className="flex flex-1 overflow-hidden">
+      {/* Body — single column, full width */}
+      <div className="flex-1 overflow-y-auto py-8 sm:py-10 px-6 sm:px-8 md:px-14">
+        <div
+          key={currentStepKey}
+          className={`mx-auto w-full animate-in slide-in-from-bottom-4 duration-500 ${isWideStep ? 'max-w-5xl' : 'max-w-lg'}`}
+        >
 
-        {/* Template / Block picker — full width, no preview */}
-        {currentStepKey === 'template' ? (
-          <div className="w-full flex flex-col justify-center px-6 sm:px-8 md:px-14 overflow-y-auto py-8 sm:py-10">
-            <div className="max-w-2xl mx-auto w-full">
-              {!showBlockPicker ? (
-                <StepTemplateSelect
-                  onSelectTemplate={(templateId: string, blockIds: string[]) => {
-                    setProject((p: ProjectData) => ({
-                      ...p, templateId, selectedBlocks: blockIds,
-                      sections: initBlockSections(p.sections, blockIds),
-                    }))
-                    setShowBlockPicker(false)
-                    setStep((s: number) => s + 1)
-                  }}
-                  onCustomSelect={() => setShowBlockPicker(true)}
-                />
-              ) : (
-                <StepBlockPicker
-                  selectedBlocks={project.selectedBlocks}
-                  onChangeBlocks={(blockIds: string[]) => {
-                    setProject((p: ProjectData) => ({
-                      ...p, templateId: null, selectedBlocks: blockIds,
-                      sections: initBlockSections(p.sections, blockIds),
-                    }))
-                  }}
-                  onNext={() => { setShowBlockPicker(false); setStep((s: number) => s + 1) }}
-                />
-              )}
-            </div>
-          </div>
-        ) : (
-          <>
-            {/* Form — left half */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-8 md:px-14 overflow-y-auto py-8 sm:py-10">
-              <div key={currentStepKey} className="max-w-md mx-auto w-full animate-in slide-in-from-bottom-4 duration-500">
+          {currentStepKey === 'template' && !showBlockPicker && (
+            <StepTemplateSelect
+              onSelectTemplate={(templateId: string, blockIds: string[]) => {
+                setProject((p: ProjectData) => ({
+                  ...p, templateId, selectedBlocks: blockIds,
+                  sections: initBlockSections(p.sections, blockIds),
+                }))
+                setShowBlockPicker(false)
+                setStep((s: number) => s + 1)
+              }}
+              onCustomSelect={() => setShowBlockPicker(true)}
+            />
+          )}
 
-                {currentStepKey === 'photos' && (
-                  <Step1Character project={project} onChange={updateProject} onNext={next} />
-                )}
+          {currentStepKey === 'template' && showBlockPicker && (
+            <StepBlockPicker
+              selectedBlocks={project.selectedBlocks}
+              onChangeBlocks={(blockIds: string[]) => {
+                setProject((p: ProjectData) => ({
+                  ...p, templateId: null, selectedBlocks: blockIds,
+                  sections: initBlockSections(p.sections, blockIds),
+                }))
+              }}
+              onNext={() => { setShowBlockPicker(false); setStep((s: number) => s + 1) }}
+            />
+          )}
 
-                {currentStepKey === 'opening' && (
-                  <Step2Opening project={project} onSection={updateSection} onNext={next} />
-                )}
+          {currentStepKey === 'photos' && (
+            <Step1Character project={project} onChange={updateProject} onNext={next} />
+          )}
 
-                {currentStepKey === 'outro' && (
-                  <StepOutro project={project} onSection={updateSection} onNext={next} />
-                )}
+          {currentStepKey === 'opening' && (
+            <Step2Opening project={project} onSection={updateSection} onNext={next} />
+          )}
 
-                {currentStepKey === 'review' && (
-                  <Step9Review project={project} onFinish={handleFinish} />
-                )}
+          {currentStepKey === 'outro' && (
+            <StepOutro project={project} onSection={updateSection} onNext={next} />
+          )}
 
-                {BLOCK_MAP[currentStepKey] && (
-                  <BlockEditor
-                    block={BLOCK_MAP[currentStepKey]}
-                    data={project.sections[currentStepKey] || { photos: [], narration: '' }}
-                    groomName={project.groomName}
-                    brideName={project.brideName}
-                    onChange={(data: Partial<SectionData>) => updateSection(currentStepKey, data)}
-                    onNext={next}
-                  />
-                )}
+          {currentStepKey === 'review' && (
+            <Step9Review project={project} onFinish={handleFinish} />
+          )}
 
-              </div>
-            </div>
+          {BLOCK_MAP[currentStepKey] && (
+            <BlockEditor
+              block={BLOCK_MAP[currentStepKey]}
+              data={project.sections[currentStepKey] || { photos: [], narration: '' }}
+              groomName={project.groomName}
+              brideName={project.brideName}
+              onChange={(data: Partial<SectionData>) => updateSection(currentStepKey, data)}
+              onNext={next}
+            />
+          )}
 
-            {/* Preview — right half */}
-            <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-bg-subtle to-primary-light/5 border-l border-border items-center justify-center overflow-hidden relative">
-              <div key={`preview-${step}`} className="animate-in fade-in duration-700">
-                <LiveMockPlayer step={step} project={project} />
-              </div>
-            </div>
-          </>
-        )}
-
+        </div>
       </div>
     </div>
   )
