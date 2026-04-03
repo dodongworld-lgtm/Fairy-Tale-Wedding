@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
-import { LangSwitcher } from './components/LangSwitcher'
 import { useLang } from './contexts/LangContext'
 import { FloatingHeart, FloatingRing, FloatingStar } from './components/decorative'
 
@@ -60,7 +59,6 @@ export default function LandingPage() {
               <a href="#pricing" className="hover:text-text transition-colors">{t.landing.navPricing}</a>
             </nav>
             <div className="flex items-center gap-2">
-              <LangSwitcher />
               <Link href="/login" className="hidden sm:block text-sm text-text-secondary hover:text-text px-2">{t.common.login}</Link>
               <Link href="/create" className="px-4 py-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-xl transition-colors">
                 {t.common.createVideo}
@@ -575,7 +573,6 @@ export default function LandingPage() {
           <div className="pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-text-muted">{t.landing.footerCopyright}</p>
             <div className="flex items-center gap-4">
-              <LangSwitcher />
             </div>
           </div>
         </div>

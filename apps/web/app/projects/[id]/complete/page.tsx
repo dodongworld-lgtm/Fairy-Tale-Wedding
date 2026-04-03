@@ -16,23 +16,23 @@ export default function CompletePage({
   params: { id: string }
   searchParams: { orderId?: string; plan?: string }
 }) {
-  const { t, lang } = useLang()
+  const { t } = useLang()
 
   const PLAN_INFO: Record<Plan, { name: string; features: string[]; displayPrice: string }> = {
     STANDARD: {
       name: 'Standard',
-      displayPrice: '$49',
-      features: lang === 'en' ? ['FHD (1080p)', '3 downloads', '30-day storage'] : ['FHD (1080p)', '다운로드 3회', '30일 보관'],
+      displayPrice: '₩49,000',
+      features: ['FHD (1080p)', '다운로드 3회', '30일 보관'],
     },
     PRO: {
       name: 'Pro',
-      displayPrice: '$199',
-      features: lang === 'en' ? ['4K Ultra HD', 'Unlimited downloads', 'Permanent storage', '5 image regenerations'] : ['4K 초고화질', '무제한 다운로드', '영구 보관', '이미지 재생성 5회'],
+      displayPrice: '₩199,000',
+      features: ['4K 초고화질', '무제한 다운로드', '영구 보관', '이미지 재생성 5회'],
     },
     ULTRA: {
       name: 'Ultra',
-      displayPrice: '$299',
-      features: lang === 'en' ? ['4K Ultra HD', 'Unlimited downloads', 'Permanent storage', 'USB delivery', 'Dedicated editor support'] : ['4K 초고화질', '무제한 다운로드', '영구 보관', 'USB 배송', '전담 편집 지원'],
+      displayPrice: '₩299,000',
+      features: ['4K 초고화질', '무제한 다운로드', '영구 보관', 'USB 배송', '전담 편집 지원'],
     },
   }
 
