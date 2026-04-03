@@ -17,9 +17,9 @@ export function StepTemplateSelect({ onSelectTemplate, onCustomSelect }: Props) 
     <div className="w-full py-10 sm:py-14">
 
       <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-text leading-tight mb-2">
-        어떤 이야기를 담을까요?
+        어떤 스토리가<br />우리를 가장 잘 표현할까요?
       </h1>
-      <p className="text-text-muted text-sm mb-10">나중에 자유롭게 수정할 수 있어요</p>
+      <p className="text-text-muted text-sm mb-10">마음에 드는 구성을 골라주세요. 나중에 자유롭게 수정할 수 있어요.</p>
 
       {/* Cards — 2x2 with image */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
