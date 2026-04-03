@@ -158,7 +158,7 @@ export default function CreatePage() {
           <>
             {/* Form — left half */}
             <div className="w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-8 md:px-14 overflow-y-auto py-8 sm:py-10">
-              <div className="max-w-md mx-auto w-full">
+              <div key={currentStepKey} className="max-w-md mx-auto w-full animate-in slide-in-from-bottom-4 duration-500">
 
                 {currentStepKey === 'photos' && (
                   <Step1Character project={project} onChange={updateProject} onNext={next} />
@@ -192,7 +192,9 @@ export default function CreatePage() {
 
             {/* Preview — right half */}
             <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-bg-subtle to-primary-light/5 border-l border-border items-center justify-center overflow-hidden relative">
-              <LiveMockPlayer step={step} project={project} />
+              <div key={`preview-${step}`} className="animate-in fade-in duration-700">
+                <LiveMockPlayer step={step} project={project} />
+              </div>
             </div>
           </>
         )}
