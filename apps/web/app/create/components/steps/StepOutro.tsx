@@ -2,14 +2,14 @@
 import { useRef } from 'react'
 import type { ProjectData, SectionData } from '../../data/projectData'
 
-type Props = {
+interface Props {
   project: ProjectData
-  onSection: (key: 'thanks', data: Partial<SectionData>) => void
+  onSection: (key: string, data: Partial<SectionData>) => void
   onNext: () => void
 }
 
-export function Step8Thanks({ project, onSection, onNext }: Props) {
-  const sec = project.sections.thanks
+export function StepOutro({ project, onSection, onNext }: Props) {
+  const sec = project.sections.outro
   const fileRef = useRef<HTMLInputElement>(null)
 
   return (
@@ -24,7 +24,7 @@ export function Step8Thanks({ project, onSection, onNext }: Props) {
           <label className="block text-sm font-semibold text-text mb-1.5">감사 메시지</label>
           <textarea
             value={sec.narration || ''}
-            onChange={e => onSection('thanks', { narration: e.target.value })}
+            onChange={e => onSection('outro', { narration: e.target.value })}
             placeholder="와주셔서 감사합니다."
             rows={3}
             className="w-full px-4 py-3 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none bg-white"
@@ -41,7 +41,7 @@ export function Step8Thanks({ project, onSection, onNext }: Props) {
               <div key={i} className="relative w-32 h-24 rounded-xl overflow-hidden bg-bg-subtle">
                 <img src={url} className="w-full h-full object-cover" alt="" />
                 <button
-                  onClick={() => onSection('thanks', { photos: [] })}
+                  onClick={() => { URL.revokeObjectURL(url); onSection('outro', { photos: [] }) }}
                   className="absolute top-1 right-1 w-5 h-5 bg-black/50 rounded-full flex items-center justify-center cursor-pointer"
                 >
                   <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -64,7 +64,7 @@ export function Step8Thanks({ project, onSection, onNext }: Props) {
           </div>
           <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={e => {
             if (e.target.files?.[0]) {
-              onSection('thanks', { photos: [URL.createObjectURL(e.target.files[0])] })
+              onSection('outro', { photos: [URL.createObjectURL(e.target.files[0])] })
             }
           }} />
         </div>

@@ -1,28 +1,37 @@
 'use client'
 import { useState } from 'react'
-import type { ProjectData, SectionKey } from '../../data/projectData'
+import { BLOCK_MAP } from '../../data/blockDefs'
+import type { ProjectData, SectionData } from '../../data/projectData'
 
 type Props = {
   project: ProjectData
   onFinish: () => Promise<void>
 }
 
-const SECTION_LABELS: { key: SectionKey; label: string; required: boolean }[] = [
-  { key: 'opening',      label: '오프닝 인사',    required: false },
-  { key: 'whoWeAre',     label: '우리는 누구인지', required: false },
-  { key: 'howWeMet',     label: '어떻게 만났나',  required: true  },
-  { key: 'becameLovers', label: '연인이 되다',     required: true  },
-  { key: 'decision',     label: '부부가 되기로',  required: true  },
-  { key: 'thanks',       label: '감사합니다',      required: false },
-]
-
 export function Step9Review({ project, onFinish }: Props) {
   const [rendering, setRendering] = useState(false)
   const [done, setDone] = useState(false)
 
-  const missingRequired = SECTION_LABELS.filter(
-    s => s.required && project.sections[s.key].photos.length === 0
-  )
+  // Build dynamic section list from selected blocks
+  const sectionItems: { key: string; label: string; icon: string; required: boolean }[] = [
+    { key: 'opening', label: '오프닝 인사', icon: '👋', required: false },
+    ...project.selectedBlocks.map(id => {
+      const block = BLOCK_MAP[id]
+      return {
+        key: id,
+        label: block?.name || id,
+        icon: block?.icon || '📝',
+        required: (block?.photoMin || 0) > 0,
+      }
+    }),
+    { key: 'outro', label: '감사합니다', icon: '🙏', required: false },
+  ]
+
+  const missingRequired = sectionItems.filter(s => {
+    if (!s.required) return false
+    const sec = project.sections[s.key]
+    return !sec || sec.photos.length === 0
+  })
 
   const canRender = missingRequired.length === 0
 
@@ -67,8 +76,8 @@ export function Step9Review({ project, onFinish }: Props) {
 
       {/* Section checklist */}
       <div className="space-y-2">
-        {SECTION_LABELS.map(({ key, label, required }) => {
-          const sec = project.sections[key]
+        {sectionItems.map(({ key, label, icon, required }) => {
+          const sec: SectionData = project.sections[key] || { photos: [], narration: '' }
           const hasPhoto = sec.photos.length > 0
           const hasNarr = sec.narration.trim().length > 0
           const ok = !required || hasPhoto
@@ -86,6 +95,7 @@ export function Step9Review({ project, onFinish }: Props) {
                     </svg>
                   )}
                 </div>
+                <span className="text-base mr-1">{icon}</span>
                 <span className="text-sm font-medium text-text">{label}</span>
                 {required && <span className="text-[10px] text-text-muted">(필수)</span>}
               </div>
