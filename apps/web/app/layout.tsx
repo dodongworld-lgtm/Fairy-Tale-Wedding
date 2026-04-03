@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" translate="no">
       <body className={`${inter.variable} ${cormorant.variable} ${pretendard.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>

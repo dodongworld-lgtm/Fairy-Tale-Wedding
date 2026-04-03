@@ -123,69 +123,80 @@ export default function CreatePage() {
 
       {/* Body */}
       <div className="flex flex-1 overflow-hidden">
-        <div className="w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-8 md:px-14 overflow-y-auto py-8 sm:py-10">
-          <div className="max-w-md mx-auto w-full">
 
-            {currentStepKey === 'template' && !showBlockPicker && (
-              <StepTemplateSelect
-                onSelectTemplate={(templateId: string, blockIds: string[]) => {
-                  setProject((p: ProjectData) => ({
-                    ...p, templateId, selectedBlocks: blockIds,
-                    sections: initBlockSections(p.sections, blockIds),
-                  }))
-                  setShowBlockPicker(false)
-                  setStep((s: number) => s + 1)
-                }}
-                onCustomSelect={() => setShowBlockPicker(true)}
-              />
-            )}
-
-            {currentStepKey === 'template' && showBlockPicker && (
-              <StepBlockPicker
-                selectedBlocks={project.selectedBlocks}
-                onChangeBlocks={(blockIds: string[]) => {
-                  setProject((p: ProjectData) => ({
-                    ...p, templateId: null, selectedBlocks: blockIds,
-                    sections: initBlockSections(p.sections, blockIds),
-                  }))
-                }}
-                onNext={() => { setShowBlockPicker(false); setStep((s: number) => s + 1) }}
-              />
-            )}
-
-            {currentStepKey === 'photos' && (
-              <Step1Character project={project} onChange={updateProject} onNext={next} />
-            )}
-
-            {currentStepKey === 'opening' && (
-              <Step2Opening project={project} onSection={updateSection} onNext={next} />
-            )}
-
-            {currentStepKey === 'outro' && (
-              <StepOutro project={project} onSection={updateSection} onNext={next} />
-            )}
-
-            {currentStepKey === 'review' && (
-              <Step9Review project={project} onFinish={handleFinish} />
-            )}
-
-            {BLOCK_MAP[currentStepKey] && (
-              <BlockEditor
-                block={BLOCK_MAP[currentStepKey]}
-                data={project.sections[currentStepKey] || { photos: [], narration: '' }}
-                groomName={project.groomName}
-                brideName={project.brideName}
-                onChange={(data: Partial<SectionData>) => updateSection(currentStepKey, data)}
-                onNext={next}
-              />
-            )}
-
+        {/* Template / Block picker — full width, no preview */}
+        {currentStepKey === 'template' ? (
+          <div className="w-full flex flex-col justify-center px-6 sm:px-8 md:px-14 overflow-y-auto py-8 sm:py-10">
+            <div className="max-w-2xl mx-auto w-full">
+              {!showBlockPicker ? (
+                <StepTemplateSelect
+                  onSelectTemplate={(templateId: string, blockIds: string[]) => {
+                    setProject((p: ProjectData) => ({
+                      ...p, templateId, selectedBlocks: blockIds,
+                      sections: initBlockSections(p.sections, blockIds),
+                    }))
+                    setShowBlockPicker(false)
+                    setStep((s: number) => s + 1)
+                  }}
+                  onCustomSelect={() => setShowBlockPicker(true)}
+                />
+              ) : (
+                <StepBlockPicker
+                  selectedBlocks={project.selectedBlocks}
+                  onChangeBlocks={(blockIds: string[]) => {
+                    setProject((p: ProjectData) => ({
+                      ...p, templateId: null, selectedBlocks: blockIds,
+                      sections: initBlockSections(p.sections, blockIds),
+                    }))
+                  }}
+                  onNext={() => { setShowBlockPicker(false); setStep((s: number) => s + 1) }}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        ) : (
+          <>
+            {/* Form — left half */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-8 md:px-14 overflow-y-auto py-8 sm:py-10">
+              <div className="max-w-md mx-auto w-full">
 
-        <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-bg-subtle to-primary-light/5 border-l border-border items-center justify-center overflow-hidden relative">
-          <LiveMockPlayer step={step} project={project} />
-        </div>
+                {currentStepKey === 'photos' && (
+                  <Step1Character project={project} onChange={updateProject} onNext={next} />
+                )}
+
+                {currentStepKey === 'opening' && (
+                  <Step2Opening project={project} onSection={updateSection} onNext={next} />
+                )}
+
+                {currentStepKey === 'outro' && (
+                  <StepOutro project={project} onSection={updateSection} onNext={next} />
+                )}
+
+                {currentStepKey === 'review' && (
+                  <Step9Review project={project} onFinish={handleFinish} />
+                )}
+
+                {BLOCK_MAP[currentStepKey] && (
+                  <BlockEditor
+                    block={BLOCK_MAP[currentStepKey]}
+                    data={project.sections[currentStepKey] || { photos: [], narration: '' }}
+                    groomName={project.groomName}
+                    brideName={project.brideName}
+                    onChange={(data: Partial<SectionData>) => updateSection(currentStepKey, data)}
+                    onNext={next}
+                  />
+                )}
+
+              </div>
+            </div>
+
+            {/* Preview — right half */}
+            <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-bg-subtle to-primary-light/5 border-l border-border items-center justify-center overflow-hidden relative">
+              <LiveMockPlayer step={step} project={project} />
+            </div>
+          </>
+        )}
+
       </div>
     </div>
   )
