@@ -49,7 +49,7 @@ export default function LandingPage() {
 
       {/* ── 1. NAVBAR ── */}
       <header className="fixed top-3 left-4 right-4 z-50">
-        <div className="max-w-7xl mx-auto px-4 bg-bg/90 backdrop-blur-md border border-border rounded-2xl shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 bg-bg/90 backdrop-blur-md border border-border rounded-2xl shadow-sm">
           <div className="h-14 flex items-center justify-between">
             <span className="text-lg font-black tracking-tight text-text font-serif">{t.common.brand}</span>
             <nav className="hidden lg:flex items-center gap-6 text-sm text-text-secondary">
@@ -60,7 +60,7 @@ export default function LandingPage() {
             </nav>
             <div className="flex items-center gap-2">
               <Link href="/login" className="hidden sm:block text-sm text-text-secondary hover:text-text px-2">{t.common.login}</Link>
-              <Link href="/create" className="px-4 py-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-xl transition-colors">
+              <Link href="/create" className="px-4 py-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-lg transition-all duration-300 ease-out">
                 {t.common.createVideo}
               </Link>
             </div>
@@ -70,7 +70,7 @@ export default function LandingPage() {
 
       {/* ── 2. HERO — 2-column ── */}
       <section className="pt-28 md:pt-36 pb-12 px-5 sm:px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-primary-light/30 border border-primary-light/50 rounded-lg px-3 py-1 text-xs font-bold text-primary-dark mb-6 tracking-wide uppercase">
               {t.landing.heroLabel}
@@ -83,10 +83,10 @@ export default function LandingPage() {
               {t.landing.heroDesc}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
-              <Link href="/create" className="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold text-base rounded-2xl transition-colors text-center">
+              <Link href="/create" className="px-8 py-4 bg-primary hover:bg-primary-dark hover:shadow-lg text-white font-bold text-base rounded-xl transition-all duration-300 ease-out text-center">
                 {t.landing.heroBtn}
               </Link>
-              <a href="#features" className="px-8 py-4 bg-bg text-text font-semibold text-base rounded-2xl border border-border hover:border-border-hover transition-colors text-center">
+              <a href="#features" className="px-8 py-4 bg-bg text-text font-semibold text-base rounded-xl border border-border/60 hover:border-border-hover transition-all duration-300 ease-out text-center">
                 {t.landing.heroSample}
               </a>
             </div>
@@ -131,7 +131,7 @@ export default function LandingPage() {
 
       {/* ── 3. STATS ── */}
       <section className="py-10 px-5 sm:px-6 bg-bg-subtle border-y border-border">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { value: t.landing.stat1, label: t.landing.stat1label },
             { value: t.landing.stat2, label: t.landing.stat2label },
@@ -147,15 +147,15 @@ export default function LandingPage() {
       </section>
 
       {/* ── 4. FEATURES ── */}
-      <section id="features" className="py-16 sm:py-20 px-5 sm:px-6 bg-bg relative">
+      <section id="features" className="py-20 sm:py-28 px-5 sm:px-6 bg-bg relative">
         <FloatingRing className="absolute top-10 right-10 w-32 h-32 text-primary hidden lg:block" />
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-10 sm:mb-14">
-            <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.navFeatures}</p>
+            <p className="text-[0.8125rem] font-semibold text-primary mb-3">{t.landing.navFeatures}</p>
             <h2 className="text-3xl sm:text-4xl font-black text-text tracking-tight">{t.landing.featuresTitle}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="bg-bg-card border border-border rounded-2xl p-6 hover:border-border-hover hover:shadow-md transition-all group">
+            <div className="bg-bg-card border border-border/50 rounded-xl p-7 hover:border-border-hover hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ease-out group">
               <div className="w-12 h-12 bg-primary-light/30 rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
@@ -171,7 +171,7 @@ export default function LandingPage() {
               </Link>
             </div>
 
-            <div className="bg-bg-card border border-border rounded-2xl p-6 hover:border-border-hover hover:shadow-md transition-all">
+            <div className="bg-bg-card border border-border/50 rounded-xl p-7 hover:border-border-hover hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ease-out">
               <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
@@ -181,7 +181,7 @@ export default function LandingPage() {
               <p className="text-text-secondary text-sm leading-relaxed">{t.landing.feat2desc}</p>
             </div>
 
-            <div className="bg-bg-card border border-border rounded-2xl p-6 hover:border-border-hover hover:shadow-md transition-all">
+            <div className="bg-bg-card border border-border/50 rounded-xl p-7 hover:border-border-hover hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ease-out">
               <div className="w-12 h-12 bg-primary-light/30 rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -192,7 +192,7 @@ export default function LandingPage() {
               <p className="text-text-secondary text-sm leading-relaxed">{t.landing.feat3desc}</p>
             </div>
 
-            <div className="bg-bg-card border border-border rounded-2xl p-6 hover:border-border-hover hover:shadow-md transition-all">
+            <div className="bg-bg-card border border-border/50 rounded-xl p-7 hover:border-border-hover hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ease-out">
               <div className="w-12 h-12 bg-bg-subtle rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
@@ -211,9 +211,9 @@ export default function LandingPage() {
 
       {/* ── 5. FEATURED VIDEOS ── */}
       <section className="py-16 sm:py-20 px-5 sm:px-6 bg-bg-subtle">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-8 sm:mb-10">
-            <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{t.landing.featuredLabel}</p>
+            <p className="text-[0.8125rem] font-semibold text-primary mb-2">{t.landing.featuredLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.featuredTitle}</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -275,11 +275,11 @@ export default function LandingPage() {
       </section>
 
       {/* ── 6. ANIMATION STYLES ── */}
-      <section id="styles" className="py-16 sm:py-20 px-5 sm:px-6 bg-bg relative">
+      <section id="styles" className="py-20 sm:py-28 px-5 sm:px-6 bg-bg relative">
         <FloatingStar className="absolute bottom-10 left-10 w-24 h-24 text-primary hidden lg:block" />
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 sm:mb-14">
-            <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.stylesLabel}</p>
+            <p className="text-[0.8125rem] font-semibold text-primary mb-3">{t.landing.stylesLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.stylesTitle}</h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
@@ -303,10 +303,10 @@ export default function LandingPage() {
       </section>
 
       {/* ── 8. HOW IT WORKS ── */}
-      <section className="py-16 sm:py-20 px-5 sm:px-6 bg-bg">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-24 sm:py-32 px-5 sm:px-6 bg-bg">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 sm:mb-14">
-            <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.processLabel}</p>
+            <p className="text-[0.8125rem] font-semibold text-primary mb-3">{t.landing.processLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.processTitle}</h2>
           </div>
           <div className="relative">
@@ -333,9 +333,9 @@ export default function LandingPage() {
       </section>
 
       {/* ── 9. PRICING ── */}
-      <section id="pricing" className="py-16 sm:py-20 px-5 sm:px-6 bg-bg">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.pricingLabel}</p>
+      <section id="pricing" className="py-20 sm:py-28 px-5 sm:px-6 bg-bg">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[0.8125rem] font-semibold text-primary mb-3">{t.landing.pricingLabel}</p>
           <h2 className="text-3xl sm:text-4xl font-black text-text mb-3">{t.landing.pricingTitle}</h2>
           <p className="text-text-secondary mb-4">{t.landing.pricingSubtitle}</p>
 
@@ -350,11 +350,11 @@ export default function LandingPage() {
               <h3 className="font-black text-xl mb-0.5 text-text">Standard</h3>
               <p className="text-xs mb-4 text-text-muted">{t.checkout.standardDesc}</p>
               <div className="mb-5 flex items-baseline gap-2">
-                <span className="text-base line-through text-text-muted">$99</span>
-                <span className="text-4xl font-black text-text">$49</span>
+                <span className="text-base line-through text-text-muted">₩99,000</span>
+                <span className="text-4xl font-black text-text">₩49,000</span>
               </div>
               <ul className="space-y-2">
-                {['FHD (1080p)', '3x Download', 'Share link', '30-day storage'].map(f => (
+                {['FHD (1080p)', '다운로드 3회', '공유 링크', '30일 보관'].map(f => (
                   <li key={f} className="flex items-center gap-2 text-sm text-text-secondary">
                     <svg className="w-4 h-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
@@ -370,10 +370,10 @@ export default function LandingPage() {
               <h3 className="font-black text-xl mb-0.5 text-white">Pro</h3>
               <p className="text-xs mb-4 text-primary-light/70">{t.checkout.proDesc}</p>
               <div className="mb-5">
-                <span className="text-4xl font-black text-white">$199</span>
+                <span className="text-4xl font-black text-white">₩199,000</span>
               </div>
               <ul className="space-y-2">
-                {['4K', 'Unlimited Downloads', 'Share link', 'Permanent storage', '5x Regen'].map(f => (
+                {['4K 초고화질', '무제한 다운로드', '공유 링크', '영구 보관', '이미지 재생성 5회'].map(f => (
                   <li key={f} className="flex items-center gap-2 text-sm text-primary-light/50">
                     <svg className="w-4 h-4 flex-shrink-0 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
@@ -388,10 +388,10 @@ export default function LandingPage() {
               <h3 className="font-black text-xl mb-0.5 text-text">Ultra</h3>
               <p className="text-xs mb-4 text-text-muted">{t.checkout.ultraDesc}</p>
               <div className="mb-5">
-                <span className="text-4xl font-black text-text">$299</span>
+                <span className="text-4xl font-black text-text">₩299,000</span>
               </div>
               <ul className="space-y-2">
-                {['4K', 'Unlimited Downloads', 'Permanent storage', 'Unlimited Regen', 'USB', 'Editor'].map(f => (
+                {['4K 초고화질', '무제한 다운로드', '영구 보관', '무제한 재생성', 'USB 배송', '전담 편집 지원'].map(f => (
                   <li key={f} className="flex items-center gap-2 text-sm text-text-secondary">
                     <svg className="w-4 h-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
@@ -426,10 +426,10 @@ export default function LandingPage() {
       </section>
 
       {/* ── 10. CTA BANNER ── */}
-      <section className="py-16 sm:py-20 px-5 sm:px-6 bg-dark-bg text-dark-text relative overflow-hidden">
+      <section className="py-20 sm:py-28 px-5 sm:px-6 bg-dark-bg text-dark-text relative overflow-hidden">
         <FloatingHeart className="absolute top-10 left-10 w-40 h-40 text-primary-light/20 hidden lg:block" />
         <FloatingRing className="absolute bottom-10 right-10 w-32 h-32 text-accent/20 hidden lg:block" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
           <div>
             <p className="text-xs font-bold text-primary-light uppercase tracking-widest mb-3">{t.landing.ctaLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-black leading-tight mb-4 whitespace-pre-line">{t.landing.ctaTitle}</h2>
@@ -461,11 +461,11 @@ export default function LandingPage() {
       </section>
 
       {/* ── 11. TESTIMONIALS ── */}
-      <section id="reviews" className="py-16 sm:py-20 px-5 sm:px-6 bg-bg relative">
+      <section id="reviews" className="py-20 sm:py-28 px-5 sm:px-6 bg-bg relative">
         <FloatingStar className="absolute top-16 right-16 w-28 h-28 text-primary hidden lg:block" />
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 sm:mb-14">
-            <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.testimonialsLabel}</p>
+            <p className="text-[0.8125rem] font-semibold text-primary mb-3">{t.landing.testimonialsLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.testimonialsTitle}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -500,9 +500,9 @@ export default function LandingPage() {
 
       {/* ── 12. PARTNERS ── */}
       <section className="py-12 px-5 sm:px-6 bg-bg-subtle border-y border-border">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{t.landing.partnersLabel}</p>
+            <p className="text-[0.8125rem] font-semibold text-primary mb-2">{t.landing.partnersLabel}</p>
             <h2 className="text-2xl font-black text-text">{t.landing.partnersTitle}</h2>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
@@ -517,7 +517,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── 14. NEWSLETTER ── */}
-      <section className="py-12 sm:py-16 px-5 sm:px-6 bg-bg-subtle">
+      <section className="py-16 sm:py-20 px-5 sm:px-6 bg-bg-subtle">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-black text-text mb-2">{t.landing.newsletterTitle}</h2>
           <p className="text-text-secondary text-sm mb-6">{t.landing.newsletterDesc}</p>
@@ -538,7 +538,7 @@ export default function LandingPage() {
 
       {/* ── 15. FOOTER ── */}
       <footer className="py-12 sm:py-16 px-5 sm:px-6 border-t border-border bg-bg">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <div>
               <span className="text-xl font-black text-text font-serif block mb-3">{t.common.brand}</span>
