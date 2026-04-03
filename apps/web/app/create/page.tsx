@@ -123,7 +123,7 @@ export default function CreatePage() {
       </header>
 
       {/* Body — single column, full width */}
-      <div className="flex-1 overflow-y-auto py-8 sm:py-10 px-6 sm:px-8 md:px-14">
+      <div className="flex-1 overflow-y-auto px-6 sm:px-8 md:px-14">
         <div
           key={currentStepKey}
           className={`mx-auto w-full animate-in slide-in-from-bottom-4 duration-500 ${isWideStep ? 'max-w-5xl' : 'max-w-lg'}`}
