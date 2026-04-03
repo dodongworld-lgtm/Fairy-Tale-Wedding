@@ -14,9 +14,9 @@ interface PricingCardProps {
 }
 
 const variantStyles: Record<PricingVariant, string> = {
-  default: 'border-2 border-border bg-bg-card',
-  recommended: 'border-2 border-primary bg-primary shadow-lg shadow-primary/20',
-  premium: 'border-2 border-border bg-bg-card',
+  default: 'border border-border/50 bg-bg-card',
+  recommended: 'border-2 border-primary bg-primary shadow-xl shadow-primary/15',
+  premium: 'border border-border/50 bg-bg-card',
 }
 
 export function PricingCard({ variant = 'default', name, description, price, originalPrice, features, badge, className = '' }: PricingCardProps) {
@@ -27,7 +27,7 @@ export function PricingCard({ variant = 'default', name, description, price, ori
   const checkColor = isRec ? 'text-white/60' : 'text-primary'
 
   return (
-    <div className={`rounded-2xl p-6 sm:p-7 relative ${variantStyles[variant]} ${className}`}>
+    <div className={`rounded-xl p-7 sm:p-8 relative ${variantStyles[variant]} ${className}`}>
       {badge && <div className="absolute -top-3 right-6">{badge}</div>}
       <h3 className={`font-bold text-xl mb-0.5 ${textColor}`}>{name}</h3>
       <p className={`text-xs mb-4 ${descColor}`}>{description}</p>

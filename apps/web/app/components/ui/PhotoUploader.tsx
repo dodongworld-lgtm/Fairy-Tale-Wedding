@@ -24,16 +24,16 @@ export function PhotoUploader({ photos, onChange, max = 3, label, className = ''
 
   return (
     <div className={className}>
-      {label && <p className="text-sm text-text-secondary font-medium mb-2">{label}</p>}
+      {label && <p className="text-xs text-text-secondary font-medium uppercase tracking-wide mb-3">{label}</p>}
       <div className="flex flex-wrap gap-2">
         {photos.map((url, i) => (
-          <div key={i} className="relative w-20 h-20 rounded-xl overflow-hidden border border-border">
+          <div key={i} className="relative w-20 h-20 rounded-lg overflow-hidden border border-border/50">
             <img src={url} alt="" className="w-full h-full object-cover" />
             <button onClick={() => remove(i)} className="absolute top-0.5 right-0.5 w-5 h-5 bg-dark-bg/70 text-dark-text rounded-full flex items-center justify-center text-xs cursor-pointer hover:bg-dark-bg">&times;</button>
           </div>
         ))}
         {photos.length < max && (
-          <button onClick={() => inputRef.current?.click()} className="w-20 h-20 border-2 border-dashed border-border rounded-xl flex items-center justify-center text-text-muted hover:border-primary-light hover:bg-bg-subtle transition-colors cursor-pointer">
+          <button onClick={() => inputRef.current?.click()} className="w-20 h-20 border-2 border-dashed border-border/60 rounded-lg flex items-center justify-center text-text-muted hover:border-primary-light hover:bg-bg-subtle transition-all duration-300 cursor-pointer">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>

@@ -7,8 +7,8 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  gold: 'bg-primary-light/30 text-primary-dark',
-  rose: 'bg-accent-light text-accent',
+  gold: 'bg-primary/10 text-primary-dark',
+  rose: 'bg-accent/10 text-accent',
   dark: 'bg-dark-bg text-dark-text',
   success: 'bg-success/10 text-success',
   error: 'bg-error/10 text-error',
@@ -17,7 +17,7 @@ const variantStyles: Record<BadgeVariant, string> = {
 export function Badge({ variant = 'gold', className = '', children, ...props }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${variantStyles[variant]} ${className}`}
+      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[0.6875rem] font-medium uppercase tracking-wide ${variantStyles[variant]} ${className}`}
       {...props}
     >
       {children}

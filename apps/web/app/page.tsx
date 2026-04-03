@@ -9,13 +9,6 @@ export default function LandingPage() {
   const { t } = useLang()
   const [email, setEmail] = useState('')
 
-  const SAMPLE_VIDEOS = [
-    { id: 1, title: '지훈 & 수연', desc: '홍대 카페에서 시작된 운명적인 만남', mood: t.landing.propose, bg: 'bg-dark-bg/80', duration: '1:02', moodColor: 'bg-primary' },
-    { id: 2, title: '민준 & 서연', desc: '친구로 시작한 7년, 북한산 정상에서의 프로포즈', mood: t.landing.propose, bg: 'bg-dark-bg/70', duration: '0:58', moodColor: 'bg-primary' },
-    { id: 3, title: '준혁 & 지은', desc: '파리 에펠탑 아래의 프로포즈', mood: t.landing.wedding, bg: 'bg-dark-bg/80', duration: '1:05', moodColor: 'bg-text-secondary' },
-    { id: 4, title: '태양 & 하나', desc: '한강 퇴근길의 깜짝 이벤트', mood: t.landing.propose, bg: 'bg-dark-bg/70', duration: '1:00', moodColor: 'bg-primary' },
-  ]
-
   const PROCESS_STEPS = [
     {
       n: '01', title: t.landing.process1, desc: t.landing.process1desc,
@@ -63,10 +56,8 @@ export default function LandingPage() {
             <nav className="hidden lg:flex items-center gap-6 text-sm text-text-secondary">
               <a href="#features" className="hover:text-text transition-colors">{t.landing.navFeatures}</a>
               <a href="#styles" className="hover:text-text transition-colors">{t.landing.navStyles}</a>
-              <a href="#samples" className="hover:text-text transition-colors">{t.landing.navSample}</a>
               <a href="#reviews" className="hover:text-text transition-colors">{t.landing.navReviews}</a>
               <a href="#pricing" className="hover:text-text transition-colors">{t.landing.navPricing}</a>
-              <Link href="/blog" className="hover:text-text transition-colors">{t.common.blog}</Link>
             </nav>
             <div className="flex items-center gap-2">
               <LangSwitcher />
@@ -86,7 +77,7 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-2 bg-primary-light/30 border border-primary-light/50 rounded-lg px-3 py-1 text-xs font-bold text-primary-dark mb-6 tracking-wide uppercase">
               {t.landing.heroLabel}
             </div>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-text mb-5">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-text mb-5">
               {t.landing.heroTitle1}<br />
               <span className="text-primary">{t.landing.heroTitle2}</span>
             </h1>
@@ -97,7 +88,7 @@ export default function LandingPage() {
               <Link href="/create" className="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold text-base rounded-2xl transition-colors text-center">
                 {t.landing.heroBtn}
               </Link>
-              <a href="#samples" className="px-8 py-4 bg-bg text-text font-semibold text-base rounded-2xl border border-border hover:border-border-hover transition-colors text-center">
+              <a href="#features" className="px-8 py-4 bg-bg text-text font-semibold text-base rounded-2xl border border-border hover:border-border-hover transition-colors text-center">
                 {t.landing.heroSample}
               </a>
             </div>
@@ -163,7 +154,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 sm:mb-14">
             <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.navFeatures}</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-black text-text tracking-tight">{t.landing.featuresTitle}</h2>
+            <h2 className="text-3xl sm:text-4xl font-black text-text tracking-tight">{t.landing.featuresTitle}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <div className="bg-bg-card border border-border rounded-2xl p-6 hover:border-border-hover hover:shadow-md transition-all group">
@@ -225,7 +216,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-8 sm:mb-10">
             <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{t.landing.featuredLabel}</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-black text-text">{t.landing.featuredTitle}</h2>
+            <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.featuredTitle}</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-bg-card border border-border rounded-2xl overflow-hidden hover:border-border-hover hover:shadow-lg transition-all group">
@@ -291,7 +282,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 sm:mb-14">
             <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.stylesLabel}</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-black text-text">{t.landing.stylesTitle}</h2>
+            <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.stylesTitle}</h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
             {[
@@ -313,47 +304,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── 7. POPULAR VIDEOS ── */}
-      <section id="samples" className="py-16 sm:py-20 px-5 sm:px-6 bg-bg-subtle">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-8 sm:mb-10">
-            <div>
-              <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{t.landing.samplesLabel}</p>
-              <h2 className="font-serif text-3xl sm:text-4xl font-black text-text">{t.landing.samplesTitle}</h2>
-            </div>
-            <Link href="/create" className="hidden md:block text-sm font-bold text-primary hover:text-primary-dark transition-colors">
-              {t.landing.samplesBtn}
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {SAMPLE_VIDEOS.map(v => (
-              <div key={v.id} className="group cursor-pointer bg-bg-card border border-border rounded-2xl overflow-hidden hover:border-border-hover hover:shadow-md transition-all">
-                <div className={`w-full aspect-video ${v.bg} flex items-center justify-center relative`}>
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-white/30">
-                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                  <span className="absolute bottom-2 right-2 bg-dark-bg/50 text-white text-xs px-1.5 py-0.5 rounded font-medium">{v.duration}</span>
-                  <span className={`absolute top-2 left-2 ${v.moodColor} text-white text-xs px-2 py-0.5 rounded-full font-semibold`}>{v.mood}</span>
-                </div>
-                <div className="p-3">
-                  <p className="font-bold text-text text-sm">{v.title}</p>
-                  <p className="text-text-secondary text-xs mt-0.5 hidden sm:block">{v.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 text-center lg:hidden">
-            <Link href="/create" className="text-sm font-bold text-primary hover:text-primary-dark transition-colors">{t.landing.samplesBtn}</Link>
-          </div>
-        </div>
-      </section>
-
       {/* ── 8. HOW IT WORKS ── */}
       <section className="py-16 sm:py-20 px-5 sm:px-6 bg-bg">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 sm:mb-14">
             <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.processLabel}</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-black text-text">{t.landing.processTitle}</h2>
+            <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.processTitle}</h2>
           </div>
           <div className="relative">
             <div className="hidden md:block absolute top-8 left-[calc(12.5%)] right-[calc(12.5%)] h-0.5 bg-gradient-to-r from-primary-light/50 via-primary-light to-border-hover z-0" />
@@ -382,7 +338,7 @@ export default function LandingPage() {
       <section id="pricing" className="py-16 sm:py-20 px-5 sm:px-6 bg-bg">
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.pricingLabel}</p>
-          <h2 className="font-serif text-3xl sm:text-4xl font-black text-text mb-3">{t.landing.pricingTitle}</h2>
+          <h2 className="text-3xl sm:text-4xl font-black text-text mb-3">{t.landing.pricingTitle}</h2>
           <p className="text-text-secondary mb-4">{t.landing.pricingSubtitle}</p>
 
           <div className="inline-flex items-center gap-2 bg-accent text-white text-sm font-bold px-4 py-2 rounded-full mb-8 sm:mb-10">
@@ -478,7 +434,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
           <div>
             <p className="text-xs font-bold text-primary-light uppercase tracking-widest mb-3">{t.landing.ctaLabel}</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-black leading-tight mb-4 whitespace-pre-line">{t.landing.ctaTitle}</h2>
+            <h2 className="text-3xl sm:text-4xl font-black leading-tight mb-4 whitespace-pre-line">{t.landing.ctaTitle}</h2>
             <p className="text-dark-text/70 mb-6">{t.landing.ctaDesc}</p>
             <Link href="/create" className="inline-block px-8 py-4 bg-primary hover:bg-primary-light text-white font-bold text-base rounded-2xl transition-colors mb-4">
               {t.landing.ctaBtn}
@@ -512,7 +468,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 sm:mb-14">
             <p className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{t.landing.testimonialsLabel}</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-black text-text">{t.landing.testimonialsTitle}</h2>
+            <h2 className="text-3xl sm:text-4xl font-black text-text">{t.landing.testimonialsTitle}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
@@ -549,7 +505,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{t.landing.partnersLabel}</p>
-            <h2 className="font-serif text-2xl font-black text-text">{t.landing.partnersTitle}</h2>
+            <h2 className="text-2xl font-black text-text">{t.landing.partnersTitle}</h2>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
             {['The Shilla', 'JW Marriott', 'Lotte Hotel', 'Four Seasons', 'Kuho Studio', 'Bonheur Wedding'].map((name, i) => (
@@ -562,47 +518,10 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── 13. BLOG ── */}
-      <section className="py-16 sm:py-20 px-5 sm:px-6 bg-bg">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-8 sm:mb-10">
-            <div>
-              <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{t.landing.blogLabel}</p>
-              <h2 className="font-serif text-3xl sm:text-4xl font-black text-text">{t.landing.blogTitle}</h2>
-            </div>
-            <Link href="/blog" className="hidden md:block text-sm font-bold text-primary hover:text-primary-dark transition-colors">{t.landing.blogMore}</Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {[
-              { title: t.landing.blog1title, desc: t.landing.blog1desc, date: t.landing.blog1date, emoji: '📖' },
-              { title: t.landing.blog2title, desc: t.landing.blog2desc, date: t.landing.blog2date, emoji: '🎬' },
-              { title: t.landing.blog3title, desc: t.landing.blog3desc, date: t.landing.blog3date, emoji: '📸' },
-            ].map((post, i) => (
-              <Link key={i} href="/blog" className="group bg-bg-card border border-border rounded-2xl overflow-hidden hover:border-border-hover hover:shadow-md transition-all">
-                <div className="aspect-[16/9] bg-bg-subtle relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-light/10 to-accent-light/10" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-4xl opacity-30">{post.emoji}</span>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <p className="text-xs text-text-muted mb-2">{post.date}</p>
-                  <h3 className="font-bold text-text text-sm mb-1 group-hover:text-primary transition-colors">{post.title}</h3>
-                  <p className="text-text-secondary text-xs">{post.desc}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6 text-center md:hidden">
-            <Link href="/blog" className="text-sm font-bold text-primary hover:text-primary-dark transition-colors">{t.landing.blogMore}</Link>
-          </div>
-        </div>
-      </section>
-
       {/* ── 14. NEWSLETTER ── */}
       <section className="py-12 sm:py-16 px-5 sm:px-6 bg-bg-subtle">
         <div className="max-w-xl mx-auto text-center">
-          <h2 className="font-serif text-2xl sm:text-3xl font-black text-text mb-2">{t.landing.newsletterTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-text mb-2">{t.landing.newsletterTitle}</h2>
           <p className="text-text-secondary text-sm mb-6">{t.landing.newsletterDesc}</p>
           <div className="flex gap-2">
             <input
@@ -632,14 +551,12 @@ export default function LandingPage() {
               <div className="flex flex-col gap-2">
                 <a href="#features" className="text-sm text-text-muted hover:text-text-secondary transition-colors">{t.landing.navFeatures}</a>
                 <a href="#styles" className="text-sm text-text-muted hover:text-text-secondary transition-colors">{t.landing.navStyles}</a>
-                <a href="#samples" className="text-sm text-text-muted hover:text-text-secondary transition-colors">{t.landing.navSample}</a>
                 <a href="#pricing" className="text-sm text-text-muted hover:text-text-secondary transition-colors">{t.landing.navPricing}</a>
               </div>
             </div>
             <div>
               <h4 className="text-sm font-bold text-text mb-3">{t.landing.footerSupport}</h4>
               <div className="flex flex-col gap-2">
-                <Link href="/blog" className="text-sm text-text-muted hover:text-text-secondary transition-colors">{t.landing.footerBlog}</Link>
                 <a href="mailto:hello@onceuponus.kr" className="text-sm text-text-muted hover:text-text-secondary transition-colors">{t.landing.footerContact}</a>
                 <a href="#" className="text-sm text-text-muted hover:text-text-secondary transition-colors">{t.landing.footerFaq}</a>
               </div>

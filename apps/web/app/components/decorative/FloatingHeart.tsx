@@ -7,7 +7,7 @@ export function FloatingHeart({ className = '' }: { className?: string }) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity="0.15"
+        opacity="0.08"
       />
     </svg>
   )

@@ -7,7 +7,7 @@ export function FloatingStar({ className = '' }: { className?: string }) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity="0.1"
+        opacity="0.05"
       />
     </svg>
   )

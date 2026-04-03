@@ -26,8 +26,8 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Once Upon Us",
-  description: "AI turns your love story into a one-of-a-kind animated film.",
+  title: "한 번의 우리 | Once Upon Us",
+  description: "AI가 당신의 러브스토리를 세상에 하나뿐인 애니메이션 영상으로 만들어 드립니다.",
 };
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={`${inter.variable} ${cormorant.variable} ${pretendard.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>

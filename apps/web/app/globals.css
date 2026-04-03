@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FFF8F0;
-  --foreground: #2D2520;
+  --background: #FAFAF7;
+  --foreground: #1A1714;
 }
 
 @theme inline {
@@ -10,31 +10,31 @@
   --color-foreground: var(--foreground);
 
   /* Primary */
-  --color-primary: #9B7B5B;
-  --color-primary-light: #C4A882;
-  --color-primary-dark: #7A5F42;
+  --color-primary: #8C7055;
+  --color-primary-light: #B8A48A;
+  --color-primary-dark: #6B5740;
 
   /* Accent */
-  --color-accent: #C9A0A0;
-  --color-accent-light: #E8D4D4;
+  --color-accent: #C4A69A;
+  --color-accent-light: #E8DDD6;
 
   /* Backgrounds */
-  --color-bg: #FFF8F0;
+  --color-bg: #FAFAF7;
   --color-bg-card: #FFFFFF;
-  --color-bg-subtle: #FDF5ED;
+  --color-bg-subtle: #F5F4F0;
 
   /* Text */
-  --color-text: #2D2520;
-  --color-text-secondary: #8B7E74;
-  --color-text-muted: #B8AFA6;
+  --color-text: #1A1714;
+  --color-text-secondary: #7A7268;
+  --color-text-muted: #A8A09A;
 
   /* Borders */
-  --color-border: #E8DFD6;
-  --color-border-hover: #C4A882;
+  --color-border: #E8E5E0;
+  --color-border-hover: #B8A48A;
 
   /* Semantic */
-  --color-success: #6B8F71;
-  --color-error: #C75C5C;
+  --color-success: #5B8A63;
+  --color-error: #C45555;
 
   /* Dark surfaces */
   --color-dark-bg: #1E1A16;
@@ -48,6 +48,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  line-height: 1.7;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
